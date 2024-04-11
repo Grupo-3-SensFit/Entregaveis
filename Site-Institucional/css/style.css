@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+body {
+    margin: 0;
+    text-decoration: none;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open-Sans', sans-serif;
+}
+
+
+header {
+    height: 100vh;
+}
+
+#fundo_header {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+}
+
+.fundo {
+    /* Essa Div Define o Tamanho das Ondas. */
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+}
+
+.fundo_circuito {
+    position: absolute;
+    object-fit: cover;
+    width: 60%;
+    height: 100vh;
+    left: -10%;
+    top: -30%;
+    opacity: 0.4;
+}
+
+#navbar-list{
+    list-style: none;
+}
+
+#navbar-list a {
+    text-decoration: none;
+    color: white;
+}   
+
+#navbar-list {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    height: 80px;
+    width: 100%;
+    transition: 0.30;
+}
+

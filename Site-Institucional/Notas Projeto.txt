@@ -7,3 +7,9 @@ Arruma a Primeira tela para que Fique de Acordo com o Prototipo;
 
 Login e Cadastro:
 Fazer as validações da Pagina de Login e Cadastro;
+
+Validações de Login: 
+
+Senha no Minimo 8 Caracteres, 1 Letra maiuscula, pelo menos 1 número.
+
+Fazer validação com Laço de Repetição For.

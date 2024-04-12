@@ -13,3 +13,5 @@ Validações de Login:
 Senha no Minimo 8 Caracteres, 1 Letra maiuscula, pelo menos 1 número.
 
 Fazer validação com Laço de Repetição For.
+
+Tela de login e cadastro receberão uma nova versão (Loginv2.html)

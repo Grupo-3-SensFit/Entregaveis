@@ -1,0 +1,9 @@
+-- Site Institucional 
+
+Arruma a Primeira tela para que Fique de Acordo com o Prototipo;
+
+-- Fazer as Demais telas antes do Dia 18/04;
+
+
+Login e Cadastro:
+Fazer as validações da Pagina de Login e Cadastro;

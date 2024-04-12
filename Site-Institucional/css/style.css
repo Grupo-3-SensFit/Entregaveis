@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
 body {
@@ -6,19 +6,20 @@ body {
     text-decoration: none;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Open-Sans', sans-serif;
+    font-family: Poppins, sans-serif;
 }
 
 
-header {
-    height: 100vh;
+#home{
+    height: 100%;
 }
 
 #fundo_header {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: -10;
+    z-index: 99999;
+    background-color: #FD6220;
 }
 
 .fundo {
@@ -35,26 +36,75 @@ header {
     height: 100vh;
     left: -10%;
     top: -30%;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
-#navbar-list{
-    list-style: none;
+
+a .logo {
+     width: 100px;
+     height: 100px; 
+
 }
+
 
 #navbar-list a {
     text-decoration: none;
     color: white;
-}   
+    transition: 0.5s;
+    /* text-transform: uppercase; */
+    
+}
+
+#navbar-list a:hover {
+    color: black;
+    
+}
+
+/* #navbar-list a::before {
+    content: '';
+    position: absolute;
+    background-color: black;
+    bottom: -2px;
+    height: 3px;
+    width: 0%;
+    transform: skewX(-45deg);
+    transition: width 0.20s;
+} */
 
 #navbar-list {
     position: fixed;
-    z-index: 9999;
-    top: 0;
     display: flex;
     justify-content: space-around;
     height: 80px;
     width: 100%;
-    transition: 0.30;
+    list-style-type: none;
+    /* transition: 0.30; */
+    top: 0;
 }
 
+
+#logo {
+    display: flex;
+    height: 95px;   
+    margin-left: 10px;
+    cursor: pointer;
+    top: 0;
+    object-fit: contain;
+}
+
+.button-login {
+    width: 130px;
+    height: 45px;
+    border-radius: 10px;
+    border: 0;
+    font-weight: bold;
+    font-family: Poppins;
+    transition: 0.3s;
+    color: #FD6220;
+}
+
+.button-login:hover {
+    background-color: #FD6220;
+    color: white;
+    border: 4px solid white;
+}

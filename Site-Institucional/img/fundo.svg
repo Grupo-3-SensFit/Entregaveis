@@ -3,7 +3,7 @@
     preserveAspectRatio="xMidYMid meet" version="1.0">
     <defs>
         <linearGradient id="teste" gradientTransform="rotate(90)">
-            <stop stop-color="#FD6220" offset="50%"/>
+            <stop stop-color="#FF922F" offset="50%"/>
             <stop stop-color="#FD8C4F" offset="100%"/>
         </linearGradient>
     </defs>

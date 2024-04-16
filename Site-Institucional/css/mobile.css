@@ -1,0 +1,23 @@
+/* #header-content {
+    flex-direction: column;
+    justify-content: center;
+}
+
+nav {
+    
+}
+
+.button-login {
+    display: flex;
+}
+
+#navbar-list {
+    display: none;
+    position: absolute;
+    top: 80px;
+    width: 100%;
+}
+
+#nav-list.active {
+    display: block;
+} */

@@ -1,0 +1,32 @@
+.imagem-header {
+    width: 340px;
+}
+
+nav {
+    justify-content: space-between;
+}
+
+#navbar-list {
+    display: none;
+    position: absolute;
+    top: 80px;
+    width: 100%;
+}
+
+
+#fundo_header {
+    width: 100%;
+}
+
+#mobile-button {
+    display: flex;
+}
+
+.navbar-link {
+    padding: 5px;
+    text-align: right;
+}
+
+.nav-links {
+    padding: 5px;
+}

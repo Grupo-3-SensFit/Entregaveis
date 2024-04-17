@@ -70,6 +70,7 @@ nav {
     list-style-type: none;
     gap: 32px;
     flex-grow: 1;
+    align-items: center;
     /* transition: 0.30; */
 }
 
@@ -86,7 +87,7 @@ nav {
     transition: transform .2s;
 }
 
-#navbar-list a::before{
+#navbar-list .nav-links::before{
     content:'';
     bottom: -4px;
     position: absolute;
@@ -100,7 +101,7 @@ nav {
 }
 
 
-#navbar-list a:hover::before{
+#navbar-list .nav-links:hover::before{
     transform: scaleX(1);
     transform-origin: left;
     background-color: black;
@@ -170,7 +171,7 @@ nav {
     margin: 16px;
     display: none;
     width: 30px;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1/1; /* Essa parte Cria um Quadrado Perfeito*/
     justify-content: space-around;
     border: 0;
     background-color: transparent;
@@ -201,7 +202,7 @@ button#mobile-button.active .line:last-child {
 }
 
 
-@media (max-width: 1000px) {
+@media (max-width: 1130px) {
     #mobile-button {
         display: flex;
     }
@@ -224,12 +225,18 @@ button#mobile-button.active .line:last-child {
         color: black;
     }
 
-    #navbar-list.show a::before{
+    #navbar-list.show .nav-links::before{
         background-color: #FD6220;
     }
 
-    #navbar-list.show a:hover{
+    #navbar-list.show .nav-links:hover{
         margin-right: 16px;
         color: #FD6220;
     }
+
+    .button-login {
+        background-color: transparent;  
+        color: black;
+    }
+    
 }

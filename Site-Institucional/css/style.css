@@ -9,8 +9,7 @@
     font-family: Poppins, sans-serif;
 }
 
-
-#home{
+#home {
     height: 100vh;
     position: relative;
 }
@@ -25,7 +24,7 @@
 
 .fundo {
     /* Essa Div Define o Tamanho das Ondas. */
-    width: 100%; 
+    width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: bottom;
@@ -43,8 +42,8 @@
 
 
 a .logo {
-     width: 100px;
-     height: 100px; 
+    width: 100px;
+    height: 100px;
 
 }
 
@@ -61,7 +60,7 @@ nav {
     left: 0;
     gap: 32px;
 
-    
+
 }
 
 #navbar-list {
@@ -87,8 +86,8 @@ nav {
     transition: transform .2s;
 }
 
-#navbar-list .nav-links::before{
-    content:'';
+#navbar-list .nav-links::before {
+    content: '';
     bottom: -4px;
     position: absolute;
     background-color: white;
@@ -101,7 +100,7 @@ nav {
 }
 
 
-#navbar-list .nav-links:hover::before{
+#navbar-list .nav-links:hover::before {
     transform: scaleX(1);
     transform-origin: left;
     background-color: black;
@@ -110,7 +109,7 @@ nav {
 
 #logo {
     display: flex;
-    height: 95px;   
+    height: 95px;
     margin-left: 10px;
     cursor: pointer;
     top: 0;
@@ -155,7 +154,8 @@ nav {
     0% {
         transform: translateY(0);
     }
-    100%{
+
+    100% {
         transform: translateY(15px);
     }
 
@@ -165,13 +165,14 @@ nav {
 
 
 /* Criando a Parte do Botão pro Menu de Celular*/
-#mobile-button{
+#mobile-button {
     position: absolute;
     right: 0;
     margin: 16px;
     display: none;
     width: 30px;
-    aspect-ratio: 1/1; /* Essa parte Cria um Quadrado Perfeito*/
+    aspect-ratio: 1/1;
+    /* Essa parte Cria um Quadrado Perfeito*/
     justify-content: space-around;
     border: 0;
     background-color: transparent;
@@ -184,7 +185,7 @@ button#mobile-button .line {
     background-color: black;
     height: 2px;
     transition: .2s transform;
-    
+
 }
 
 button#mobile-button.active .line:first-child {
@@ -206,7 +207,8 @@ button#mobile-button.active .line:last-child {
     #mobile-button {
         display: flex;
     }
-    #navbar-list{
+
+    #navbar-list {
         display: none;
     }
 
@@ -220,25 +222,26 @@ button#mobile-button.active .line:last-child {
         background-color: white;
         transition: 3s;
     }
-    #navbar-list.show a{
+
+    #navbar-list.show a {
         margin-right: 16px;
         color: black;
     }
 
-    #navbar-list.show .nav-links::before{
+    #navbar-list.show .nav-links::before {
         background-color: #FD6220;
     }
 
-    #navbar-list.show .nav-links:hover{
+    #navbar-list.show .nav-links:hover {
         margin-right: 16px;
         color: #FD6220;
     }
 
     .button-login {
-        background-color: transparent;  
+        background-color: transparent;
         color: black;
     }
-    
+
 }
 
 /*
@@ -252,6 +255,8 @@ button#mobile-button.active .line:last-child {
     align-items: center;
     align-content: center;
     justify-items: end;
+    margin-top: 5%;
+    margin-bottom: 10%;
 }
 
 .s1 h1 {
@@ -305,7 +310,7 @@ button#mobile-button.active .line:last-child {
     font-family: Poppins;
     transition: 0.3s;
     color: white;
-    background-color: #FD6220 ;
+    background-color: #FD6220;
     font-weight: bold;
 }
 
@@ -318,5 +323,100 @@ button#mobile-button.active .line:last-child {
     display: flex;
     align-items: center;
     justify-content: space-around;
-}   
+}
 
+
+/* Diagrama */
+
+.DiagramaProcesso {
+    display: flex;
+    /* Define o layout flexbox para o elemento */
+    flex-direction: column;
+    /* Organiza os elementos filhos na vertical (um em cima do outro) */
+    align-items: center;
+    /* Alinha os elementos filhos horizontalmente no centro */
+    height: fit-content;
+    /* Define a altura para caber no conteúdo */
+    width: 100%;
+    /* Define a largura como 90% da largura da tela */
+    margin: 0 auto;
+    /* Aplica margem zero em cima e embaixo, e margem automática nas laterais para centralizar horizontalmente */
+    padding-top: 50px;
+    /* Adiciona 70px acima de espaçamento*/
+    background-color: #DEDEDE;
+    /* Define a cor de fundo como cinza claro */
+    padding-bottom: 50px;
+}
+
+.titulo-diagrama {
+    text-align: center;
+    /* Alinha o texto do header no centro da pag */
+}
+
+/* Define estilos para o elemento h1 dentro do header */
+.titulo-diagrama h1 {
+    font-family: 'Poppins', sans-serif;
+    /* Define a fonte como Poppins, com fallback para sans-serif */
+    font-size: 30px;
+    /* Define o tamanho da fonte (grande)*/
+    color: #FF8515;
+    /* Define a cor do texto */
+    font-weight: 800;
+    /* Aumenta o peso da fonte para 800 (mais bold) */
+}
+
+.titulo-diagrama p {
+    font-family: 'Poppins', sans-serif;
+    /* Define a fonte */
+    font-size: 1em;
+    /* Define o tamanho da fonte */
+    color: #666;
+    /* Define a cor do texto como cinza escuro */
+}
+
+.conteudo-diagrama {
+    width: 100%;
+    height: 65%;
+}
+
+.cards {
+    flex-direction: row;
+    /*cards na horizontal (um ao lado do outro) */
+    display: flex;
+    text-align: center;
+    /* Alinha o texto dos cards no centro */
+    /* justify-content: space-around; */
+    gap: 80px;
+    /* Define um espaço de 100px entre os cards  */
+    padding: 2%;
+    /* Adiciona 2% de padding em todas as bordas dos cards */
+    height: 50%;
+}
+
+
+.card img {
+    height: 100px;
+    ;
+    /* Define a altura da imagem como 200px */
+    width: 100px;
+    ;
+    /* Define a largura da imagem como 200px */
+}
+
+.card h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    /* Aumenta o peso da fonte para 800 (mais bold) */
+    color: #000000;
+    /* Cor do h */
+}
+
+.card p {
+    font-family: 'Poppins', sans-serif;
+    color: #666;
+    font-size: 15px;
+    /* Cor do p */
+}
+
+/* Plataforma */
+/* Colocar o CSS da Plataforma */

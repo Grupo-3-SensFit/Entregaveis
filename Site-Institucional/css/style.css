@@ -240,3 +240,83 @@ button#mobile-button.active .line:last-child {
     }
     
 }
+
+/*
+    Sobré nós do Projeto
+*/
+
+.container {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-items: end;
+}
+
+.s1 h1 {
+    font-size: 30px;
+    color: #ff8515;
+    display: flex;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    margin-bottom: 20px;
+}
+
+.s1 p {
+    color: rgb(0, 0, 0);
+    display: flex;
+    text-align: start;
+    font-size: 15px;
+    font-style: normal;
+    margin-bottom: 20px;
+}
+
+.s1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    padding-left: 15%;
+}
+
+
+.image img {
+    width: 75%;
+    height: 50%;
+    object-fit: cover;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 50px;
+    padding: 50;
+}
+
+.botao button {
+    width: 180px;
+    height: 40px;
+    border-radius: 6px;
+    border: 0;
+    font-family: Poppins;
+    transition: 0.3s;
+    color: white;
+    background-color: #FD6220 ;
+    font-weight: bold;
+}
+
+.botao button:hover {
+    background-color: #D9D9D9;
+    color: #808080;
+}
+
+.image {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}   
+

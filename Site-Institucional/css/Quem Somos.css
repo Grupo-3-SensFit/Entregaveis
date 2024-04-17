@@ -47,10 +47,11 @@ body {
     background-color: #ff8515;
     border: #ff8515;
     border-radius: 17px;
-    color: aliceblue;
+    color: white;
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
+    
 }
 
 .image {

@@ -524,9 +524,9 @@ button#mobile-button.active .line:last-child {
 }
 
 .assunto {
-    border-bottom: none !important;
+    border-bottom: none;
     /* !important serve pra que a classe não herde a característica do pai e sobreecreva com a definida*/
-    background-color: whitesmoke !important;
+    background-color: whitesmoke;
     outline: none;
     border-radius: 10px;
     width: 95%;

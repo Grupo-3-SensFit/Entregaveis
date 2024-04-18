@@ -90,7 +90,7 @@ nav {
     content: '';
     bottom: -4px;
     position: absolute;
-    background-color: white;
+    background-color:  white;
     border-radius: 4px;
     width: 100%;
     transform: scaleX(0);
@@ -475,4 +475,128 @@ button#mobile-button.active .line:last-child {
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+
+
+/* Fale Conosco */
+.container-faleconosco {
+    margin: 200px;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    background-color: #d9d9d9bb;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    padding-right: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+.container-faleconosco input {
+    border: 0;
+    border-bottom: 1px solid #FF8515;
+    background-color: transparent;
+    outline: none;
+    color: #858e92;
+    font-size: 17px;
+}
+
+.container-faleconosco label {
+    font-weight: 500;
+    font-size: 17px;
+    background-image: linear-gradient(to bottom, #d16500, rgb(255, 177, 32));
+    /* define o fundo como um gradiente*/
+    background-clip: text;
+    /*limita o fundo ao tamanhno do texto*/
+    -webkit-text-fill-color: transparent;
+    /*define a cor das letras como transparente pro gradiente aparecer*/
+}
+
+.container-faleconosco h3 {
+    color: #455A64;
+    font-size: 25px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.assunto {
+    border-bottom: none !important;
+    /* !important serve pra que a classe não herde a característica do pai e sobreecreva com a definida*/
+    background-color: whitesmoke !important;
+    outline: none;
+    border-radius: 10px;
+    width: 95%;
+    height: 100%;
+    box-shadow: rgba(68, 68, 68, 0.15) 1.95px 1.95px 2.6px;
+    justify-content: center;
+}
+
+.container-faleconosco .divassunto {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100px;
+}
+
+.container-faleconosco button {
+    background-image: linear-gradient(to bottom,#d16500, rgb(255, 177, 32));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: 0;
+    outline: none;
+    transition: transform 1s;
+    transform: translateX(0);
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    font-size: 15px;
+    font-weight: 400;
+    position: absolute;
+    align-self: flex-end;
+    margin-left: 54%;
+    padding: 10px;
+    
+}
+
+.container-faleconosco button:hover {
+    transform: translateX(5px) scale(1.2);
+    /* animação do botão*/
+}
+
+.container-faleconosco img {
+    width: 20px;
+    height: 20px;
+}
+
+.label{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.align{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 35px;   
+}
+
+.align div{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap:9px;
+    margin-right: 70px;
 }

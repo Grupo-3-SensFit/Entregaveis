@@ -524,9 +524,9 @@ button#mobile-button.active .line:last-child {
 }
 
 .assunto {
-    border-bottom: none;
+    border-bottom: none !important;
     /* !important serve pra que a classe não herde a característica do pai e sobreecreva com a definida*/
-    background-color: whitesmoke;
+    background-color: whitesmoke !important;
     outline: none;
     border-radius: 10px;
     width: 95%;
@@ -599,4 +599,57 @@ button#mobile-button.active .line:last-child {
     justify-content: flex-end;
     gap:9px;
     margin-right: 70px;
+}
+
+/* Equipe */
+
+.container-equipe{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 50px;
+    padding-right: 30px;
+    gap:50px
+
+}
+.container-equipe h1{
+    font-size: 30px;
+    color: #ff8515;
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+    font-style: normal;
+    margin-bottom: 20px;
+}
+
+.equipe-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: space-around;
+    align-items:center ;
+}
+
+.equipe-cards div{
+    width: 20% ;
+    height: 100%;
+    background-color: #d9d9d9bb ;
+    border-radius: 25px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.equipe-cards h3{
+    color: #455A64;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.equipe-cards p{
+    color: #455A64;
+    font-size: 15px;
 }

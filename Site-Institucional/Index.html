@@ -29,6 +29,9 @@
 
             <ul id="navbar-list">
                 <li class="navbar-link">
+                    <a href="#" class="nav-links">HOME</a>
+                </li>
+                <li class="navbar-link">
                     <a href="#sobre-nos" class="nav-links">Sobre nós</a>
                 </li>
                 <li class="navbar-link">
@@ -38,13 +41,13 @@
                     <a href="#plataforma" class="nav-links">Plataforma</a>
                 </li>
                 <li class="navbar-link">
-                    <a href="#fale-conosco" class="nav-links">Equipe</a>
+                    <a href="#" class="nav-links">Equipe</a>
                 </li>
                 <li class="navbar-link">
-                    <a href="#fale-conosco" class="nav-links">Fale Conosco</a>
+                    <a href="#faleconosco" class="nav-links">Fale Conosco</a>
                 </li>
                 <li class="navbar-link">
-                    <a href="###" class="nav-links">Simulador</a>
+                    <a href="#" class="nav-links">Simulador</a>
                 </li>
 
                 <li>
@@ -114,19 +117,19 @@
 
                     <div class="cards">
                         <div class="card">
-                            <img src="img/imagens/sensores.svg" alt="">
+                            <img src="img/sensores.svg" alt="">
                             <h2>Sensores</h2>
                             <p>Sensores de proximidade serão instalados nos aparelhos da sua academia.</p>
                         </div>
 
                         <div class="card">
-                            <img src="img/imagens/coleta.svg" alt="">
+                            <img src="img/coleta.svg" alt="">
                             <h2>Coleta de dados</h2>
                             <p>Os dados são armazenados por meio dos sensores e transferidos à plataforma.</p>
                         </div>
 
                         <div class="card">
-                            <img src="img/imagens/plataforma.svg" alt="">
+                            <img src="img/plataforma.svg" alt="">
                             <h2>Acesso à plataforma</h2>
                             <p>O cliente recebe acesso à plataforma e tem o primeiro cotato com os dados compilados.</p>
                         </div>
@@ -134,21 +137,21 @@
 
                     <div class="cards">
                         <div class="card"> <!-- .card*3>h2 -- CRIA 3 CARDS E H2 EM TODOS -->
-                            <img src="img/imagens/analise.svg" alt="">
+                            <img src="img/analise.svg" alt="">
                             <h2>Análise de dados</h2>
-                            <p>O gestor deve identificar e buscar mitigar eventuais<br> riscos.</p>
+                            <p>O gestor deve identificar e buscar mitigar eventuais riscos.</p>
                         </div>
 
                         <div class="card">
-                            <img src="img/imagens/plano.svg" alt="">
+                            <img src="img/plano.svg" alt="">
                             <h2>Planos de ação</h2>
-                            <p>Para melhor aproveitamento do espaço,<br> será possivel analisar,<br> investir e realocar
+                            <p>Para melhor aproveitamento do espaço, será possivel analisar, investir e realocar
                                 os
                                 equipamentos.</p>
                         </div>
 
                         <div class="card">
-                            <img src="img/imagens/sucesso.svg" alt="">
+                            <img src="img/sucesso.svg" alt="">
                             <h2>Sucesso</h2>
                             <p>Na SensFit o seu crescimento é a nossa prioridade!</p>
                         </div>
@@ -185,7 +188,7 @@
                 </div>
         </section>
 
-        <section>
+        <section id="faleconosco">
             <div class="container-faleconosco">
                 <h3>Fale conosco</h3>
         
@@ -195,16 +198,17 @@
                 </div>
         
                 <div class="align">
-                    <input type="text" style="width:40%;">
+                    <input type="text" style="width:40%;" id="nome">
+
                     <div>
-                        <input type="text" style="width:10%;">
-                        <input type="text" style="width:50%;">
+                        <input type="number" style="width:10%;" id="ddd">
+                        <input type="number" id="telefone" style="width:50%;">
                     </div>
                 </div>
         
                 <div style="padding-bottom: 25px;">
                     <label class="label">E-mail*</label>
-                    <input type="text" style="width:95%;">
+                    <input type="text" style="width:95%;" id="e-mail">
                 </div>
         
                 <div class="label">
@@ -213,47 +217,18 @@
                 </div>
         
                 <div class="divassunto">
-                    <input class="assunto" type="text">
+                    <input class="assunto" type="text" id="assunto">
                     <button>Enviar <img src="https://cdn-icons-png.freepik.com/512/10109/10109831.png"></button>
                 </div>
             </div>
         </section>
     </main>
 
+    <footer>
+        <p>&copy; 2024 Equipe Sensfit</p>
+    </footer>
 
-    <section id="fale-conosco">
-    <div class="container-fale">
-        <h3>Fale conosco</h3>
 
-        <div class="label">
-            <label>Nome*</label>
-            <label style=" margin-right: 30%;">Telefone*</label>
-        </div>
-
-        <div class="align">
-            <input type="text" style="width:40%;">
-            <div>
-                <input type="text" style="width:10%;">
-                <input type="text" style="width:50%;">
-            </div>
-        </div>
-
-        <div style="padding-bottom: 25px;">
-            <label class="label">E-mail*</label>
-            <input type="text" style="width:95%;">
-        </div>
-
-        <div class="label">
-            <label>Assunto</label>
-            <label style="font-size: 15px; padding-right: 40px;">*Campos obrigatórios</label>
-        </div>
-
-        <div class="divassunto">
-            <input class="assunto" type="text">
-            <button>Enviar <img src="https://cdn-icons-png.freepik.com/512/10109/10109831.png"></button>
-        </div>
-    </div>
-    </section>
 </body>
 
 </html>

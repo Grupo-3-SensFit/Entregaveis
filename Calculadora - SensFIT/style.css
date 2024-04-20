@@ -4,7 +4,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #F6F1EE;
+    background-color: #E0E0E0;
     font-family: "Segoe UI", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -49,7 +49,7 @@ header {
     gap: 6rem;
     font-size: 18px;
     display: flex;
-    color: #fd8c4f;
+    color: #FF922F;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -83,7 +83,7 @@ header {
     width: 75%;
     height: 30vw;
     display: flex;
-    background-color: #e1dedb;
+    background-color: #E0E0E0;
     border-radius: 15px;
     align-items: center;
     padding: 1rem;
@@ -217,7 +217,7 @@ header {
     letter-spacing: 2.5px;
     font-weight: 500;
     color: #FFF;
-    background-color: #fd8c4f;
+    background-color: #FFAC3D;
     border: none;
     border-radius: 45px;
     transition: all 0.3s ease 0s;

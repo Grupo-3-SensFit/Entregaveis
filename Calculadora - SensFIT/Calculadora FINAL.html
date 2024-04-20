@@ -129,7 +129,7 @@
         var mensalidade = Number(ipt_valorMensalidade.value)
         var desistentes = Number(ipt_qtdDesistencias.value)
 
-        var desistentesFaltaTempo = desistentes * 0.6;/* Pegando 60% dos desistentes totais */
+        var desistentesFaltaTempo = desistentes * 0.4;/* Pegando 60% dos desistentes totais */
         var converterParaAderente = desistentesFaltaTempo * 0.7; /* Conseguimos converter 70% para aderente ao adquirir nosso produto de consulta via gráficos com dados captados dos sensores de proximidade*/
         var prejuizoMensalidade = desistentesFaltaTempo *  mensalidade;
         var faturamentoMensalidade = converterParaAderente *  mensalidade;
@@ -155,7 +155,7 @@
         
 
         explicacao_card1.innerHTML = `
-        De acordo com pesquisas realizadas com frequentadores de academias pelo Congresso Brasileiro de Ciências do Esporte, cerca de 60% dos alunos que interrompem suas atividades alegam que a falta de tempo é o motivo principal para o cancelamento de suas inscrições. Sem a adoção do nosso produto: <br>
+        De acordo com pesquisas realizadas com frequentadores de academias pelo Congresso Brasileiro de Ciências do Esporte, cerca de 40% dos alunos que interrompem suas atividades alegam que a falta de estrutura e superlotação é o motivo principal para o cancelamento de suas inscrições. Sem a adoção do nosso produto: <br>
         <br>
         Em ${qtdMeses} meses, estima-se uma perda de <b>${valorFormatado}</b>.`
 

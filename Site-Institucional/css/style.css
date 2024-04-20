@@ -53,7 +53,7 @@ nav {
     position: fixed;
     top: 0;
     z-index: 99999;
-    height: 120px;
+    height: 80px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -90,7 +90,7 @@ nav {
     content: '';
     bottom: -4px;
     position: absolute;
-    background-color: white;
+    background-color:  white;
     border-radius: 4px;
     width: 100%;
     transform: scaleX(0);
@@ -140,7 +140,7 @@ nav.active #navbar-list .nav-links::before {
 .button-login {
     width: 130px;
     height: 45px;
-    border-radius: 6px;
+    border-radius: 10px;
     border: 0;
     font-family: Poppins;
     transition: 0.3s;
@@ -319,8 +319,8 @@ button#mobile-button.active .line:last-child {
 
 .botao button {
     width: 180px;
-    height: 40px;
-    border-radius: 6px;
+    height: 45px;
+    border-radius: 10px;
     border: 0;
     font-family: Poppins;
     transition: 0.3s;
@@ -350,9 +350,9 @@ button#mobile-button.active .line:last-child {
     height: fit-content;
     width: 100%;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 80px;
     background-color: #D9D9D9;
-    padding-bottom: 50px;
+    padding-bottom: 80px;
 }
 
 .titulo-diagrama {
@@ -457,7 +457,7 @@ button#mobile-button.active .line:last-child {
 .botao-plataforma button {
     width: 180px;
     height: 45px;
-    border-radius: 18px;
+    border-radius: 10px;
     border: 0;
     font-family: Poppins;
     transition: 0.3s;
@@ -476,3 +476,194 @@ button#mobile-button.active .line:last-child {
     align-items: center;
     justify-content: space-around;
 }
+
+
+
+/* Fale Conosco */
+.container-faleconosco {
+    margin: 5px 200px 50px;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    background-color: #d9d9d9bb;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    padding-right: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+.container-faleconosco input {
+    border: 0;
+    border-bottom: 1px solid #FF8515;
+    background-color: transparent;
+    outline: none;
+    color: #858e92;
+    font-size: 17px;
+}
+
+.container-faleconosco input.assunto {
+    border-radius: 5px;
+    border-bottom: 1px solid #c5c5c5;
+    background-color: #ffffff;
+    outline: none;
+    color: #858e92;
+    font-size: 17px;
+}
+
+.container-faleconosco label {
+    font-weight: 500;
+    font-size: 17px;
+    color: #FF8515;
+    /* define o fundo como um gradiente*/
+    background-clip: text;
+    /*limita o fundo ao tamanhno do texto*/
+
+}
+
+.container-faleconosco h3 {
+    color: #455A64;
+    font-size: 25px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.assunto {
+    border-bottom: none !important;
+    /* !important serve pra que a classe não herde a característica do pai e sobreecreva com a definida*/
+    background-color: whitesmoke !important;
+    outline: none;
+    border-radius: 10px;
+    width: 95%;
+    height: 100%;
+    box-shadow: rgba(68, 68, 68, 0.15) 1.95px 1.95px 2.6px;
+    justify-content: center;
+}
+
+.container-faleconosco .divassunto {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100px;
+}
+
+.container-faleconosco button {
+    color: #FF8515;
+    background-clip: text;
+    border: 0;
+    outline: none;
+    transition: transform 1s;
+    transform: translateX(0);
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    position: absolute;
+    align-self: flex-end;
+    margin-left: 54%;
+    padding: 10px;
+    
+}
+
+.container-faleconosco button:hover {
+    transform: translateX(5px) scale(1.2);
+    /* animação do botão*/
+}
+
+.container-faleconosco img {
+    width: 20px;
+    height: 20px;
+}
+
+.label{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.align{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 35px;   
+}
+
+.align div{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap:9px;
+    margin-right: 70px;
+}
+/* Equipe */
+
+.container-equipe{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 50px;
+    padding-right: 30px;
+    gap:50px
+
+}
+.container-equipe h1{
+    font-size: 30px;
+    color: #ff8515;
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+    font-style: normal;
+    margin-bottom: 20px;
+}
+
+.equipe-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: space-around;
+    align-items:center ;
+}
+
+.equipe-cards div{
+    width: 20% ;
+    height: 100%;
+    background-color: #d9d9d9bb ;
+    border-radius: 25px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.equipe-cards h3{
+    color: #455A64;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.equipe-cards p{
+    color: #455A64;
+    font-size: 15px;
+}
+
+footer {
+    background-color: #000000d6;  
+    padding: 30px 20px;       
+    text-align: center;       
+    color: #ffffff;          
+  }
+

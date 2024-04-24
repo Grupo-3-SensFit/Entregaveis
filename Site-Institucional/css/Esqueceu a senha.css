@@ -1,0 +1,36 @@
+.body{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    background-color: #ff8515;
+}
+
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-items: end;
+    padding: 10%;
+    background-color:#ff8515 ;
+}
+
+.container img {
+    width: 35%;
+    height: 35%;
+    object-fit: cover;
+}
+
+.placeholder{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    height: 100vh;
+    border-radius: 300px;
+    background-color: #ff8515;
+}

@@ -25,13 +25,13 @@
         <div class="login">
             <h1>Insira seu login</h1>
             <label>E-mail</label>
-            <input type="email" autofocus="true" placeholder="Digite o email da Academia"/>
+            <input type="email" id="email" autofocus="true" placeholder="Digite o email da Academia" />
             <label>Senha</label>
-            <input type="password" placeholder="Digite a senha" /><br>
+            <input type="password" id="senha" placeholder="Digite a senha" /><br>
             <!-- <input type="submit" value="Entrar" class="btn" /> -->
             <button onclick="verificar()">Entrar</button>
             <div class="centralizar-texto">
-                <a href="/">Esqueceu a senha?</a>
+                <a href="Esqueceu a senha.html">Esqueceu a senha?</a>
                 <a href="Cadastro.html">Cadastre-se</a>
             </div>
         </div>
@@ -43,7 +43,24 @@
 
 </html>
 <script>
-    function verificar(){
-        
+    function verificar() {
+        let Email = email.value
+        let Senha = senha.value
+        const Arroba = Email.indexOf("@")
+        const PontoCom = Email.indexOf(".com")
+
+        if (Arroba != -1) {
+            if (PontoCom != -1) {
+                if (Senha.length >= 8) {
+                    window.location.href = "Index.html"
+                } else {
+                    alert("Senha incorreta!")
+                }
+            } else {
+                alert("Email incorreto! Necessita do .com!")
+            }
+        } else {
+            alert("Email incorreto! Necessita do @!")
+        }
     }
 </script>

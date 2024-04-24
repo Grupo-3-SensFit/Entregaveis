@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="./css/cadastro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,26 +20,30 @@
 <body>
     <div class="container">
 
-        <img src="img/LogoSensFit-fotor-2024041217205.png">
+    <img src="img/LogoSensFit-fotor-2024041217205.png" class="logo">
 
         <div class="cadastro">
             <h2>Cadastre-se</h2>
-            <label for="name">Nome</label>
-            <input type="email" autofocus="true" />
-            <label for="email">Email</label>
-            <input type="email" autofocus="true" />
-            <label for="password">Senha</label>
-            <input type="password" />
-            <label for="password">Confirme a senha</label>
-            <input type="password" />
+            <label>Nome</label>
+            <input type="email" autofocus="true" id="input_nome" placeholder="Digite seu nome">
+            <label>Email</label>
+            <input type="email" autofocus="true" id="input_email"  placeholder="Digite o email"/>
+            <label>Senha</label>
+            <input type="password" id="input_senha" placeholder="Digite a senha"/>
+            <label>Confirme a senha</label>
+            <input type="password" id="input_senhaConfirmacao" placeholder="Digite novamente a senha"/><br>
+
             <!-- <input type="submit" value="Entrar" class="btn" /> -->
-            <button onclick="verificar()">Cadastrar</button>
+            <!--<a href="Cadastro2.html">-->
+                <button onclick="verificar()">Proximo Passo</button></center>
             <div class="centralizar-texto">
                 <a href="Login.html">Já é cliente?</a>
             </div>
         </div>
+        <div id="MensagemERRO" style="display: none;"></div>
+        
     </div>
-
+  
 
 
 </body>
@@ -47,6 +51,51 @@
 </html>
 <script>
     function verificar(){
-        alert("Hello")
+        MensagemERRO.innerHTML= '';
+        let nome = input_nome.value;
+        let email = input_email.value;
+        let senha = input_senha.value;
+        let confirmacaoSenha = input_senhaConfirmacao.value;
+
+       
+        if (nome.length < 2){
+            MensagemERRO.style.display = 'block'; 
+            MensagemERRO.innerHTML = `Digite um nome válido`
+        }
+        else if (email.indexOf("@") <= -1) {
+            MensagemERRO.style.display = 'block'; 
+            MensagemERRO.innerHTML = `Digite um email válido!`
+        }
+        else if (email.indexOf(".com") <= -1){
+            MensagemERRO.style.display = 'block'; 
+            MensagemERRO.innerHTML = `Digite um email válido!`
+        }
+        else if (senha.length < 8){
+            MensagemERRO.style.display = 'block'; 
+            MensagemERRO.innerHTML = `A senha deve ter pelo menos de 8 caracteres`
+        }
+        else if (senha.match(/[0-9]/g) == null) {
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `A senha deve conter números`
+        }
+        
+        else if (senha.match(/[A-Z]/g) == null){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `A senha deve conter pelo menos 1 letra maiúscula`
+        }
+
+
+        else if (confirmacaoSenha != senha){
+            MensagemERRO.style.display = 'block'; 
+            MensagemERRO.innerHTML = `Confirmação de senha inválida`
+        }
+
+
+        else if(nome.length > 2 && email.indexOf("@") > 0 && email.indexOf(".com") > 0 && senha.length >= 8 && confirmacaoSenha == senha){
+            window.location.href = "Cadastro2.html"
+        }
+
+
+        
     }
 </script>

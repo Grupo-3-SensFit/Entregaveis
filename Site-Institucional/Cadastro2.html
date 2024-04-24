@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro da Academia</title>
+    <link rel="stylesheet" href="./css/cadastro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="./img/LogoLaranja.png">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
+
+<body>
+    <div class="container">
+
+        <img src="img/LogoSensFit-fotor-2024041217205.png">
+
+        <div class="cadastro">
+            <h2>Cadastre sua academia</h2>
+            <label>Razão Social</label>
+            <input type="text" autofocus="true" id="input_razaoSocial" placeholder="Digite a razão social"/>
+
+            <label>CNPJ</label>
+            <input type="number" autofocus="true" id="input_CNPJ" placeholder="Digite o CPNJ da academia"/>
+
+            <label>CEP</label>
+            <input type="number" id="input_CEP" placeholder="Digite o CEP"/>
+
+            <label>Número</label>
+            <input type="number" id="input_numero" placeholder="Digite o número"/><br>
+            <!-- <input type="submit" value="Entrar" class="btn" /> -->
+            <button onclick="verificar()">Finalizar Cadastro!</button>
+
+        </div>
+        <div id="MensagemERRO" style="display: none;"></div>
+    </div>
+
+
+
+</body>
+
+</html>
+<script>
+    function verificar(){
+        let razaoSocial = input_razaoSocial.value;
+        let CNPJ = input_CNPJ.value;
+        let CEP = input_CEP.value;
+        let numero = input_numero.value;
+
+        if (razaoSocial == ""){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite a razão social (Nome) de sua academia`
+        }
+        else if (CNPJ == ""){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite o CNPJ`
+        }
+        else if(CNPJ < 14){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite um CNPJ válido`
+        }
+        else if (CEP == ""){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite o CEP`
+        }
+        else if (CEP < 8){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite um CEP válido`
+        }
+        else if (numero == ""){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite o número`
+        }
+        else if (numero < 1){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite um número válido`
+        }
+
+        else if(CNPJ >= 14 && CEP >= 8 && numero >= 1){
+            alert ("Cadastro realizado com sucesso! Voce será redirecionado a pagina de Login")
+            window.location.href = "Login.html"
+        }
+
+
+    }
+</script>

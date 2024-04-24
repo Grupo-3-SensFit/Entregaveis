@@ -62,7 +62,7 @@
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite o CNPJ`
         }
-        else if(CNPJ < 14){
+        else if(CNPJ.length < 14 || CNPJ.length > 14){
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um CNPJ válido`
         }
@@ -70,7 +70,7 @@
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite o CEP`
         }
-        else if (CEP < 8){
+        else if (CEP.length < 8 || CEP.length > 8){
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um CEP válido`
         }
@@ -78,12 +78,12 @@
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite o número`
         }
-        else if (numero < 1){
+        else if (numero.length < 1){
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um número válido`
         }
 
-        else if(CNPJ >= 14 && CEP >= 8 && numero >= 1){
+        else if(CNPJ.length >= 14 && CEP.length >= 8 && numero.length >= 1){
             alert ("Cadastro realizado com sucesso! Voce será redirecionado a pagina de Login")
             window.location.href = "Login.html"
         }

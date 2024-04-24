@@ -46,7 +46,7 @@ body {
 
 .cadastro input {
     background-color: #ccc;
-    padding: 15px;
+    padding: 7px;
     font-size: 14px;
     border: 1px solid #ccc;
     margin-bottom: 10px;
@@ -67,7 +67,7 @@ body {
     font-size: 14px;
     padding: 15px;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 2px;
     border-radius: 4px;
     border: 1px solid #F99033;
 }

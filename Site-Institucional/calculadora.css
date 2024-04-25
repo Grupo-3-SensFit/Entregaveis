@@ -37,20 +37,33 @@ header {
     background-color: #F6F1EE;
     /* Cor de fundo da navbar */
 }
-
+.container-itens-navbar a{
+ text-decoration: none;
+ color: #FF922F;
+}
 .container-itens-navbar {
     width: 90%;
     display: flex;
-    justify-content: space-between;
+    
 }
+.container-itens-navbar img{
+    display: flex;
+    
 
+    
+}
 .menu-lateral {
     align-items: center;
+    justify-content: right;
     gap: 6rem;
     font-size: 18px;
     display: flex;
     color: #FF922F;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.menu-lateral img{
+    display: flex;
+    width: 175px;
 }
 
 .menu-lateral p {
@@ -282,4 +295,5 @@ button:active {
 
 .logo-foto {
     height: 90%;
+    
 }

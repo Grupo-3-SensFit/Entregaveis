@@ -22,11 +22,30 @@
 
         <div class="placeholder">
             <label class="label">Insira o email para recuperação:</label><br>
-            <input type="text" placeholder="Email de recuperação" style="width: 500px;"><br>
-            <button>Enviar</button>
+            <input id="email" type="text" placeholder="Email de recuperação" style="width: 500px;"><br>
+            <button onclick="verificar()">Enviar</button>
         </div>
 
     </div>
 </body>
 
 </html>
+<script>
+    function verificar(){
+        let Email = email.value
+        const Arroba = Email.indexOf("@")
+        const PontoCom = Email.indexOf(".com")
+        
+        if (Arroba != -1) {
+            if (PontoCom != -1) {
+                window.location.href = "Index.html"
+            } else {
+                alert("Email incorreto! Necessita do .com!")
+            }
+        } else {
+            alert("Email incorreto! Necessita do @!")
+        }
+        
+
+    }
+</script>

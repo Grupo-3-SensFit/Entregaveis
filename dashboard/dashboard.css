@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins, sans-serif;
+    background-color: rgb(228, 239, 250);
+
+}
+
+
+.dashboard {
+    background-color: whitesmoke;
+    display: flex;
+}
+
+.navbar {
+    width: 6vw;
+    height: 100vh;
+    background-color: #f89f50;
+}
+
+.navbar button {
+    margin-top: 20px;
+    margin-left: 10px;
+    border: 0;
+    border-radius: 10px;
+    width: 60px;
+    height: 40px;
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.navbar button:hover {
+    background-color: rgb(230, 230, 230);
+    filter: grayscale();
+
+}
+
+.navbar img {
+    width: 20px;
+    height: 15px;
+}
+
+.dashboard h2 {
+    margin-top: 30px;
+    margin-left: 30px;
+    color: #15134B;
+}
+
+.grafico {
+    width: 30%;
+}
+
+.graficos {
+    width: 80vw;
+}
+
+.kpis {
+    width:100%;
+    /* display: flex; */
+    padding: 20px;
+    /* justify-content: space-around; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+}
+
+.kpi{
+    background-color: whitesmoke ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+
+.legenda{
+    display: flex;
+    flex-direction: column;
+    align-self: self-start;
+}
+
+.horas{
+    display: flex;
+    flex-direction: column;
+    align-self: self-end;
+} 
+
+.info{
+    display: flex;
+    gap: 80px;
+
+}
+
+.kpi :nth-child(3) {
+    font-size: 1vw;
+    color: #7d7d7d;
+}

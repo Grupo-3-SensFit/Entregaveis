@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SensFit</title>
-    <link rel="stylesheet" href="calculadora.css">
+    <link rel="stylesheet" href="./css/calculadora.css">
+    <link rel="icon" href="./img/LogoLaranja.png">
 
 </head>
 
@@ -74,10 +75,16 @@
             <div id="resposta" class="background-texto">
                 <div class="container-resultado">
                     <div class="result-calc">
-                        <span> Sem a SensFIT você perde</span>
+                        <span> Você perde no total </span>
                         <span id="span_resultadoPerda" class="number-result"></span>
                         <span class="subtexto-ano"><span id="mesesCalculo"></span> meses</span>
                     </div>
+
+                    <div class="result-calc">
+                        <span> Devido a gestão de equipamentos você perde </span>
+                        <span id="span_resultadoPerda40" class="number-result"></span>            
+                    </div>
+                    
 
                     <div class="result-calc">
                         <span> Com a SensFIT você deixaria de perder</span>
@@ -131,10 +138,13 @@
         var mensalidade = Number(ipt_valorMensalidade.value)
         var desistentes = Number(ipt_qtdDesistencias.value)
 
-        var desistentesFaltaTempo = desistentes * 0.4;/* Pegando 60% dos desistentes totais */
-        var converterParaAderente = desistentesFaltaTempo * 0.7; /* Conseguimos converter 70% para aderente ao adquirir nosso produto de consulta via gráficos com dados captados dos sensores de proximidade*/
-        var prejuizoMensalidade = desistentesFaltaTempo *  mensalidade;
-        var faturamentoMensalidade = converterParaAderente *  mensalidade;
+        var qtdPerdidoPorPessoa = qtdMeses * mensalidade;
+        var PrejuizoTotal = qtdPerdidoPorPessoa * desistentes; 
+        var desistentesFaltaTempo = PrejuizoTotal * 0.4;/* Pegando 60% dos desistentes totais */
+        var retorno = desistentesFaltaTempo * 0.7;
+       // var converterParaAderente = desistentesFaltaTempo * 0.7; /* Conseguimos converter 70% para aderente ao adquirir nosso produto de consulta via gráficos com dados captados dos sensores de proximidade*/
+        // var prejuizoMensalidade = desistentesFaltaTempo *  mensalidade;
+        // var faturamentoMensalidade = converterParaAderente *  mensalidade;
 
 
         // Esta variável usa o toLocaleString para converter o número em uma string com base em uma localidade em especifico. 
@@ -146,24 +156,28 @@
         mesesCalculo.innerHTML = `Em ${qtdMeses}`
         mesesCalculo2.innerHTML = `Em  média`
 
-        var valorFormatado = prejuizoMensalidade.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+        var PrejuizoTotalF = PrejuizoTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
         
         // Aqui o valor do calculo, já formatado, será inserido na página (div "result-calc")
-        span_resultadoPerda.innerHTML = `${valorFormatado}`
+        span_resultadoPerda.innerHTML = `${PrejuizoTotalF}`
 
-        var valorFaturamento = faturamentoMensalidade.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+        var retornoF = retorno.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
         
-        span_resultadoGanho.innerHTML = `${valorFaturamento}`
+        var desistentesFaltaTempoF = desistentesFaltaTempo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+        
+        span_resultadoPerda40.innerHTML = `${desistentesFaltaTempoF}`
+        span_resultadoGanho.innerHTML = `${retornoF}`
+
         
 
         explicacao_card1.innerHTML = `
         De acordo com pesquisas realizadas com frequentadores de academias pelo Congresso Brasileiro de Ciências do Esporte, cerca de 40% dos alunos que interrompem suas atividades alegam que a falta de estrutura e superlotação é o motivo principal para o cancelamento de suas inscrições. Sem a adoção do nosso produto: <br>
         <br>
-        Em ${qtdMeses} meses, estima-se uma perda de <b>${valorFormatado}</b>.`
+        Em ${qtdMeses} meses, estima-se uma perda de <b>${desistentesFaltaTempoF}</b>.`
 
-        explicacao_card2.innerHTML = `Considerando a perda estimada de ${valorFormatado}, ao optar por nosso produto, podemos concluir que aproximadamente 70% desse prejuízo poderá ser recuperado, trazendo de volta os clientes para a área de musculação, e consequentemente: <br> 
+        explicacao_card2.innerHTML = `Considerando um perda estimada de ${desistentesFaltaTempoF}, devido a desistencias por superlotações, ao optar por nosso produto, podemos concluir que aproximadamente 70% desse prejuízo poderá ser recuperado, trazendo de volta os clientes para a área de musculação, e consequentemente: <br> 
         <br>
-        Gerando um retorno financeiro total de <b>${valorFaturamento}</b> em ${qtdMeses} meses.`
+        Gerando um retorno financeiro total de <b>${retornoF}</b> em ${qtdMeses} meses.`
 
         
     }

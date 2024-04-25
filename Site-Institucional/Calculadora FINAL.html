@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensFit</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- A header está agrupando todos os itens da nav-bar. Nesse caso, a div "barra-menu" foi criada para delimitar a área da barra de navegação.
+    As divs "menu-lateral" agrupam os componentes da nav-bar, separados pela logo da Sensfit. Ambos tem o mesmo nome e as mesmas definições de tamanho e distribuição.-->
+
+    <header>
+        <div class="barra-menu">
+
+            <div class="container-itens-navbar">
+
+                <div class="menu-lateral">
+                    <p class="text-inicial">Inicial</p>
+                    <p class="text-simulador">Simulador</p>
+                </div>
+
+                <img class="logo-foto" src="sensfitlogo1.png">
+
+                <div class="menu-lateral">
+                    <p class="text-login">Login</p>
+                    <p class="text-cadastro">Cadastro</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--A div calculadora-financeira engloba tanto os inputs e o botão (onde os dados são informados) quanto o resultado da conta. 
+    A div box-inputs agrupa apenas os inputs, spans e o botão.-->
+
+    <div class="calculadora-financeira">
+        <div class="container-calculadora">
+            <div class="box-inputs">
+
+                <div class="group-span-input">
+                    <p class="text-simule">Simule aqui!</p>
+
+                    <span>Quantos meses deseja calcular?</span>
+                    <input type="number" class="input-data" id="ipt_qtdMeses" placeholder="12">
+                </div>
+
+                <div class="group-span-input">
+                    <span>Mensalidade da academia</span>
+                    <input type="number" class="input-data" id="ipt_valorMensalidade" placeholder="100">
+                </div>
+
+                <div class="group-span-input">
+                    <span>Quantos alunos desistiram nesses meses?</span>
+                    <input type="number" class="input-data" id="ipt_qtdDesistencias" placeholder="2000">
+                </div>
+
+                <div class="botao-personalizado">
+                    <button onclick="calcular()" class="botao-calcular">Calcular</button>
+                </div>
+
+
+            </div>
+
+            <!-- A div background-texto é o quadrado cinza escuro ao fundo do resultado e do texto de explicação
+            A div result-calc são apenas os quadrados que guardam o texto "você está perdendo", "por ano/mês" e o resultado da conta
+            A div explicao-card é a apresentação dos dados utilizados para fazer a conta.-->
+
+            <div id="resposta" class="background-texto">
+                <div class="container-resultado">
+                    <div class="result-calc">
+                        <span> Sem a SensFIT você perde</span>
+                        <span id="span_resultadoPerda" class="number-result"></span>
+                        <span class="subtexto-ano"><span id="mesesCalculo"></span> meses</span>
+                    </div>
+
+                    <div class="result-calc">
+                        <span> Com a SensFIT você deixaria de perder</span>
+                        <span id="span_resultadoGanho" class="number-result"></span>
+                        <span class="subtexto-ano"><span id="mesesCalculo2"></span> </span>
+                    </div>
+                </div>
+
+                <div class="container-cards">
+                    <div id="explicacao_card1" class="card-calc">
+                    </div>
+
+                    <div id="explicacao_card2" class="card-calc">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    
+    // Essa var afirma, inicialmente, que a pessoa ainda nao clicou no botão. Logo, é verdade que será o primeiro clique no botão.
+    var primeiraVez = true;
+
+    // Essa função determina a animação da div "background-texto" (id "resposta") 
+    // Aqui embaixo estão as definições da animação, então no clicar do botão, a opacidade definida como "1" significa que a opacidade do elemento será de 100%, totalmente visivel. 
+    // A função do translateY é mover o elemento verticalmente. Quando ele passa a ser 0%, o elemento não será movido. No css "background-texto" é possível ver que ele inicia com a opacidade 0 (=0%) e o translateY -50%. Com isso, é definido que inicialmente o elemento estará oculto e para fora da tela verticalmente.
+    // o userselect permite que o cliente selecione o texto com o cursor. Ele definido como auto permite que o navegador decida se o texto pode ser selecionado ou não com base nas configurações do usuário.
+
+    function mostrarDiv() {
+        var divResposta = document.getElementById("resposta");
+        divResposta.style.opacity = '1';
+        divResposta.style.transform = "translateY(0%)";
+        divResposta.style.userSelect = "auto";
+    }
+
+    // Essa função serve para verificar se a variavel primeiraVez é verdadeira. Caso seja, ele muda ela para falso. Ou seja: se realmente for o primeiro clique no botão, a animação ocorrerá. Caso o cliente clique novamente, não será mais a primeira vez e a animação não ocorrerá novamente (a não ser que a página seja atualizada). Ela também calculará os resultados.
+
+    function calcular() {
+        if (primeiraVez == true) {
+            primeiraVez = false;
+            mostrarDiv()
+        }
+
+        var qtdMeses = Number(ipt_qtdMeses.value)
+        var mensalidade = Number(ipt_valorMensalidade.value)
+        var desistentes = Number(ipt_qtdDesistencias.value)
+
+        var desistentesFaltaTempo = desistentes * 0.4;/* Pegando 60% dos desistentes totais */
+        var converterParaAderente = desistentesFaltaTempo * 0.7; /* Conseguimos converter 70% para aderente ao adquirir nosso produto de consulta via gráficos com dados captados dos sensores de proximidade*/
+        var prejuizoMensalidade = desistentesFaltaTempo *  mensalidade;
+        var faturamentoMensalidade = converterParaAderente *  mensalidade;
+
+
+        // Esta variável usa o toLocaleString para converter o número em uma string com base em uma localidade em especifico. 
+        // O pt-br diz que a tal localidade é brasileira, logo as definições de data, hora e numero serão baseadas nessa localidade.
+        // O style: 'currency' indica que o valor será formatado como moeda
+        // Ja o BRL especifica a moeda Real Brasileiro. 
+        // em resumo, o número do resultado será formatado como real brasilero (R$10.000,00 por Ex.)
+
+        mesesCalculo.innerHTML = `Em ${qtdMeses}`
+        mesesCalculo2.innerHTML = `Em  média`
+
+        var valorFormatado = prejuizoMensalidade.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+        
+        // Aqui o valor do calculo, já formatado, será inserido na página (div "result-calc")
+        span_resultadoPerda.innerHTML = `${valorFormatado}`
+
+        var valorFaturamento = faturamentoMensalidade.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+        
+        span_resultadoGanho.innerHTML = `${valorFaturamento}`
+        
+
+        explicacao_card1.innerHTML = `
+        De acordo com pesquisas realizadas com frequentadores de academias pelo Congresso Brasileiro de Ciências do Esporte, cerca de 40% dos alunos que interrompem suas atividades alegam que a falta de estrutura e superlotação é o motivo principal para o cancelamento de suas inscrições. Sem a adoção do nosso produto: <br>
+        <br>
+        Em ${qtdMeses} meses, estima-se uma perda de <b>${valorFormatado}</b>.`
+
+        explicacao_card2.innerHTML = `Considerando a perda estimada de ${valorFormatado}, ao optar por nosso produto, podemos concluir que aproximadamente 70% desse prejuízo poderá ser recuperado, trazendo de volta os clientes para a área de musculação, e consequentemente: <br> 
+        <br>
+        Gerando um retorno financeiro total de <b>${valorFaturamento}</b> em ${qtdMeses} meses.`
+
+        
+    }
+   
+</script>

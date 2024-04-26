@@ -110,7 +110,7 @@ header {
 
 .container-resultado {
     width: 50%;
-    height: 70%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -121,7 +121,7 @@ header {
 
 .result-calc {
     height: 30%;
-    width: 70%;
+    width: 80%;
     background-color: #f6f3f0;
     display: flex;
     justify-content: center;

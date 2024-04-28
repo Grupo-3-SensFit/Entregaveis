@@ -18,85 +18,100 @@
 </style>
 
 <body>
-    
+
     <div class="container">
-   <img src="img/LogoSensFit-fotor-2024041217205.png" class="logo"/>
-   
+        <img src="img/LogoSensFit-fotor-2024041217205.png" class="logo" />
+
 
         <div class="cadastro">
             <h2>Cadastre-se</h2>
             <label>Nome</label>
             <input type="email" autofocus="true" id="input_nome" placeholder="Digite seu nome">
+            <label>CPF</label>
+            <input type="text" id="input_cpf" placeholder="Digite novamente a senha" />
             <label>Email</label>
-            <input type="email" autofocus="true" id="input_email"  placeholder="Digite o email"/>
+            <input type="email" autofocus="true" id="input_email" placeholder="Digite o email" />
             <label>Senha</label>
-            <input type="password" id="input_senha" placeholder="Digite a senha"/>
+            <input type="password" id="input_senha" placeholder="Digite a senha" />
             <label>Confirme a senha</label>
-            <input type="password" id="input_senhaConfirmacao" placeholder="Digite novamente a senha"/><br>
+            <input type="password" id="input_senhaConfirmacao" placeholder="Digite novamente a senha" />
 
             <!-- <input type="submit" value="Entrar" class="btn" /> -->
             <!--<a href="Cadastro2.html">-->
-                <button onclick="verificar()">Proximo Passo</button></center>
+            <button onclick="verificar()">Proximo Passo</button></center>
             <div class="centralizar-texto">
                 <a href="Login.html">Já é cliente?</a>
             </div>
         </div>
         <div id="MensagemERRO" style="display: none;"></div>
-        
+
     </div>
-  
+
 
 
 </body>
 
 </html>
 <script>
-    function verificar(){
-        MensagemERRO.innerHTML= '';
+    function verificar() {
+        MensagemERRO.innerHTML = '';
         let nome = input_nome.value;
+
+        let cpf = input_cpf.value;
+        let somaCpf = 0;
+
         let email = input_email.value;
         let senha = input_senha.value;
         let confirmacaoSenha = input_senhaConfirmacao.value;
 
-       
-        if (nome.length < 2){
-            MensagemERRO.style.display = 'block'; 
+        for (let i = 0; i <= senha.length - 1; i++) {
+            if (Number(senha[i])) {
+                MensagemERRO.style.display = 'none';
+            } else {
+                MensagemERRO.style.display = 'block';
+                MensagemERRO.innerHTML = `A Senha precisa de pelo menos um número`
+            }
+        }
+
+
+        if (nome.length < 2) {
+            MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um nome válido`
         }
         else if (email.indexOf("@") <= -1) {
-            MensagemERRO.style.display = 'block'; 
+            MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um email válido!`
         }
-        else if (email.indexOf(".com") <= -1){
-            MensagemERRO.style.display = 'block'; 
+        else if (email.indexOf(".com") <= -1) {
+            MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um email válido!`
         }
-        else if (senha.length < 8){
-            MensagemERRO.style.display = 'block'; 
+        else if (senha.length < 8) {
+            MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `A senha deve ter pelo menos de 8 caracteres`
         }
-        else if (senha.match(/[0-9]/g) == null) {
-            MensagemERRO.style.display = 'block';
-            MensagemERRO.innerHTML = `A senha deve conter números`
-        }
-        
-        else if (senha.match(/[A-Z]/g) == null){
+        // else if (senha.match(/[0-9]/g) == null) {
+        //     MensagemERRO.style.display = 'block';
+        //     MensagemERRO.innerHTML = `A senha deve conter números`   
+        // }
+
+        else if (senha.match(/[A-Z]/g) == null) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `A senha deve conter pelo menos 1 letra maiúscula`
         }
 
 
-        else if (confirmacaoSenha != senha){
-            MensagemERRO.style.display = 'block'; 
+        else if (confirmacaoSenha != senha) {
+            MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Confirmação de senha inválida`
         }
 
 
-        else if(nome.length > 2 && email.indexOf("@") > 0 && email.indexOf(".com") > 0 && senha.length >= 8 && confirmacaoSenha == senha){
+        else if (nome.length > 2 && email.indexOf("@") > 0 && email.indexOf(".com") > 0 && senha.length >= 8 && confirmacaoSenha == senha) {
             window.location.href = "Cadastro2.html"
         }
 
 
-        
+
     }
 </script>

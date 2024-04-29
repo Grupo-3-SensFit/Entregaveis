@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensfit's Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 </head>
@@ -15,9 +15,14 @@
 
     <div class="dashboard">
         <div class="navbar">
-            <button id="home"><img id="homeimg" src="https://cdn-icons-png.freepik.com/512/8995/8995358.png"></button>
-            <button id="logout"><img id="logoutimg"
-                    src="https://www.agecefrio.com.br/novo-site/app/icones/sair-branco.png"></button>
+            <button id="home">
+                <img id="homeimg" src="https://cdn-icons-png.freepik.com/512/8995/8995358.png">
+            </button>
+            <button id="logout">
+                <a href="Login.html">
+                    <img id="logoutimg" src="https://www.agecefrio.com.br/novo-site/app/icones/sair-branco.png">
+                </a>
+            </button>
         </div>
         <div class="conteudo-dashboard">
             <h2>Sensfit's Dashboard</h2>
@@ -78,38 +83,39 @@
             <div class="dashboard-baixa">
 
                 <div class="graficos">
-                    <div class="grafico">
-                        <span>Equipamentos mais usados na semana</span>
-                        <canvas id="usadosSemana"></canvas>
+                    <div class="graficos2">
+                        <div class="grafico">
+                            <span class="titulo-kpi">Equipamentos mais usados na semana</span>
+                            <canvas id="usadosSemana"></canvas>
+                        </div>
+
+
+                        <div class="grafico">
+                            <span class="titulo-kpi">Pico de uso dos equipamentos</span>
+                            <canvas id="picoDia"></canvas>
+                        </div>
                     </div>
-
-
                     <div class="grafico">
-                        <span>Pico de uso dos equipamentos</span>
-                        <canvas id="picoDia"></canvas>
+                        <span class="titulo-kpi">Média semanal de fluxo</span>
+                        <canvas id="myChart"></canvas>
                     </div>
-
-                    <div class="grafico">
-                        <canvas id="myChart" style="position: relative; height:40vh; width:40vw"></canvas>
-                    </div>
-
                 </div>
 
                 <div class="kpis-laterais">
-                    <span class="kpi-info"><img
-                            src="https://cdn-icons-png.flaticon.com/512/1082/1082458.png">Manutenção</span>
+                    <span class="kpi-info"><img src="https://cdn-icons-png.flaticon.com/512/1082/1082458.png">Manutenção
+                    </span>
 
 
                     <div class="kpi-lateral">
 
                         <span class="kpi-info" style="align-self: flex-start;">Esteira</span>
-                        <div>
-                            <canvas id="esteira" style="width: 40%;"></canvas>
-                        </div>
 
                         <div class="info">
                             <div class="legenda">
                                 <span>Hoje</span>
+                            </div>
+                            <div>
+                                <canvas id="esteira" style="width: 70%;"></canvas>
                             </div>
 
                             <div class="horas">
@@ -122,20 +128,21 @@
                     <div class="kpi-lateral">
 
                         <span class="kpi-info" style="align-self: flex-start;">Bicicleta</span>
-                        <div>
-                            <canvas id="bici" style="width: 40%;"></canvas>
-                        </div>
-
-                        <div class="info">
-                            <div class="legenda">
-                                <span>Hoje</span>
+                        <div style="display: flex;">
+                            
+                            <div class="info">
+                                <div class="legenda">
+                                    <span>Hoje</span>
+                                </div>
+                                <div>
+                                    <canvas id="bici" style="width: 70%;"></canvas>
+                                </div>
+                                <div class="horas">
+                                    <span>1.000</span>
+                                    <span>Horas</span>
+                                </div>
                             </div>
-                            <div class="horas">
-                                <span>1.000</span>
-                                <span>Horas</span>
-                            </div>
                         </div>
-
                     </div>
                 </div>
 

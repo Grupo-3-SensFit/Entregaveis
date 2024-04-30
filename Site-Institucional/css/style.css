@@ -414,7 +414,7 @@ button#mobile-button.active .line:last-child {
     align-items: center;
     align-content: center;
     justify-items: end;
-    padding: 10%;
+    padding: 5%;
 }
 
 .s1-plataforma h1 {
@@ -488,7 +488,7 @@ button#mobile-button.active .line:last-child {
     background-color: #d9d9d9bb;
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 5%;
     padding-right: 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
@@ -615,7 +615,7 @@ button#mobile-button.active .line:last-child {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    padding: 50px;
+    padding: 5%;
     padding-right: 30px;
     gap:50px
 

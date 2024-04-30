@@ -52,15 +52,19 @@
         if (Arroba != -1) {
             if (PontoCom != -1) {
                 if (Senha.length >= 8) {
-                    window.location.href = "Index.html"
+                    if (Senha.match(/[A-Z]/g) != null) {
+                        window.location.href = "dashboard.html"
+                    } else {
+                        alert("Email ou senha incorreto!")
+                    }  
                 } else {
-                    alert("Senha incorreta!")
+                    alert("Email ou senha incorreto!")
                 }
             } else {
-                alert("Email incorreto! Necessita do .com!")
+                alert("Email ou senha incorreto!")
             }
         } else {
-            alert("Email incorreto! Necessita do @!")
+            alert("Email ou senha incorreto!")
         }
     }
 </script>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensfit's Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+</head>
+
+<body>
+
+
+    <!-- <div class="dashboard"> -->
+    <div class="navbar">
+        <button id="home">
+            <img id="homeimg" src="https://cdn-icons-png.freepik.com/512/8995/8995358.png">
+        </button>
+        <button id="logout">
+            <a href="Login.html">
+                <img id="logoutimg" src="https://www.agecefrio.com.br/novo-site/app/icones/sair-branco.png">
+            </a>
+        </button>
+    </div>
+    <div class="conteudo-dashboard">
+        <h2>Sensfit's Dashboard</h2>
+
+        <div class="container_graficoLinha">
+            <div class="grafico_principal">
+                <span class="titulo-kpi">Sensor: Proximidade 1 - Esteira</span>
+                <canvas id="graficoLinha" style="justify-self: center;"></canvas>
+            </div>
+
+        </div>
+
+        <div class="kpis">
+            <div class="kpi">
+                <span class="titulo-kpi">Equipamentos mais concorridos:</span>
+
+                <span class="kpi-info">Esteira</span>
+                <div class="info">
+                    <div class="legenda">
+                        <span>Semana</span>
+                        <span>Período Manhã</span>
+                    </div>
+
+                    <div class="horas">
+                        <span>60</span>
+                        <span>Horas</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kpi">
+                <span class="titulo-kpi">Equipamentos mais concorridos:</span>
+
+                <span class="kpi-info">Bicicleta</span>
+                <div class="info">
+                    <div class="legenda">
+                        <span>Semana</span>
+                        <span>Período: Noite</span>
+                    </div>
+
+                    <div class="horas">
+                        <span>55</span>
+                        <span>Horas</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="kpi">
+                <span class="titulo-kpi">Equipamento em desuso:
+                    <i class="fa-solid fa-triangle-exclamation"></i></span>
+                <span class="kpi-info">Leg Press</span>
+                <div class="info">
+                    <div class="legenda">
+                        <span>Em 4 dias</span>
+                    </div>
+
+                    <div class="horas">
+                        <span>2</span>
+                        <span>Horas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="graficos">
+            <div class="grafico">
+                <span class="titulo-kpi">Equipamentos mais usados na semana</span>
+                <canvas id="usadosSemana"></canvas>
+            </div>
+
+
+            <div class="grafico">
+                <span class="titulo-kpi">Pico de uso dos equipamentos</span>
+                <canvas id="picoDia"></canvas>
+            </div>
+
+            <div class="container-kpi">
+                <span class="titulo-kpi">Titulo KPI</span>
+                <div class="kpi-lateral">
+                    <span class="kpi-info" style="align-self: flex-start;">Esteira</span>
+
+                    <div class="info">
+                        <div class="legenda">
+                            <span>Hoje</span>
+                        </div>
+                        <div>
+                            <canvas id="esteira" style="width: 70%;"></canvas>
+                        </div>
+
+                        <div class="horas">
+                            <span>500</span>
+                            <span>Horas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kpi-lateral">
+                    <span class="kpi-info" style="align-self: flex-start;">Bicicleta</span>
+                    <div style="display: flex;">
+
+                        <div class="info">
+                            <div class="legenda">
+                                <span>Hoje</span>
+                            </div>
+                            <div>
+                                <canvas id="bici" style="width: 70%;"></canvas>
+                            </div>
+                            <div class="horas">
+                                <span>1.000</span>
+                                <span>Horas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    const dataSemanal = {
+        labels: [
+            'Esteira',
+            'Bicicleta',
+            'Cadeira ext',
+            'outros'
+        ],
+        datasets: [{
+            data: [40, 30, 20, 10],
+            backgroundColor: [
+                '#FF1001',
+                '#4050E7',
+                '#FFD233',
+                '#2BCFD2',
+            ]
+        }]
+    };
+
+    const configSemanal = { // variável com as configurações do gráfico 
+        type: 'doughnut', // tipo do gráfico
+        data: dataSemanal, // define os dados do gráfico como a variável data
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+            }
+        },
+    };
+
+    const chartSemana = new Chart( // cria um novo gráfico
+        document.getElementById('usadosSemana'),
+        configSemanal)
+
+
+    const dataPico = {
+        labels: [
+            'Manhã',
+            'Tarde',
+            'Noite'
+        ], // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Bicicleta',
+            backgroundColor: '#4050E7', // cor dos pontos no gráfico
+            borderColor: '#4050E7', // cor da linha do gráfico
+            data: [5, 3, 7], // dados do gráfico
+        },
+        {
+            label: 'Esteira',
+            backgroundColor: '#FF1001',
+            borderColor: '#FF1001',
+            data: [7.5, 4, 5],
+        },
+            // {
+            //     label: 'Cadeira ext',
+            //     backgroundColor: '#FFD233',
+            //     borderColor: '#FFD233',
+            //     data: [5, 2, 3], 
+            // }
+        ]
+    };
+
+    const configPico = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: dataPico, // define os dados do gráfico como a variável data
+        options: {
+            indexAxis: 'y',
+        }
+    };
+
+    const chartPico = new Chart( // cria um novo gráfico
+        document.getElementById('picoDia'),
+        configPico)
+
+
+
+
+
+
+
+    const databici = {
+        datasets: [{  // definindo os dados 
+            data: [80, 20], // dados do gráfico
+            backgroundColor: [
+                '#FF7049',
+                '#F2F2F2'] // cor dos pontos no gráfico // cor da linha do gráfico
+        }]
+    };
+
+    const configbici = { // variável com as configurações do gráfico 
+        type: 'doughnut', // tipo do gráfico
+        data: databici, // define os dados do gráfico como a variável data
+        options: {}
+    };
+
+    const chartbici = new Chart( // cria um novo gráfico
+        document.getElementById('bici'),
+        configbici)
+
+
+
+
+
+    const dataesteira = {
+        datasets: [{  // definindo os dados 
+            data: [60, 40], // dados do gráfico
+            backgroundColor: [
+                '#E7B14A',
+                '#F2F2F2'] // cor dos pontos no gráfico // cor da linha do gráfico
+        }]
+    };
+
+    const configesteira = { // variável com as configurações do gráfico 
+        type: 'doughnut', // tipo do gráfico
+        data: dataesteira, // define os dados do gráfico como a variável data
+        options: {}
+    };
+
+    const chartesteira = new Chart( // cria um novo gráfico
+        document.getElementById('esteira'),
+        configesteira)
+
+
+
+    const labels = [  // criando as labels
+        'Segunda',
+        'Terça',
+        'Quarta',
+        'Quinta',
+        'Sexta',
+        'Sábado',
+    ];
+
+
+    const data = {
+        labels: labels, // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Volume de fluxo',
+            backgroundColor: '#F99033', // cor dos pontos no gráfico
+            borderColor: '#F99033', // cor da linha do gráfico
+            data: [10, 20, 30, 20, 40, 30, 45], // dados do gráfico
+        }]
+    };
+
+    const config = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: data, // define os dados do gráfico como a variável data
+        options: {}
+    };
+
+    const xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+
+    new Chart("graficoLinha", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                data: [0, 1],
+                borderColor: "red",
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            legend: { display: false }
+        }
+    });
+
+    const myChart = new Chart( // cria um novo gráfico
+        document.getElementById('myChart'),
+        config)
+
+
+</script>

@@ -1,6 +1,6 @@
 create database Sensfit;
 use sensfit;
--- drop database sensfit;
+drop database sensfit;
 
 -- criando o tabela de infromações de usuário e login
 create table usuario(
@@ -8,21 +8,10 @@ idUsuario int auto_increment,
 nome varchar(45) not null,
 email varchar(45) not null,
 senha varchar(8) not null,
- 
+fkgestor int,
+
+constraint gestorUsuario foreign key (fkgestor) references usuario (idUsuario),
 primary key pkusuario (idUsuario));
-
-
--- tabela com infromações do gestor, cada gestor tem um usuário mas nem todo usuário é um gestor
-create table gestor(
-idGestor int auto_increment,
-nome varchar(45) not null,
-cpf varchar(11) not null unique,
-telefone varchar(9) not null,
-fkUsuario int,
-
-primary key pkgestor (idGestor),
-constraint fkUsuarioGestor foreign key (fkUsuario) references usuario (idUsuario));
-
 
 -- cadastro de academias 
 create table academia(
@@ -32,7 +21,9 @@ cnpj varchar(14) not null unique,
 cep varchar(8) not null,
 logradouro varchar(4) not null,
 telefone varchar(9) not null,
+matriz int,
 
+constraint matrizAcademia foreign key (matriz) references academia (idAcademia),
 primary key pkAcademia (idAcademia));
 
 
@@ -40,7 +31,7 @@ primary key pkAcademia (idAcademia));
 create table usuarioAcademia(
 fkUsuario int,
 fkAcademia int,
-tipo varchar(20) default ('funcionário'), -- tipo de usuario por padrao é um funcionario
+tipo varchar(20) default ('funcionário'),
 
 constraint fkUsuarioAcademia foreign key (fkUsuario) references usuario (idUsuario),
 constraint fkAcademiaUsuario foreign key (fkAcademia) references academia (idAcademia),
@@ -169,31 +160,24 @@ values(1,1),
 (1,24),
 (0,25);
 
-insert into usuario(nome,email,senha)
-values('Junior','junior@gmail.com','senha'),
-('Fernanda','fernanda@gmail.com','senha1'),
-('Agenor','agenor@gmail.com','senha2'),
-('Minnie','minnie@gmail.com','senha3'),
-('Dandara','dandara@gmail.com','senha4'),
-('Brenda','brenda@gmail.com','senha5'),
-('João','joao@gmail.com','senha6');
+insert into usuario(nome,email,senha,fkgestor)
+values('Junior','junior@gmail.com','senha',null),
+('Fernanda','fernanda@gmail.com','senha1',null),
+('Agenor','agenor@gmail.com','senha2',null),
+('Minnie','minnie@gmail.com','senha3',3),
+('Dandara','dandara@gmail.com','senha4',2),
+('Brenda','brenda@gmail.com','senha5',4),
+('João','joao@gmail.com','senha6', 1);
 
-
-insert into gestor(nome,cpf,telefone,fkUsuario)
-values('Brenda','19283746583','919283746',6),
-('Minnie','10293847563','918273642',4),
-('João','10384720594','928273645',7),
-('Junior','10292837461','910293876',1),
-('Agenor','10293847562','918273648',3);
 
 insert into usuarioacademia(fkUsuario,fkAcademia,tipo)
 values(1,1,'gestor'),
-(2,2,'funcionário'),
+(2,2,'gestor'),
 (3,3,'gestor'),
-(4,4,'gestor'),
+(4,4,'funcionário'),
 (5,5,'funcionário'),
-(6,2,'gestor'),
-(7,5,'gestor');
+(6,2,'funcionário'),
+(7,5,'funcionárior');
 
 
 -- select de cada tabela separada
@@ -202,7 +186,6 @@ select*from equipamento;
 select*from sensor;
 select*from leitura;
 select*from usuario;
-select*from gestor;
 select*from usuarioacademia;
 
 
@@ -218,16 +201,6 @@ from academia as a
 inner join equipamento as e 
 on e.fkAcademia = a.idAcademia;
 
--- Usuário de cada gestor
-select  g.nome 'Gestor',
-		g.cpf,
-        g.telefone,
-        u.nome 'User',
-        u.email,
-        u.senha
-from gestor as g
-inner join usuario as u
-on g.fkUsuario = u.idUsuario;
 
 -- Academia da cada usuário
 select  u.nome 'User',

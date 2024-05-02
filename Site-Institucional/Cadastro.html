@@ -43,9 +43,15 @@
                 <a href="Login.html">Já é cliente?</a>
             </div>
         </div>
+        <div id="MensagemERRO" style="display: none;"></div>
+
     </div>
 
+
+
 </body>
+
+</html>
 <script>
     function verificar() {
         MensagemERRO.innerHTML = '';
@@ -55,7 +61,6 @@
 
         let cpf = input_cpf.value;
         let somaCpf = 0;
-
         let email = input_email.value;
         let senha = input_senha.value;
         let confirmacaoSenha = input_senhaConfirmacao.value;
@@ -88,27 +93,16 @@
             segundoDigitoVerificador = 11 - (somaCpf % 11);
         }
 
-        for (let i = 0; i <= senha.length - 1; i++) {
-            if (Number(senha[i])) {
-                MensagemERRO.style.display = 'none';
-            } else {
-                MensagemERRO.style.display = 'block';
-                MensagemERRO.innerHTML = `A Senha precisa de pelo menos um número`
-            }
-        }
+    //    else if (cpf[cpf.length - 2] != primeiroDigitoVerificador || cpf[cpf.length - 1 != segundoDigitoVerificador]) {
+      //      MensagemERRO.style.display = 'block';
+        //    MensagemERRO.innerHTML = `Por Favor Digite um Cpf Válido`;
+        //} 
+        
 
-
-        if (nome.length < 2) {
-            MensagemERRO.style.display = 'block';
-            MensagemERRO.innerHTML = `Digite um nome válido`
-        }
-
-
-        else if (cpf[cpf.length - 2] != primeiroDigitoVerificador || cpf[cpf.length - 1 != segundoDigitoVerificador]) {
+       if (cpf[cpf.length - 2] != primeiroDigitoVerificador || cpf[cpf.length - 1 != segundoDigitoVerificador]) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Por Favor Digite um Cpf Válido`;
         } 
-        
         else if (email.indexOf("@") <= -1) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um email válido!`

@@ -1,6 +1,6 @@
 create database Sensfit;
 use sensfit;
-drop database sensfit;
+-- drop database sensfit;
 
 -- criando o tabela de infromações de usuário e login
 create table usuario(

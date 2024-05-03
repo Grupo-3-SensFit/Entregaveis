@@ -68,8 +68,11 @@
 
         let stringCpf = cpf.replaceAll('.', '').replaceAll('-', '');
 
+        // 111.222.333-44 = 11122233344
 
+        // Essa validação ele faz com que ele verifique cada número do cpf:
         for (let i = 2; i <= 10; i++) {
+            // console.log(stringCpf[10 - i])
             somaCpf += i * stringCpf[10 - (i)]
         }
 
@@ -81,7 +84,7 @@
             primeiroDigitoVerificador = 11 - (somaCpf % 11);
         }
 
-        for (let i = 2; i <= 10; i++) {
+        for (let i = 2; i <= 11; i++) {
             somaCpf += i * stringCpf[11 - (i)]
         }
 
@@ -93,13 +96,22 @@
             segundoDigitoVerificador = 11 - (somaCpf % 11);
         }
 
-    //    else if (cpf[cpf.length - 2] != primeiroDigitoVerificador || cpf[cpf.length - 1 != segundoDigitoVerificador]) {
-      //      MensagemERRO.style.display = 'block';
-        //    MensagemERRO.innerHTML = `Por Favor Digite um Cpf Válido`;
-        //} 
-        
 
-       if (cpf[cpf.length - 2] != primeiroDigitoVerificador || cpf[cpf.length - 1 != segundoDigitoVerificador]) {
+        for (let i = 0; i <= senha.length - 1; i++) {
+            if (Number(senha[i])) {
+                MensagemERRO.style.display = 'none';
+            } else {
+                MensagemERRO.style.display = 'block';
+                MensagemERRO.innerHTML = `A Senha precisa de pelo menos um número`
+            }
+        }
+
+        if (nome.length < 6){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite um nome válido!`;
+        }
+
+        else if (cpf[cpf.length - 2] != primeiroDigitoVerificador || cpf[cpf.length - 1 != segundoDigitoVerificador]) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Por Favor Digite um Cpf Válido`;
         } 

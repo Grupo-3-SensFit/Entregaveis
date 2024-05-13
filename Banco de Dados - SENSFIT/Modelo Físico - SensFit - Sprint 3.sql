@@ -1,6 +1,6 @@
+
 create database Sensfit;
 use Sensfit;
-
 
 -- criando o tabela de infromações de usuário e login
 create table usuario(
@@ -121,29 +121,6 @@ values(1),
 (20);
 
 -- inserção dos valores da leitura
-insert into leitura(atividade,fkSensor)
-values(1,1),
-(1,2),
-(0,3),
-(1,4),
-(0,5),
-(1,6),
-(0,7),
-(0,8),
-(0,9),
-(1,10),
-(0,11),
-(0,12),
-(1,13),
-(1,14),
-(1,15),
-(1,16),
-(0,17),
-(0,18),
-(1,19),
-(1,20);
-
-
 
 -- select de cada tabela separada
 select*from usuario;
@@ -186,3 +163,4 @@ inner join sensor as s
 on l.fkSensor = s.idSensor
 inner join equipamento as e
 on s.fkEquipamento = idEquipamento;
+

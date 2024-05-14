@@ -80,6 +80,8 @@ INSERT INTO ratos (nome, resistencia, fkNinhada) VALUES
   ('Rato Mestre', 8, 4);
   
 
+
+-- SELECT TODOS OS DADOS
 SELECT 
     r.nome,
     r.resistencia,
@@ -99,9 +101,19 @@ FROM
         INNER JOIN
     musica AS m ON rm.fkMusica = m.idMusica
         INNER JOIN
-    flautistas AS f ON rm.fkFlautista = f.idFlautista
+    flautistas AS f ON rm.fkFlautista = f.idFlautista;
 
-  
+
+-- Mostre em ordem decrescente o rato com maior resistencia -Yasmim (FACIL)
+
+-- Mostre os dados dos flautistas cujo habilidade é maior igual a 7. -Yasmim (FACIL)
+
+-- Mostre qual ninhada de ratos é atraída por um determinado repertório -Yasmim(FACIL)
+
+-- 	Mostre a média de resistencia de uma determinada ninhada -Yasmim (MEDIO)
+
+-- Mostre o nome do rato, o nome do flautista, o nome da musica, a resistencia do rato, a habilidade do flautista, o encantamento da musica, e mostre o dano sofrido(habilidadeXencantamento) -Yasmim (DIFICIL)
+
 
 
 

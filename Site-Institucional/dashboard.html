@@ -21,22 +21,18 @@
         <button id="home">
             <img id="homeimg" src="https://cdn-icons-png.freepik.com/512/8995/8995358.png">
         </button>
+        
+        <a href="bobia.html">BobIA</a>
+
         <button id="logout">
             <a href="Login.html">
                 <img id="logoutimg" src="https://www.agecefrio.com.br/novo-site/app/icones/sair-branco.png">
             </a>
         </button>
+
     </div>
     <div class="conteudo-dashboard">
         <h2>Sensfit's Dashboard</h2>
-
-        <div class="container_graficoLinha">
-            <div class="grafico_principal">
-                <span class="titulo-kpi">Sensor: Proximidade 1 - Esteira</span>
-                <canvas id="graficoLinha" style="justify-self: center;"></canvas>
-            </div>
-
-        </div>
 
         <div class="kpis">
             <div class="kpi">
@@ -311,28 +307,4 @@
         data: data, // define os dados do gráfico como a variável data
         options: {}
     };
-
-    const xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-
-    new Chart("graficoLinha", {
-        type: "line",
-        data: {
-            labels: xValues,
-            datasets: [{
-                data: [0, 1],
-                borderColor: "red",
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            legend: { display: false }
-        }
-    });
-
-    const myChart = new Chart( // cria um novo gráfico
-        document.getElementById('myChart'),
-        config)
-
-
 </script>

@@ -22,7 +22,32 @@
             <img id="homeimg" src="https://cdn-icons-png.freepik.com/512/8995/8995358.png">
         </button>
         
-        <a href="bobia.html">BobIA</a>
+        <CENTER>
+            <a href="javascript:void(0)" onclick="openModal()">
+              <img src="img/bobIA1.png" alt="Botão">
+            </a>
+          </CENTER>
+        
+          <div id="myModal" class="modal">
+            <div class="modal-content" id="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <h2>Digite o Código de Acesso para Acessar nossa IA</h2>
+              <input type="password" id="passwordInput" placeholder="Digite o código de acesso">
+              <button onclick="checkPassword()">Acessar</button>
+            </div>
+            <div id="hiddenContent" class="hidden-content">
+              <div id="container">
+                <center>
+                  <h1>BobIA</h1>
+                  <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+                  <br><br>
+                  <button onclick="gerarResposta()">Gerar Resposta</button>
+                  <h3>Resposta da IA:</h3>
+                  <div id="resposta"></div>
+                </center>
+              </div>
+            </div>
+          </div>
 
         <button id="logout">
             <a href="Login.html">
@@ -147,9 +172,51 @@
 
 
 
+<script>
+    function openModal() {
+      document.getElementById('myModal').style.display = 'block';
+    }
 
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
 
+    function checkPassword() {
+      const password = document.getElementById('passwordInput').value;
+      const correctPassword = 'senha123'; // Defina a senha correta aqui
+      
+      if (password === correctPassword) {
+        document.getElementById('modal-content').style.display = 'none';
+        document.getElementById('hiddenContent').style.display = 'block';
+      } else {
+        alert('Código de acesso errado! Tente novamente.');
+      }
+    }
 
+    window.onclick = function(event) {
+      const modal = document.getElementById('myModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+    async function gerarResposta() {
+      const pergunta = document.getElementById('pergunta').value;
+
+      const response = await fetch('http://localhost:3333/perguntar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ pergunta })
+      });
+
+      const data = await response.json();
+
+      document.getElementById('resposta').innerText = data.resultado;
+    }
+  </script>
+</script>
 
 
 

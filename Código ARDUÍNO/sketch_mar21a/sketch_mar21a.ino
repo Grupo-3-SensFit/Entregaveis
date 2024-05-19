@@ -15,18 +15,12 @@ void loop() {
     Serial.print(";");
     Serial.println(fkSensor1);
 
-    Serial.print("0");
-    Serial.print(";");
-    Serial.println(fkSensor2);
 
   } else {
     Serial.print("0");
     Serial.print(";");
     Serial.println(fkSensor1);
     
-    Serial.print("1");
-    Serial.print(";");
-    Serial.println(fkSensor2);
   }
   delay(1000);
 }

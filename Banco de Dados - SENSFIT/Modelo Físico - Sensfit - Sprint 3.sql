@@ -1,7 +1,6 @@
 create database Sensfit;
 use Sensfit;
 
-drop database Sensfit;
 
 -- criando o tabela de infromações de usuário e login
 create table usuario(
@@ -77,6 +76,8 @@ values(1),
 (3),
 (4),
 (5);
+
+
 
 select*from leitura;
 

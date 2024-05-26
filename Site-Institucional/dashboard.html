@@ -21,153 +21,205 @@
         <button id="home">
             <img id="homeimg" src="https://cdn-icons-png.freepik.com/512/8995/8995358.png">
         </button>
-        
+
 
         <center><a href="https://sensfit.hipporello.net/desk">
-            <img src="img/helpdesk.png">
-        </a>
-    </center>
+                <img src="img/suporte.png" class="img-nav">
+            </a>
+        </center>
         <CENTER>
             <a href="javascript:void(0)" onclick="openModal()">
-              <img src="img/bobIA1.png" alt="Botão">
+                <img src="img/bobia.png" alt="Botão" class="img-nav">
             </a>
-          </CENTER>
-        
-          <div id="myModal" class="modal">
+        </CENTER>
+
+        <div id="myModal" class="modal">
             <div class="modal-content" id="modal-content">
-              <span class="close" onclick="closeModal()">&times;</span>
-              <h2>Digite o Código de Acesso para Acessar nossa IA</h2>
-              <input type="password" id="passwordInput" placeholder="Digite o código de acesso">
-              <button onclick="checkPassword()">Acessar</button>
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Digite o Código de Acesso para Acessar nossa IA</h2>
+                <input type="password" id="passwordInput" placeholder="Digite o código de acesso">
+                <button onclick="checkPassword()">Acessar</button>
             </div>
             <div id="hiddenContent" class="hidden-content">
-              <div id="container">
-                <center>
-                    <span class="close" onclick="closeModal()">&times;</span>
-                  <h1>BobIA</h1>
-                  <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-                  <br><br>
-                  <button onclick="gerarResposta()">Gerar Resposta</button>
-                  <h3>Resposta da IA:</h3>
-                  <div id="resposta"></div>
-                </center>
-              </div>
+                <div id="container">
+                    <center>
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <h1>BobIA</h1>
+                        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+                        <br><br>
+                        <button onclick="gerarResposta()">Gerar Resposta</button>
+                        <h3>Resposta da IA:</h3>
+                        <div id="resposta"></div>
+                    </center>
+                </div>
             </div>
-          </div>
+        </div>
 
         <button id="logout">
             <a href="Login.html">
-                <img id="logoutimg" src="https://www.agecefrio.com.br/novo-site/app/icones/sair-branco.png">
+                <img id="logoutimg" src="img/exit.png" class="img-nav">
             </a>
         </button>
 
     </div>
-    <div class="conteudo-dashboard">
-        <h2>Sensfit's Dashboard</h2>
 
-        <div class="kpis">
-            <div class="kpi">
-                <span class="titulo-kpi">Equipamentos mais concorridos:</span>
-
-                <span class="kpi-info">Esteira</span>
+    <div class="modal" id="modalDesuso">
+        <div class="modal-content" id="content-mopdalDesuso">
+            <span class="close" onclick="closeModalDesuso()" style="align-self: flex-end;">&times;</span>
+            <h2>Equipamentos em Desuso <i class="fa-solid fa-triangle-exclamation"></i></h2>
+            <div class="kpi-lateral">
+                <span class="kpi-info">Esteira S2</span>
                 <div class="info">
-                    <div class="legenda">
-                        <span>Semana</span>
-                        <span>Período Manhã</span>
-                    </div>
-
                     <div class="horas">
                         <span>60</span>
                         <span>Horas</span>
                     </div>
                 </div>
             </div>
-
-            <div class="kpi">
-                <span class="titulo-kpi">Equipamentos mais concorridos:</span>
-
-                <span class="kpi-info">Bicicleta</span>
+            <div class="kpi-lateral">
+                <span class="kpi-info">Esteira S2</span>
                 <div class="info">
-                    <div class="legenda">
-                        <span>Semana</span>
-                        <span>Período: Noite</span>
-                    </div>
-
                     <div class="horas">
-                        <span>55</span>
+                        <span>60</span>
                         <span>Horas</span>
                     </div>
                 </div>
-
             </div>
-
-            <div class="kpi">
-                <span class="titulo-kpi">Equipamento em desuso:
-                    <i class="fa-solid fa-triangle-exclamation"></i></span>
-                <span class="kpi-info">Leg Press</span>
+            <div class="kpi-lateral">
+                <span class="kpi-info">Esteira S2</span>
                 <div class="info">
-                    <div class="legenda">
-                        <span>Em 4 dias</span>
-                    </div>
-
                     <div class="horas">
-                        <span>2</span>
+                        <span>60</span>
                         <span>Horas</span>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="graficos">
-            <div class="grafico">
-                <span class="titulo-kpi">Equipamentos mais usados na semana</span>
-                <canvas id="usadosSemana"></canvas>
+
+    <div class="modal" id="modalMaisUsados">
+        <div class="modal-content" id="content-mopdalMaisUsados">
+            <span class="close" onclick="closeModalMaisUsados()" style="align-self: flex-end;">&times;</span>
+            <h2>Equipamentos mais usados</h2>
+            <div class="kpi-lateral">
+                <span class="kpi-info">Esteira S2</span>
+                <div class="info">
+                    <div class="horas">
+                        <span>60</span>
+                        <span>Horas</span>
+                    </div>
+                </div>
             </div>
-
-
-            <div class="grafico">
-                <span class="titulo-kpi">Pico de uso dos equipamentos</span>
-                <canvas id="picoDia"></canvas>
+            <div class="kpi-lateral">
+                <span class="kpi-info">Esteira S2</span>
+                <div class="info">
+                    <div class="horas">
+                        <span>60</span>
+                        <span>Horas</span>
+                    </div>
+                </div>
             </div>
+            <div class="kpi-lateral">
+                <span class="kpi-info">Esteira S2</span>
+                <div class="info">
+                    <div class="horas">
+                        <span>60</span>
+                        <span>Horas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="conteudo-dashboard">
+        <h2>Sensfit's Dashboard</h2>
+
+        <div id="divSup">
+
+            <div id="divSupEsquerdo">
+                <div class="kpis">
+
+                    <div class="kpi" onclick="openModalMaisUsados()">
+                        <span class="titulo-kpi">Equipamentos mais utilizados</span>
+
+                        <span class="kpi-infoN">5</span>
+                    </div>
+
+
+                    <div class="kpi" onclick="openModalDesuso()">
+                        <span class="titulo-kpi">Equipamentos em desuso
+                            <i class="fa-solid fa-triangle-exclamation"></i></span>
+                        <span class="kpi-infoN">3</span>
+                    </div>
+                </div>
+                <div class="grafico">
+                    <span class="titulo-kpi">Equipamentos mais usados na semana</span>
+                    <canvas id="usadosSemana"></canvas>
+                </div>
+            </div>
             <div class="container-kpi">
-                <span class="titulo-kpi">Manutenção</span>
+
+                <span class="titulo-kpi">Manutenção  <i class="fa-solid fa-triangle-exclamation"></i></span></span>
+
                 <div class="kpi-lateral">
-                    <span class="kpi-info" style="align-self: flex-start;">Esteira</span>
-
-                    <div class="info">
-                        <div class="legenda">
-                            <span>Hoje</span>
-                        </div>
-                        <div>
-                            <canvas id="esteira" style="width: 70%;"></canvas>
-                        </div>
-
-                        <div class="horas">
-                            <span>500</span>
-                            <span>Horas</span>
-                        </div>
+                    <span class="kpi-info">Esteira</span>
+                    <div>
+                        <canvas id="esteira" class="grafManu"></canvas>
+                    </div>
+                    <div class="horas">
+                        <span>500</span>
+                        <span>Horas</span>
                     </div>
                 </div>
 
                 <div class="kpi-lateral">
-                    <span class="kpi-info" style="align-self: flex-start;">Bicicleta</span>
-                    <div style="display: flex;">
-
-                        <div class="info">
-                            <div class="legenda">
-                                <span>Hoje</span>
-                            </div>
-                            <div>
-                                <canvas id="bici" style="width: 70%;"></canvas>
-                            </div>
-                            <div class="horas">
-                                <span>1.000</span>
-                                <span>Horas</span>
-                            </div>
-                        </div>
+                    <span class="kpi-info">Bicicleta</span>
+                    <div>
+                        <canvas id="bici" class="grafManu"></canvas>
+                    </div>
+                    <div class="horas">
+                        <span>1.000</span>
+                        <span>Horas</span>
                     </div>
                 </div>
+
+                <div class="kpi-lateral">
+                    <span class="kpi-info">Cadeira Ext</span>
+                    <div>
+                        <canvas id="cadeira" class="grafManu"></canvas>
+                    </div>
+                    <div class="horas">
+                        <span>600</span>
+                        <span>Horas</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="divSub">
+            <div class="containerSub">
+                <span class="titulo-kpi">Pico de uso simultâneo</span>
+                <br>
+                <div class="barraSelecao">
+                    <select  id="selectData" class="selects">
+                        <option disabled selected>DATA</option>
+                    </select>
+                    <button onclick="picomanha()">MANHÃ</button>
+                    <button onclick="picotarde()">TARDE</button>
+                    <button onclick="piconoite()">NOITE</button>
+                    <button onclick="picomadrugada()">MADRUGADA</button>
+                    <select  id="selectEquip" class="selects">
+                        <option disabled selected>EQUIPAMENTO</option>
+                    </select>
+                </div>
+
+                <canvas id="picoDia" class="grafSub"></canvas>
+                <canvas id="picoTarde" class="grafSub"></canvas>
+                <canvas id="picoNoite" class="grafSub"></canvas>
+                <canvas id="picoMadrugada" class="grafSub"></canvas>
             </div>
         </div>
     </div>
@@ -180,48 +232,64 @@
 
 <script>
     function openModal() {
-      document.getElementById('myModal').style.display = 'block';
+        document.getElementById('myModal').style.display = 'block';
     }
 
     function closeModal() {
-      document.getElementById('myModal').style.display = 'none';
+        document.getElementById('myModal').style.display = 'none';
     }
 
     function checkPassword() {
-      const password = document.getElementById('passwordInput').value;
-      const correctPassword = 'senha123'; // Defina a senha correta aqui
-      
-      if (password === correctPassword) {
-        document.getElementById('modal-content').style.display = 'none';
-        document.getElementById('hiddenContent').style.display = 'block';
-      } else {
-        alert('Código de acesso errado! Tente novamente.');
-      }
+        const password = document.getElementById('passwordInput').value;
+        const correctPassword = 'senha123'; // Defina a senha correta aqui
+
+        if (password === correctPassword) {
+            document.getElementById('modal-content').style.display = 'none';
+            document.getElementById('hiddenContent').style.display = 'block';
+        } else {
+            alert('Código de acesso errado! Tente novamente.');
+        }
     }
 
-    window.onclick = function(event) {
-      const modal = document.getElementById('myModal');
-      if (event.target === modal) {
-        closeModal();
-      }
+    window.onclick = function (event) {
+        const modal = document.getElementById('myModal');
+        if (event.target === modal) {
+            closeModal();
+        }
     }
 
     async function gerarResposta() {
-      const pergunta = document.getElementById('pergunta').value;
+        const pergunta = document.getElementById('pergunta').value;
 
-      const response = await fetch('http://localhost:3333/perguntar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ pergunta })
-      });
+        const response = await fetch('http://localhost:3333/perguntar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ pergunta })
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      document.getElementById('resposta').innerText = data.resultado;
+        document.getElementById('resposta').innerText = data.resultado;
     }
-  </script>
+
+    function openModalDesuso() {
+        modalDesuso.style.display = "block";
+    }
+
+    function closeModalDesuso() {
+        modalDesuso.style.display = "none";
+    }
+
+    function openModalMaisUsados(){
+        modalMaisUsados.style.display = "block";
+    }
+
+    function closeModalMaisUsados(){
+        modalMaisUsados.style.display = "none";
+    }
+</script>
 </script>
 
 
@@ -266,50 +334,41 @@
         configSemanal)
 
 
-    const dataPico = {
+    const dataPicoManha = {
         labels: [
-            'Manhã',
-            'Tarde',
-            'Noite'
+            '07:00',
+            '08:00',
+            '09:00',
+            '10:00',
+            '11:00',
+            '12:00',
         ], // define as colunas como labels
         datasets: [{  // definindo os dados 
-            label: 'Bicicleta',
-            backgroundColor: '#4050E7', // cor dos pontos no gráfico
-            borderColor: '#4050E7', // cor da linha do gráfico
-            data: [5, 3, 7], // dados do gráfico
-        },
-        {
-            label: 'Esteira',
-            backgroundColor: '#FF1001',
-            borderColor: '#FF1001',
-            data: [7.5, 4, 5],
-        },
-            // {
-            //     label: 'Cadeira ext',
-            //     backgroundColor: '#FFD233',
-            //     borderColor: '#FFD233',
-            //     data: [5, 2, 3], 
-            // }
+            label: 'Fluxo',
+            backgroundColor: 'orange', // cor dos pontos no gráfico
+            borderColor: 'orange', // cor da linha do gráfico
+            data: [5, 3, 7, 10, 3, 8], // dados do gráfico
+        }
         ]
     };
 
-    const configPico = { // variável com as configurações do gráfico 
+
+    const configPicoManha = { // variável com as configurações do gráfico 
         type: 'bar', // tipo do gráfico
-        data: dataPico, // define os dados do gráfico como a variável data
+        data: dataPicoManha, // define os dados do gráfico como a variável data
         options: {
-            indexAxis: 'y',
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Período Manhã'
+                }
+            }
         }
     };
 
     const chartPico = new Chart( // cria um novo gráfico
         document.getElementById('picoDia'),
-        configPico)
-
-
-
-
-
-
+        configPicoManha)
 
     const databici = {
         datasets: [{  // definindo os dados 
@@ -331,9 +390,6 @@
         configbici)
 
 
-
-
-
     const dataesteira = {
         datasets: [{  // definindo os dados 
             data: [60, 40], // dados do gráfico
@@ -352,6 +408,29 @@
     const chartesteira = new Chart( // cria um novo gráfico
         document.getElementById('esteira'),
         configesteira)
+
+
+
+
+        const datacadeira = {
+        datasets: [{  // definindo os dados 
+            data: [70, 30], // dados do gráfico
+            backgroundColor: [
+                '#FF7049',
+                '#F2F2F2'] // cor dos pontos no gráfico // cor da linha do gráfico
+        }]
+    };
+
+    const configcadeira = { // variável com as configurações do gráfico 
+        type: 'doughnut', // tipo do gráfico
+        data: datacadeira, // define os dados do gráfico como a variável data
+        options: {}
+    };
+
+    const chartcadeira = new Chart( // cria um novo gráfico
+        document.getElementById('cadeira'),
+        configcadeira)
+
 
 
 
@@ -380,4 +459,161 @@
         data: data, // define os dados do gráfico como a variável data
         options: {}
     };
+
+
+    const dataPicoTarde = {
+        labels: [
+            '13:00',
+            '14:00',
+            '15:00',
+            '16:00',
+            '17:00',
+            '18:00',
+        ], // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Fluxo',
+            backgroundColor: 'orange', // cor dos pontos no gráfico
+            borderColor: 'orange', // cor da linha do gráfico
+            data: [4, 6, 7, 2, 9, 8], // dados do gráfico
+        }
+        ]
+    };
+
+    const configPicoTarde = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: dataPicoTarde, // define os dados do gráfico como a variável data
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Período Tarde'
+                }
+            }
+        }
+    };
+
+
+    let firstClickTarde = true;
+
+    function picotarde() {
+
+        if (firstClickTarde) {
+            const chartPicoTarde = new Chart( // cria um novo gráfico
+                document.getElementById('picoTarde'),
+                configPicoTarde)
+            firstClickTarde = false;
+        }
+
+        picoTarde.style.display = "block";
+        picoDia.style.display = "none";
+        picoNoite.style.display = "none";
+        picoMadrugada.style.display = "none";
+    }
+
+
+    const dataPicoNoite = {
+        labels: [
+            '19:00',
+            '20:00',
+            '21:00',
+            '22:00',
+            '23:00',
+            '00:00',
+        ], // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Fluxo',
+            backgroundColor: 'orange', // cor dos pontos no gráfico
+            borderColor: 'orange', // cor da linha do gráfico
+            data: [1, 3, 4, 2, 5, 1], // dados do gráfico
+        }
+        ]
+    };
+
+    const configPicoNoite = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: dataPicoNoite, // define os dados do gráfico como a variável data
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Período Noite'
+                }
+            }
+        }
+    };
+
+    let firstClickNoite = true;
+
+    function piconoite() {
+        if (firstClickNoite) {
+            const chartPicoNoite = new Chart( // cria um novo gráfico
+                document.getElementById('picoNoite'),
+                configPicoNoite)
+            firstClickNoite = false;
+        }
+
+
+        picoTarde.style.display = "none";
+        picoDia.style.display = "none";
+        picoNoite.style.display = "block";
+        picoMadrugada.style.display = "none";
+    }
+
+    function picomanha() {
+        picoTarde.style.display = "none";
+        picoDia.style.display = "block";
+        picoNoite.style.display = "none";
+        picoMadrugada.style.display = "none";
+    }
+
+
+    const dataPicoMadrugada = {
+        labels: [
+            '01:00',
+            '02:00',
+            '03:00',
+            '04:00',
+            '05:00',
+            '06:00',
+        ], // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Fluxo',
+            backgroundColor: 'orange', // cor dos pontos no gráfico
+            borderColor: 'orange', // cor da linha do gráfico
+            data: [0, 4, 2, 9, 7, 10], // dados do gráfico
+        }
+        ]
+    };
+
+    const configPicoMadrugada = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: dataPicoMadrugada, // define os dados do gráfico como a variável data
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Período Madrugada'
+                }
+            }
+        }
+    };
+
+    let firstClickMadrugada = true;
+
+    function picomadrugada() {
+        if (firstClickMadrugada) {
+            const chartPicoMadrugada = new Chart( // cria um novo gráfico
+                document.getElementById('picoMadrugada'),
+                configPicoMadrugada)
+            firstClickMadrugada = false;
+        }
+
+
+        picoTarde.style.display = "none";
+        picoDia.style.display = "none";
+        picoNoite.style.display = "none";
+        picoMadrugada.style.display = "block";
+    }
+
+
 </script>

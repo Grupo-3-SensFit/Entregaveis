@@ -102,24 +102,3 @@ FROM
     musica AS m ON rm.fkMusica = m.idMusica
         INNER JOIN
     flautistas AS f ON rm.fkFlautista = f.idFlautista;
-
-
--- Mostre em ordem decrescente o rato com maior resistencia -Yasmim (FACIL)
-
--- Mostre os dados dos flautistas cujo habilidade é maior igual a 7. -Yasmim (FACIL)
-
--- Mostre qual ninhada de ratos é atraída por um determinado repertório -Yasmim(FACIL)
-
--- 	Mostre a média de resistencia de uma determinada ninhada -Yasmim (MEDIO)
-
--- Mostre o nome do rato, o nome do flautista, o nome da musica, a resistencia do rato, a habilidade do flautista, o encantamento da musica, e mostre o dano sofrido(habilidadeXencantamento) -Yasmim (DIFICIL)
-
--- Exiba os tipos de ratos existentes - Isaias (Fácil)
-
--- Exiba os nomes das músicas ordenados pelos encantamentos em ordem descrescente - Isaias(Fácil)
-
--- Exiba os nomes dos flautistas e as músicas que eles tocam - Isaias(Fácil)
-
--- Exiba os nomes dos ratos, os tipos de rato, a resistencia deles e o repertorio que os afetam de uma determinada ninhada - Isaias(Médio)
-
--- Exiba a ninhada de todos os ratos, os nomes dos ratos, os nomes dos flautistas, os nomes das músicas que os flautistas tocam agrupados pelos nomes dos flautistas, ratos, músicas em ordem descrescente pela ninhada - Isaias(Difícil)

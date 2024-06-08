@@ -17,21 +17,40 @@ function buscarManutencao(fkAcademia) {
     return database.executar(instrucaoSql);
 }
 
-// function buscarMedidasEmTempoReal(idAquario) {
 
-//     var instrucaoSql = `SELECT 
-//         dht11_temperatura as temperatura, 
-//         dht11_umidade as umidade,
-//                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-//                         fk_aquario 
-//                         FROM medida WHERE fk_aquario = ${idAquario} 
-//                     ORDER BY id DESC LIMIT 1`;
+function buscarPico(fkSensor,dataPico) {
 
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//     return database.executar(instrucaoSql);
-// }
+    var instrucaoSql = `select hour(hora) as hora,
+    sum(atividade) as pico
+    from leitura
+    where fkSensor = ${fkSensor}
+    and dataLeitura = '${dataPico}'
+    group by hour(hora)
+    order by hora;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listarData(fkAcademia) {
+
+    var instrucaoSql = `select distinct 
+    DATE_FORMAT(dataLeitura,'%Y-%m-%d') as dataLeitura,
+    DATE_FORMAT(dataLeitura,'%d/%m/%Y') as data
+    from leitura
+    inner join sensor on fkSensor = idSensor
+    inner join equipamento on fkEquipamento = idEquipamento
+    where dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
+    and fkAcademia = ${fkAcademia}
+    order by dataLeitura desc;;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     buscarManutencao,
-    // buscarMedidasEmTempoReal
+    buscarPico,
+    listarData,
 }

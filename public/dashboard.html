@@ -204,22 +204,22 @@
                 <span class="titulo-kpi">Pico de uso simultâneo</span>
                 <br>
                 <div class="barraSelecao">
-                    <select id="selectData" class="selects">
+                    <select id="selectData" class="selects" onchange="obterDadosGraficoPico()">
                         <option disabled selected>DATA</option>
                     </select>
                     <button onclick="picomanha()">MANHÃ</button>
                     <button onclick="picotarde()">TARDE</button>
                     <button onclick="piconoite()">NOITE</button>
-                    <button onclick="picomadrugada()">MADRUGADA</button>
+                    <button onclick="picomadruga()">MADRUGADA</button>
                     <select id="selectEquip" class="selects">
                         <option disabled selected>EQUIPAMENTO</option>
                     </select>
                 </div>
 
-                <canvas id="picoDia" class="grafSub"></canvas>
-                <canvas id="picoTarde" class="grafSub"></canvas>
-                <canvas id="picoNoite" class="grafSub"></canvas>
-                <canvas id="picoMadrugada" class="grafSub"></canvas>
+                <canvas id="grafPicoManha" class="grafSub"></canvas>
+                <canvas id="grafPicoTarde" class="grafSub"></canvas>
+                <canvas id="grafPicoNoite" class="grafSub"></canvas>
+                <canvas id="grafPicoMadruga" class="grafSub"></canvas>
             </div>
         </div>
     </div>
@@ -288,6 +288,35 @@
 
     function closeModalMaisUsados() {
         modalMaisUsados.style.display = "none";
+    }
+
+
+    function picomanha() {
+        grafPicoTarde.style.display = "none";
+        grafPicoManha.style.display = "block";
+        grafPicoNoite.style.display = "none";
+        grafPicoMadruga.style.display = "none";
+    }
+
+    function picotarde() {
+        grafPicoTarde.style.display = "block";
+        grafPicoManha.style.display = "none";
+        grafPicoNoite.style.display = "none";
+        grafPicoMadruga.style.display = "none";
+    }
+
+    function piconoite() {
+        grafPicoTarde.style.display = "none";
+        grafPicoManha.style.display = "none";
+        grafPicoNoite.style.display = "block";
+        grafPicoMadruga.style.display = "none";
+    }
+
+    function picomadruga() {
+        grafPicoTarde.style.display = "none";
+        grafPicoManha.style.display = "none";
+        grafPicoNoite.style.display = "none";
+        grafPicoMadruga.style.display = "block";
     }
 </script>
 
@@ -396,25 +425,25 @@
                 dados1.datasets[0].data.push(tempoLivre);
                 dados1.datasets[0].data.push(soma);
                 equipmanu1.innerHTML = registro.tipo;
-                
-                if(soma >= 6 && soma <= 7){
+
+                if (soma >= 6 && soma <= 7) {
                     dados1.datasets[0].borderColor[1] = '#E7B14A'
                     dados1.datasets[0].backgroundColor[1] = '#E7B14A'
 
-                    if(soma == 6){
+                    if (soma == 6) {
                         horasmanu1.innerHTML = '600'
-                    }else{
+                    } else {
                         horasmanu1.innerHTML = '700'
                     }
-                }else{
+                } else {
                     dados1.datasets[0].borderColor[1] = '#FF7049'
                     dados1.datasets[0].backgroundColor[1] = '#FF7049'
 
-                    if(soma == 8){
+                    if (soma == 8) {
                         horasmanu1.innerHTML = '800'
-                    }else if(soma == 9){
+                    } else if (soma == 9) {
                         horasmanu1.innerHTML = '900'
-                    }else{
+                    } else {
                         horasmanu1.innerHTML = '1000'
                     }
                 }
@@ -424,23 +453,23 @@
                 dados2.datasets[0].data.push(soma);
                 equipmanu2.innerHTML = registro.tipo;
 
-                if(soma >= 6 && soma <= 7){
+                if (soma >= 6 && soma <= 7) {
                     dados2.datasets[0].borderColor[1] = '#E7B14A'
                     dados2.datasets[0].backgroundColor[1] = '#E7B14A'
-                    if(soma == 6){
+                    if (soma == 6) {
                         horasmanu2.innerHTML = '600'
-                    }else{
+                    } else {
                         horasmanu2.innerHTML = '700'
                     }
-                }else{
+                } else {
                     dados2.datasets[0].borderColor[1] = '#FF7049'
                     dados2.datasets[0].backgroundColor[1] = '#FF7049'
 
-                    if(soma == 8){
+                    if (soma == 8) {
                         horasmanu2.innerHTML = '800'
-                    }else if(soma == 9){
+                    } else if (soma == 9) {
                         horasmanu2.innerHTML = '900'
-                    }else{
+                    } else {
                         horasmanu2.innerHTML = '1000'
                     }
                 }
@@ -449,24 +478,24 @@
                 dados3.datasets[0].data.push(soma);
                 equipmanu3.innerHTML = registro.tipo;
 
-                if(soma >= 6 && soma <= 7){
+                if (soma >= 6 && soma <= 7) {
                     dados3.datasets[0].borderColor[1] = '#E7B14A'
                     dados3.datasets[0].backgroundColor[1] = '#E7B14A'
 
-                    if(soma == 6){
+                    if (soma == 6) {
                         horasmanu3.innerHTML = '600'
-                    }else{
+                    } else {
                         horasmanu3.innerHTML = '700'
                     }
-                }else{
+                } else {
                     dados3.datasets[0].borderColor[1] = '#FF7049'
                     dados3.datasets[0].backgroundColor[1] = '#FF7049'
 
-                    if(soma == 8){
+                    if (soma == 8) {
                         horasmanu3.innerHTML = '800'
-                    }else if(soma == 9){
+                    } else if (soma == 9) {
                         horasmanu3.innerHTML = '900'
-                    }else{
+                    } else {
                         horasmanu3.innerHTML = '1000'
                     }
                 }
@@ -516,4 +545,248 @@
     }
 
 
+
+    //  grafico de pico ------------------------------------------------------------------------------------------------
+
+    let firstplot = 0;
+    obterDadosGraficoPico()
+
+    function obterDadosGraficoPico(fkSensor) {
+        let fksensor = 1
+        let dataAtual
+
+        if (firstplot == 0) {
+            dataAtual = diaDeHoje();
+            firstplot = 1;
+        } else {
+            dataAtual = atualizarGraficoPico();
+        }
+
+        fetch(`/medidas/pico`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cache: 'no-store',
+            body: JSON.stringify({
+                fkSensorServer: fksensor,
+                dataAtualServer: dataAtual,
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGraficoPico(resposta, fkSensor);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoPico(resposta, fkSensor) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - dados
+        let dadosManha = {
+            labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00'],
+            datasets: [{
+                label: 'Pico',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgba(100, 117, 117, 0.575)',
+                borderColor: 'rgba(100, 117, 117, 0.575)',
+                tension: 0.1
+            }]
+        };
+
+        let dadosTarde = {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [{
+                label: 'Pico',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgba(100, 117, 117, 0.575)',
+                borderColor: 'rgba(100, 117, 117, 0.575)',
+                tension: 0.1
+            }]
+        };
+
+        let dadosNoite = {
+            labels: ['18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+            datasets: [{
+                label: 'Pico',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgba(100, 117, 117, 0.575)',
+                borderColor: 'rgba(100, 117, 117, 0.575)',
+                tension: 0.1
+            }]
+        };
+
+        let dadosMadruga = {
+            labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
+            datasets: [{
+                label: 'Pico',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgba(100, 117, 117, 0.575)',
+                borderColor: 'rgba(100, 117, 117, 0.575)',
+                tension: 0.1
+            }]
+        };
+
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            let hora = registro.hora
+
+            if (hora >= 6 && hora <= 11) {
+                dadosManha.datasets[0].data.push(registro.pico);
+            }
+            else if (hora >= 12 && hora <= 17) {
+                dadosTarde.datasets[0].data.push(registro.pico);
+            } else if (hora >= 18 && hora <= 23) {
+                dadosNoite.datasets[0].data.push(registro.pico);
+            } else {
+                dadosMadruga.datasets[0].data.push(registro.pico);
+            }
+        }
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log('Dados:')
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const configManha = {
+            type: 'bar',
+            data: dadosManha,
+        };
+
+        const configTarde = {
+            type: 'bar',
+            data: dadosTarde,
+        };
+
+        const configNoite = {
+            type: 'bar',
+            data: dadosNoite,
+        };
+
+        const configMadruga = {
+            type: 'bar',
+            data: dadosMadruga,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let graficoManha = new Chart(
+            document.getElementById(`grafPicoManha`),
+            configManha
+        );
+
+        let graficoTarde = new Chart(
+            document.getElementById(`grafPicoTarde`),
+            configTarde
+        );
+
+        let graficoNoite = new Chart(
+            document.getElementById(`grafPicoNoite`),
+            configNoite
+        );
+
+        let graficoMadruga = new Chart(
+            document.getElementById(`grafPicoMadruga`),
+            configMadruga
+        );
+        firtsplot = 1;
+
+        grafPicoTarde.style.display = 'none';
+        grafPicoNoite.style.display = 'none';
+        grafPicoMadruga.style.display = 'none';
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
+
+
+    function atualizarGraficoPico() {
+        let dataAtual = selectData.value;
+        let chartStatus1 = Chart.getChart("grafPicoManha")
+        let chartStatus2 = Chart.getChart("grafPicoTarde")
+        let chartStatus3 = Chart.getChart("grafPicoNoite")
+        let chartStatus4 = Chart.getChart("grafPicoMadruga")
+        chartStatus1.destroy()
+        chartStatus2.destroy()
+        chartStatus3.destroy()
+        chartStatus4.destroy()
+
+        return dataAtual;
+    }
+
+    function diaDeHoje() {
+        const data = new Date();
+        let dia = data.getDate();
+        let mes = data.getMonth() + 1;
+        const ano = data.getFullYear();
+
+        if (dia < 10) {
+            dia = `0${dia}`
+        }
+        if (mes < 10) {
+            mes = `0${mes}`
+        }
+
+        let dataAtual = ano + "-" + mes + "-" + dia
+
+        return dataAtual;
+    }
+
+    //  listar os dias p gráfico de pico -------------------------------------------------------------------------------------------
+
+    listarData()
+    function listarData() {
+        const fkacademia = 1
+
+        fetch("/medidas/listardata", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkAcademiaServer: fkacademia,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+                let value = 0
+                resposta.json().then((medida) => {
+                    medida.forEach((data) => {
+                        selectData.innerHTML += `<option value='${data.dataLeitura}'>${data.data}</option>`;
+                    });
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
 </script>

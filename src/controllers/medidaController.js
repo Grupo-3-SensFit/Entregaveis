@@ -18,27 +18,41 @@ function buscarManutencao(req, res) {
 }
 
 
-// function buscarMedidasEmTempoReal(req, res) {
+function buscarPico(req, res) {
+    var fkSensor = req.body.fkSensorServer;
+    var dataPico = req.body.dataAtualServer;
 
-//     var idAquario = req.params.idAquario;
+    medidaModel.buscarPico(fkSensor,dataPico).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
-//     console.log(`Recuperando medidas em tempo real`);
+function listarData(req, res) {
+    var fkAcademia = req.body.fkAcademiaServer;
 
-//     medidaModel.buscarMedidasEmTempoReal(idAquario).then(function (resultado) {
-//         if (resultado.length > 0) {
-//             res.status(200).json(resultado);
-//         } else {
-//             res.status(204).send("Nenhum resultado encontrado!")
-//         }
-//     }).catch(function (erro) {
-//         console.log(erro);
-//         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-//         res.status(500).json(erro.sqlMessage);
-//     });
-// }
+    if (fkAcademia == undefined) {
+        console.log('Usuario undefined')
+    } else {
+
+        medidaModel.listarData(fkAcademia).then((resultado) => {
+            res.status(200).json(resultado);
+        });
+    }
+
+}
 
 module.exports = {
     buscarManutencao,
-    // buscarMedidasEmTempoReal
+    buscarPico,
+    listarData,
+
 
 }

@@ -1,6 +1,7 @@
-create database Sensfit;
+create database sensfit;
 use Sensfit;
 
+-- drop database sensfit;
 
 -- criando o tabela de infromações de usuário e login
 create table usuario(
@@ -43,12 +44,12 @@ primary key pkSensor (idSensor));
 -- tabela de captura de leitura
 create table leitura(
 idLeitura int auto_increment,
-dataHora datetime, -- define este campo como a data e hora atual 
+dataLeitura date,
+hora time, -- define este campo como a data e hora atual 
 atividade int,
 fkSensor int default(1),
 constraint fkLeituraSensor foreign key (fkSensor) references sensor(idSensor),
 primary key pkLeitura(idLeitura,fkSensor));
-
 
 
 -- inserção de dados usuarios
@@ -78,17 +79,12 @@ values(1),
 (5);
 
 
-
 select*from leitura;
-
-/*SELECT * 
-FROM leitura 
-WHERE atividade = 1;*/
-
+truncate leitura;
 
 -- QUANTOS SEGUNDOS DE USO
 SELECT fkSensor,
-    TIMESTAMPDIFF(SECOND, MIN(dataHora), MAX(dataHora)) AS total_segundos_atividade_1
+    TIMESTAMPDIFF(SECOND, MIN(hora), MAX(hora)) AS total_segundos_atividade_1
 FROM 
     leitura
 WHERE 
@@ -97,7 +93,7 @@ GROUP BY fkSensor;
 
 
 -- QUANTOS SEGUNDOS NÃO UTILIZADOS
-SELECT 
+/*SELECT 
     DATE(dataHora) AS data,
     fkSensor,
     COUNT(*) AS total_ocorrencias
@@ -110,27 +106,26 @@ GROUP BY
     fkSensor
 ORDER BY 
     total_ocorrencias DESC;
-    
+*/
    
    
 -- QUANTIDADE DE HORAS 
    SELECT 
-    DATE(dataHora) AS data,
+    dataLeitura AS data,
     fkSensor,
     COUNT(*) / 3600.0 AS total_horas_UTILIZADA
 FROM 
     leitura
-WHERE 
-    atividade = 0  
 GROUP BY 
-    DATE(dataHora),
+    dataLeitura,
     fkSensor
 ORDER BY 
     total_horas_UTILIZADA DESC;
 
+
 -- SELECIONA QUAIS EQUIPAMENTOS FICARAM UTILIZADOS ACIMA DE 2 SEGUNDOS
 SELECT 
-    DATE(dataHora) AS data,
+    dataLeitura AS data,
     fkSensor,
     COUNT(*) AS total_ocorrencias
 FROM 
@@ -138,7 +133,7 @@ FROM
 WHERE 
     atividade = 1  -- Use a data desejada aqui
 GROUP BY 
-    DATE(dataHora),
+    dataLeitura,
     fkSensor
 HAVING 
     total_ocorrencias > 2
@@ -148,16 +143,16 @@ ORDER BY
     
 -- TOTAL DE EQUIPAMENTOS UTILIZADO ACIMA DE 2 SEGUNDOS NA ULTIMA SEMANA
     SELECT 
-    DATE(dataHora) AS data,
+    dataLeitura AS data,
     fkSensor,
     COUNT(*) AS total_ocorrencias
 FROM 
     leitura
 WHERE 
-    atividade = 0
-    AND DATE(dataHora) BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW() -- Dados da última semana
+    dataLeitura BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW() -- Dados da última semana
 GROUP BY 
-    DATE(dataHora),
+    dataLeitura,
     fkSensor
 ORDER BY 
     total_ocorrencias DESC;
+    

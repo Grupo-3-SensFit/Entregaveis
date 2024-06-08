@@ -1,0 +1,320 @@
+<!-- <script>
+    const dataSemanal = {
+        labels: [
+            'Esteira',
+            'Bicicleta',
+            'Cadeira ext',
+            'outros'
+        ],
+        datasets: [{
+            data: [40, 30, 20, 10],
+            backgroundColor: [
+                '#FF1001',
+                '#4050E7',
+                '#FFD233',
+                '#2BCFD2',
+            ]
+        }]
+    };
+
+    const configSemanal = { // variável com as configurações do gráfico 
+        type: 'doughnut', // tipo do gráfico
+        data: dataSemanal, // define os dados do gráfico como a variável data
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+            }
+        },
+    };
+
+    const chartSemana = new Chart( // cria um novo gráfico
+        document.getElementById('usadosSemana'),
+        configSemanal)
+
+
+    const dataPicoManha = {
+        labels: [
+            '07:00',
+            '08:00',
+            '09:00',
+            '10:00',
+            '11:00',
+            '12:00',
+        ], // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Fluxo',
+            backgroundColor: 'orange', // cor dos pontos no gráfico
+            borderColor: 'orange', // cor da linha do gráfico
+            data: [5, 3, 7, 10, 3, 8], // dados do gráfico
+        }
+        ]
+    };
+
+
+    const configPicoManha = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: dataPicoManha, // define os dados do gráfico como a variável data
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Período Manhã'
+                }
+            }
+        }
+    };
+
+    const chartPico = new Chart( // cria um novo gráfico
+        document.getElementById('picoDia'),
+        configPicoManha)
+
+    const databici = {
+        datasets: [{  // definindo os dados 
+            data: [80, 20], // dados do gráfico
+            backgroundColor: [
+                '#FF7049',
+                '#F2F2F2'] // cor dos pontos no gráfico // cor da linha do gráfico
+        }]
+    };
+
+    const configbici = { // variável com as configurações do gráfico 
+        type: 'doughnut', // tipo do gráfico
+        data: databici, // define os dados do gráfico como a variável data
+        options: {}
+    };
+
+    const chartbici = new Chart( // cria um novo gráfico
+        document.getElementById('bici'),
+        configbici)
+
+
+    const dataesteira = {
+        datasets: [{  // definindo os dados 
+            data: [60, 40], // dados do gráfico
+            backgroundColor: [
+                '#E7B14A',
+                '#F2F2F2'] // cor dos pontos no gráfico // cor da linha do gráfico
+        }]
+    };
+
+    const configesteira = { // variável com as configurações do gráfico 
+        type: 'doughnut', // tipo do gráfico
+        data: dataesteira, // define os dados do gráfico como a variável data
+        options: {}
+    };
+
+    const chartesteira = new Chart( // cria um novo gráfico
+        document.getElementById('esteira'),
+        configesteira)
+
+
+
+
+    const datacadeira = {
+        datasets: [{  // definindo os dados 
+            data: [70, 30], // dados do gráfico
+            backgroundColor: [
+                '#FF7049',
+                '#F2F2F2'] // cor dos pontos no gráfico // cor da linha do gráfico
+        }]
+    };
+
+    const configcadeira = { // variável com as configurações do gráfico 
+        type: 'doughnut', // tipo do gráfico
+        data: datacadeira, // define os dados do gráfico como a variável data
+        options: {}
+    };
+
+    const chartcadeira = new Chart( // cria um novo gráfico
+        document.getElementById('cadeira'),
+        configcadeira)
+
+
+
+
+    const labels = [  // criando as labels
+        'Segunda',
+        'Terça',
+        'Quarta',
+        'Quinta',
+        'Sexta',
+        'Sábado',
+    ];
+
+
+    const data = {
+        labels: labels, // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Volume de fluxo',
+            backgroundColor: '#F99033', // cor dos pontos no gráfico
+            borderColor: '#F99033', // cor da linha do gráfico
+            data: [10, 20, 30, 20, 40, 30, 45], // dados do gráfico
+        }]
+    };
+
+    const config = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: data, // define os dados do gráfico como a variável data
+        options: {}
+    };
+
+
+    const dataPicoTarde = {
+        labels: [
+            '13:00',
+            '14:00',
+            '15:00',
+            '16:00',
+            '17:00',
+            '18:00',
+        ], // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Fluxo',
+            backgroundColor: 'orange', // cor dos pontos no gráfico
+            borderColor: 'orange', // cor da linha do gráfico
+            data: [4, 6, 7, 2, 9, 8], // dados do gráfico
+        }
+        ]
+    };
+
+    const configPicoTarde = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: dataPicoTarde, // define os dados do gráfico como a variável data
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Período Tarde'
+                }
+            }
+        }
+    };
+
+
+    let firstClickTarde = true;
+
+    function picotarde() {
+
+        if (firstClickTarde) {
+            const chartPicoTarde = new Chart( // cria um novo gráfico
+                document.getElementById('picoTarde'),
+                configPicoTarde)
+            firstClickTarde = false;
+        }
+
+        picoTarde.style.display = "block";
+        picoDia.style.display = "none";
+        picoNoite.style.display = "none";
+        picoMadrugada.style.display = "none";
+    }
+
+
+    const dataPicoNoite = {
+        labels: [
+            '19:00',
+            '20:00',
+            '21:00',
+            '22:00',
+            '23:00',
+            '00:00',
+        ], // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Fluxo',
+            backgroundColor: 'orange', // cor dos pontos no gráfico
+            borderColor: 'orange', // cor da linha do gráfico
+            data: [1, 3, 4, 2, 5, 1], // dados do gráfico
+        }
+        ]
+    };
+
+    const configPicoNoite = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: dataPicoNoite, // define os dados do gráfico como a variável data
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Período Noite'
+                }
+            }
+        }
+    };
+
+    let firstClickNoite = true;
+
+    function piconoite() {
+        if (firstClickNoite) {
+            const chartPicoNoite = new Chart( // cria um novo gráfico
+                document.getElementById('picoNoite'),
+                configPicoNoite)
+            firstClickNoite = false;
+        }
+
+
+        picoTarde.style.display = "none";
+        picoDia.style.display = "none";
+        picoNoite.style.display = "block";
+        picoMadrugada.style.display = "none";
+    }
+
+    function picomanha() {
+        picoTarde.style.display = "none";
+        picoDia.style.display = "block";
+        picoNoite.style.display = "none";
+        picoMadrugada.style.display = "none";
+    }
+
+
+    const dataPicoMadrugada = {
+        labels: [
+            '01:00',
+            '02:00',
+            '03:00',
+            '04:00',
+            '05:00',
+            '06:00',
+        ], // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'Fluxo',
+            backgroundColor: 'orange', // cor dos pontos no gráfico
+            borderColor: 'orange', // cor da linha do gráfico
+            data: [0, 4, 2, 9, 7, 10], // dados do gráfico
+        }
+        ]
+    };
+
+    const configPicoMadrugada = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: dataPicoMadrugada, // define os dados do gráfico como a variável data
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Período Madrugada'
+                }
+            }
+        }
+    };
+
+    let firstClickMadrugada = true;
+
+    function picomadrugada() {
+        if (firstClickMadrugada) {
+            const chartPicoMadrugada = new Chart( // cria um novo gráfico
+                document.getElementById('picoMadrugada'),
+                configPicoMadrugada)
+            firstClickMadrugada = false;
+        }
+
+
+        picoTarde.style.display = "none";
+        picoDia.style.display = "none";
+        picoNoite.style.display = "none";
+        picoMadrugada.style.display = "block";
+    }
+
+
+</script> -->

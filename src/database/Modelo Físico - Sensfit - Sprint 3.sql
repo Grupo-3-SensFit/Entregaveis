@@ -92,23 +92,6 @@ WHERE
 GROUP BY fkSensor;
 
 
--- QUANTOS SEGUNDOS NÃO UTILIZADOS
-/*SELECT 
-    DATE(dataHora) AS data,
-    fkSensor,
-    COUNT(*) AS total_ocorrencias
-FROM 
-    leitura
-WHERE 
-    atividade = 0  -- Use a data desejada aqui
-GROUP BY 
-    DATE(dataHora),
-    fkSensor
-ORDER BY 
-    total_ocorrencias DESC;
-*/
-   
-   
 -- QUANTIDADE DE HORAS 
    SELECT 
     dataLeitura AS data,
@@ -156,3 +139,57 @@ GROUP BY
 ORDER BY 
     total_ocorrencias DESC;
     
+
+-- seleciona a atividade dos 3 primeiros sensores que excedem 6 desde a ultima manutenção do equipamento
+select equip.tipo,
+sum(lei.atividade) as soma
+from leitura as lei
+inner join sensor as sens on lei.fkSensor = sens.idSensor
+inner join equipamento as equip on sens.fkEquipamento = equip.idEquipamento
+where equip.dataManutencao <= lei.dataLeitura and fkAcademia = 1 
+group by fkSensor
+having soma >= 6 
+order by soma desc
+limit 3;
+
+
+-- inserção de dados de leitura para teste
+insert into leitura(dataLeitura, hora,atividade,fkSensor)
+values('2024-06-07','14:15:11',1,1),
+('2024-06-07','14:15:12',1,1),
+('2024-06-07','14:15:13',1,1),
+('2024-06-07','14:15:14',1,1),
+('2024-06-07','14:15:15',1,1),
+('2024-06-07','14:15:16',1,1),
+('2024-06-07','14:15:17',1,1),
+('2024-06-07','14:15:18',1,1),
+('2014-02-10','15:23:42',1,1),
+('2014-02-10','08:12:58',1,1);
+
+insert into leitura(dataLeitura, hora,atividade,fkSensor)
+values('2024-02-10',now(),1,2),
+('2024-06-07','14:15:11',1,2),
+('2024-06-07','14:15:12',1,2),
+('2024-06-07','14:15:13',1,2),
+('2024-06-07','14:15:14',1,2),
+('2024-06-07','14:15:15',1,2),
+('2024-06-07','14:15:16',1,2),
+('2024-06-07','14:15:17',1,2),
+('2024-06-07','14:15:18',1,2),
+('2014-02-10','15:23:42',1,2),
+('2014-02-10','08:12:58',1,2);
+
+insert into leitura(dataLeitura, hora,atividade,fkSensor)
+values('2025-02-10',now(),1,3),
+('2025-06-07','14:15:11',1,3),
+('2025-06-07','14:15:12',1,3),
+('2025-06-07','14:15:13',1,3),
+('2025-06-07','14:15:14',1,3),
+('2025-06-07','14:15:15',1,3),
+('2025-06-07','14:15:16',1,3),
+('2015-02-10','15:23:42',1,3),
+('2015-02-10','08:12:58',1,3);
+
+select *from equipamento;
+select *from leitura;
+select*from sensor;

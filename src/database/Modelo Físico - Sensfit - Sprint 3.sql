@@ -190,25 +190,25 @@ where dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
 and fkAcademia = 1
 order by dataLeitura desc;
 
+-- seleciona  a quantidade de equipamentos do mesmo tipo utilizados no mesmo horário em um determinado dia
+select equipamento.tipo,
+	hour(hora) as hora,
+    count(equipamento.tipo) as qtd
+from leitura
+inner join sensor on fkSensor = idSensor
+inner join equipamento on fkEquipamento = idEquipamento
+where equipamento.tipo = 'Esteira'
+and dataLeitura = '2024-06-08'
+group by hora
+order by hora;
 
--- seleciona a quantidade de atividades por horario inteiro de um determinado dia e equipamento
-select hour(hora) as hora,
-    sum(atividade) as pico
-    from leitura
-    where fkSensor = 1
-    and dataLeitura = '2024-06-08'
-    group by hour(hora)
-    order by hora;
 
-
--- seleciona os equipamentos de uma determinada academia
-select equip.idEquipamento,
-		equip.tipo
-from equipamento as equip 
-inner join sensor as sens on sens.fkEquipamento = equip.idEquipamento
-inner join leitura as lei on lei.fkSensor = sens.idSensor
-where fkAcademia = 1
-group by equip.idEquipamento;
+-- seleciona o tipo de equipamento que possuem leituras de uma determinada academia
+select distinct equip.tipo
+    from equipamento as equip 
+    inner join sensor as sens on sens.fkEquipamento = equip.idEquipamento
+    inner join leitura as lei on lei.fkSensor = sens.idSensor
+    where fkAcademia = 1;
 
 -- seleciona o uso dos equipamentos nos últimos 7 dias separados por tipo de equipamento
 select equip.tipo,

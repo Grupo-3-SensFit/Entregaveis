@@ -146,10 +146,9 @@
             MensagemERRO.innerHTML = `Confirmação de senha inválida`
         }
 
+        else {
+            MensagemERRO.style.display = 'none';
 
-        else if (nome.length > 2 && email.indexOf("@") > 0 && email.indexOf(".com") > 0 && senha.length >= 8 && confirmacaoSenha == senha) {
-            alert ("Complete a 2º parte!")
-            window.location.href = "Cadastro2.html"
             fetch("/usuarios/cadastrar", {
                 method: "POST",
                 headers: {
@@ -168,14 +167,11 @@
                     console.log("resposta: ", resposta);
 
                     if (resposta.ok) {
-                        MensagemERRO.style.display = "block";
-
-                        MensagemERRO.innerHTML =
-                            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
+                        MensagemERRO.style.display = 'none';
+                        alert ("Complete o próximo passo para realizar o cadastro de sua Academia!")
                         setTimeout(() => {
-                            window.location = "login.html";
-                        }, "2000");
+                            window.location = "Cadastro2.html";
+                        }, "500");
 
                         limparFormulario();
                     } else {

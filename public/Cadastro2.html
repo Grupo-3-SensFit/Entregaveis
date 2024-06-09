@@ -22,24 +22,24 @@
         <a href="Index.html">
             <img src="img/LogoSensFit-fotor-2024041217205.png" alt="Logo SensFit">
         </a>
-        
+
 
         <div class="cadastro2">
             <h2>Cadastre sua academia</h2>
             <label>Razão Social</label>
-            <input type="text" autofocus="true" id="input_razaoSocial" placeholder="Digite a razão social"/>
+            <input type="text" autofocus="true" id="input_razaoSocial" placeholder="Digite a razão social" />
 
             <label>CNPJ</label>
-            <input type="number" autofocus="true" id="input_CNPJ" placeholder="Digite o CPNJ da academia"/>
+            <input type="number" autofocus="true" id="input_CNPJ" placeholder="Digite o CPNJ da academia" />
 
             <label>CEP</label>
-            <input type="number" id="input_CEP" placeholder="Digite o CEP"/>
+            <input type="number" id="input_CEP" placeholder="Digite o CEP" />
 
             <label>Número</label>
-            <input type="number" id="input_numero" placeholder="Digite o número"/>
+            <input type="number" id="input_numero" placeholder="Digite o número" />
 
             <label>Chave de acesso</label>
-            <input type="number" id="input_chave" placeholder="Digite a chave de acesso"/><br>
+            <input type="number" id="input_chave" placeholder="Digite a chave de acesso" /><br>
             <!-- <input type="submit" value="Entrar" class="btn" /> -->
             <button onclick="verificar()">Finalizar Cadastro!</button>
 
@@ -51,55 +51,88 @@
 
 </body>
 
-</html>
 <script>
-    function verificar(){
+    function verificar() {
         let razaoSocial = input_razaoSocial.value;
         let CNPJ = input_CNPJ.value;
         let CEP = input_CEP.value;
         let numero = input_numero.value;
         let chave = input_chave.value;
 
-        if (razaoSocial == ""){
+        if (razaoSocial == "") {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite a razão social (Nome) de sua academia`
         }
-        else if (CNPJ == ""){
+        else if (CNPJ == "") {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite o CNPJ`
         }
-        else if(CNPJ.length < 14 || CNPJ.length > 14){
+        else if (CNPJ.length < 14 || CNPJ.length > 14) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um CNPJ válido`
         }
-        else if (CEP == ""){
+        else if (CEP == "") {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite o CEP`
         }
-        else if (CEP.length < 8 || CEP.length > 8){
+        else if (CEP.length < 8 || CEP.length > 8) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um CEP válido`
         }
-        else if (numero == ""){
+        else if (numero == "") {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite o número`
         }
-        else if (numero.length < 1){
+        else if (numero.length < 1) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um número válido`
         }
 
-        else if (chave == ""){
+        else if (chave == "") {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite a chave`
         }
-        else if (chave.length < 1){
+        else if (chave.length < 1) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite uma chave de acesso válida!`
         }
 
         else {
-            alert ("Cadastro realizado com sucesso! Voce será redirecionado a pagina de Login")
+            MensagemERRO.style.display = 'none';
+            fetch("/academias/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: razaoSocial,
+                    cnpjServer: CNPJ,
+                    cepServer: CEP,
+                    fkUsuarioServer: chave,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        MensagemERRO.style.display = 'none';
+                        alert("Cadastro realizado com sucesso! Você será redirecionado a tela de login!")
+                        setTimeout(() => {
+                            window.location = "login.html";
+                        }, "500");
+
+                        limparFormulario();
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+            return false;
         }
     }
 </script>
+</html>

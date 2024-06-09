@@ -36,7 +36,10 @@
             <input type="number" id="input_CEP" placeholder="Digite o CEP"/>
 
             <label>Número</label>
-            <input type="number" id="input_numero" placeholder="Digite o número"/><br>
+            <input type="number" id="input_numero" placeholder="Digite o número"/>
+
+            <label>Chave de acesso</label>
+            <input type="number" id="input_chave" placeholder="Digite a chave de acesso"/><br>
             <!-- <input type="submit" value="Entrar" class="btn" /> -->
             <button onclick="verificar()">Finalizar Cadastro!</button>
 
@@ -55,6 +58,7 @@
         let CNPJ = input_CNPJ.value;
         let CEP = input_CEP.value;
         let numero = input_numero.value;
+        let chave = input_chave.value;
 
         if (razaoSocial == ""){
             MensagemERRO.style.display = 'block';
@@ -85,11 +89,17 @@
             MensagemERRO.innerHTML = `Digite um número válido`
         }
 
-        else if(CNPJ.length >= 14 && CEP.length >= 8 && numero.length >= 1){
-            alert ("Cadastro realizado com sucesso! Voce será redirecionado a pagina de Login")
-            window.location.href = "login.html"
+        else if (chave == ""){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite a chave`
+        }
+        else if (chave.length < 1){
+            MensagemERRO.style.display = 'block';
+            MensagemERRO.innerHTML = `Digite uma chave de acesso válida!`
         }
 
-
+        else {
+            alert ("Cadastro realizado com sucesso! Voce será redirecionado a pagina de Login")
+        }
     }
 </script>

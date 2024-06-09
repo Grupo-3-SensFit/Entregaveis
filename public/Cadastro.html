@@ -23,7 +23,7 @@
         <a href="Index.html">
             <img src="img/LogoSensFit-fotor-2024041217205.png" alt="Logo SensFit">
         </a>
-        
+
 
 
         <div class="cadastro">
@@ -59,17 +59,17 @@
     function verificar() {
         MensagemERRO.innerHTML = '';
 
-        let nome = input_nome.value;
+        var nome = input_nome.value;
 
 
-        let cpf = input_cpf.value;
-        let somaCpf = 0;
-        let email = input_email.value;
-        let senha = input_senha.value;
-        let confirmacaoSenha = input_senhaConfirmacao.value;
+        var cpf = input_cpf.value;
+        var somaCpf = 0;
+        var email = input_email.value;
+        var senha = input_senha.value;
+        var confirmacaoSenha = input_senhaConfirmacao.value;
 
 
-        let stringCpf = cpf.replaceAll('.', '').replaceAll('-', '');
+        var stringCpf = cpf.replaceAll('.', '').replaceAll('-', '');
 
         // 111.222.333-44 = 11122233344
 
@@ -109,7 +109,7 @@
             }
         }
 
-        if (nome.length < 6){
+        if (nome.length < 6) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um nome válido!`;
         }
@@ -117,7 +117,7 @@
         else if (cpf[cpf.length - 2] != primeiroDigitoVerificador || cpf[cpf.length - 1 != segundoDigitoVerificador]) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Por Favor Digite um Cpf Válido`;
-        } 
+        }
         else if (email.indexOf("@") <= -1) {
             MensagemERRO.style.display = 'block';
             MensagemERRO.innerHTML = `Digite um email válido!`
@@ -148,11 +148,46 @@
 
 
         else if (nome.length > 2 && email.indexOf("@") > 0 && email.indexOf(".com") > 0 && senha.length >= 8 && confirmacaoSenha == senha) {
+            alert ("Complete a 2º parte!")
             window.location.href = "Cadastro2.html"
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nome,
+                    cpfServer: cpf,
+                    emailServer: email,
+                    senhaServer: senha,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        MensagemERRO.style.display = "block";
+
+                        MensagemERRO.innerHTML =
+                            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                        setTimeout(() => {
+                            window.location = "login.html";
+                        }, "2000");
+
+                        limparFormulario();
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+            return false;
         }
-
-
-
     }
+
 </script>
 </html>

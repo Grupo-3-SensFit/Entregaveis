@@ -199,3 +199,11 @@ select hour(hora) as hora,
     and dataLeitura = '2024-06-08'
     group by hour(hora)
     order by hora;
+
+
+-- seleciona os equipamentos de uma determinada academia
+select equip.idEquipamento,
+		equip.tipo
+from equipamento as equip 
+inner join sensor as sens on sens.fkEquipamento = equip.idEquipamento
+where fkAcademia = 1;

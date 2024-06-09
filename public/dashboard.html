@@ -205,14 +205,14 @@
                 <br>
                 <div class="barraSelecao">
                     <select id="selectData" class="selects" onchange="obterDadosGraficoPico()">
-                        <option disabled selected>DATA</option>
+                        <!-- <option disabled selected>DATA</option> -->
                     </select>
                     <button onclick="picomanha()">MANHÃ</button>
                     <button onclick="picotarde()">TARDE</button>
                     <button onclick="piconoite()">NOITE</button>
                     <button onclick="picomadruga()">MADRUGADA</button>
-                    <select id="selectEquip" class="selects">
-                        <option disabled selected>EQUIPAMENTO</option>
+                    <select id="selectEquip" class="selects" onchange="obterDadosGraficoPico()">
+                        <!-- <option disabled selected>EQUIPAMENTO</option> -->
                     </select>
                 </div>
 
@@ -516,14 +516,17 @@
     obterDadosGraficoPico()
 
     function obterDadosGraficoPico(fkSensor) {
-        let fksensor = 1
-        let dataAtual
+        let fksensor;
+        let dataAtual;
 
         if (firstplot == 0) {
-            dataAtual = diaDeHoje();
+            // dataAtual = diaDeHoje();
+            dataAtual = '2024-06-08'
+            fksensor = 1
             firstplot = 1;
         } else {
             dataAtual = atualizarGraficoPico();
+            fksensor = selectEquip.value;
         }
 
         fetch(`/medidas/pico`, {
@@ -821,6 +824,43 @@
                 resposta.json().then((medida) => {
                     medida.forEach((data) => {
                         selectData.innerHTML += `<option value='${data.dataLeitura}'>${data.data}</option>`;
+                    });
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+    
+    listarEquip()
+    function listarEquip() {
+        const fkacademia = 1
+
+        fetch("/medidas/listarequip", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkAcademiaServer: fkacademia,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+                let value = 0
+                resposta.json().then((medida) => {
+                    medida.forEach((tipo) => {
+                        selectEquip.innerHTML += `<option value='${tipo.idEquipamento}'>${tipo.tipo}</option>`;
                     });
                 });
 

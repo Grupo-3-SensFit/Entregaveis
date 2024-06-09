@@ -41,15 +41,30 @@ function listarData(fkAcademia) {
     inner join equipamento on fkEquipamento = idEquipamento
     where dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
     and fkAcademia = ${fkAcademia}
-    order by dataLeitura desc;;`;
+    order by dataLeitura desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 
+function listarEquip(fkAcademia) {
+
+    var instrucaoSql = `select equip.idEquipamento,
+	equip.tipo
+    from equipamento as equip 
+    inner join sensor as sens on sens.fkEquipamento = equip.idEquipamento
+    inner join leitura as lei on lei.fkSensor = sens.idSensor
+    where fkAcademia = ${fkAcademia}
+    group by equip.idEquipamento;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarManutencao,
     buscarPico,
     listarData,
+    listarEquip,
 }

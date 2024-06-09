@@ -49,10 +49,23 @@ function listarData(req, res) {
 
 }
 
+function listarEquip(req, res) {
+    var fkAcademia = req.body.fkAcademiaServer;
+
+    if (fkAcademia == undefined) {
+        console.log('Usuario undefined')
+    } else {
+
+        medidaModel.listarEquip(fkAcademia).then((resultado) => {
+            res.status(200).json(resultado);
+        });
+    }
+
+}
+
 module.exports = {
     buscarManutencao,
     buscarPico,
     listarData,
-
-
+    listarEquip,
 }

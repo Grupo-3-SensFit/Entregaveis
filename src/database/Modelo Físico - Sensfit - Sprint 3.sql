@@ -206,4 +206,16 @@ select equip.idEquipamento,
 		equip.tipo
 from equipamento as equip 
 inner join sensor as sens on sens.fkEquipamento = equip.idEquipamento
-where fkAcademia = 1;
+inner join leitura as lei on lei.fkSensor = sens.idSensor
+where fkAcademia = 1
+group by equip.idEquipamento;
+
+-- seleciona o uso dos equipamentos nos últimos 7 dias separados por tipo de equipamento
+select equip.tipo,
+		sum(lei.atividade)as soma
+from leitura as lei
+inner join sensor as sens on lei.fkSensor = sens.idSensor
+inner join equipamento as equip on sens.fkEquipamento = equip.idEquipamento
+where fkAcademia = 1  and  dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
+group by equip.tipo
+order by soma desc;

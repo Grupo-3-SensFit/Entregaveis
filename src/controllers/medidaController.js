@@ -19,10 +19,10 @@ function buscarManutencao(req, res) {
 
 
 function buscarPico(req, res) {
-    var fkSensor = req.body.fkSensorServer;
+    var equip = req.body.equipServer;
     var dataPico = req.body.dataAtualServer;
 
-    medidaModel.buscarPico(fkSensor, dataPico).then(function (resultado) {
+    medidaModel.buscarPico(equip, dataPico).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

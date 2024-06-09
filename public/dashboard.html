@@ -514,18 +514,18 @@
     let firstplot = 0;
     obterDadosGraficoPico()
 
-    function obterDadosGraficoPico(fkSensor) {
-        let fksensor;
+    function obterDadosGraficoPico(tipoEquip) {
+        let equip;
         let dataAtual;
 
         if (firstplot == 0) {
-            dataAtual = diaDeHoje();
-            // dataAtual = '2024-06-08'
-            fksensor = 1
+            // dataAtual = diaDeHoje();
+            dataAtual = '2024-06-08'
+            equip = 'Esteira'
             firstplot = 1;
         } else {
             dataAtual = atualizarGraficoPico();
-            fksensor = selectEquip.value;
+            equip = selectEquip.value;
         }
 
         fetch(`/medidas/pico`, {
@@ -535,15 +535,15 @@
             },
             cache: 'no-store',
             body: JSON.stringify({
-                fkSensorServer: fksensor,
                 dataAtualServer: dataAtual,
+                equipServer: equip,
             })
         }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    plotarGraficoPico(resposta, fkSensor);
+                    plotarGraficoPico(resposta, tipoEquip);
 
                 });
             } else {
@@ -555,7 +555,7 @@
             });
     }
 
-    function plotarGraficoPico(resposta, fkSensor) {
+    function plotarGraficoPico(resposta, tipoEquip) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -617,7 +617,7 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             let hora = registro.hora
-            let pico = registro.pico
+            let pico = registro.qtd
 
             if (hora == 6) {
                 dadosManha.datasets[0].data[0] = pico;
@@ -859,7 +859,7 @@
                 let value = 0
                 resposta.json().then((medida) => {
                     medida.forEach((tipo) => {
-                        selectEquip.innerHTML += `<option value='${tipo.idEquipamento}'>${tipo.tipo}</option>`;
+                        selectEquip.innerHTML += `<option value='${tipo.tipo}'>${tipo.tipo}</option>`;
                     });
                 });
 

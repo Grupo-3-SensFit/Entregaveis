@@ -17,14 +17,17 @@ function buscarManutencao(fkAcademia) {
 }
 
 
-function buscarPico(fkSensor,dataPico) {
+function buscarPico(equip,dataPico) {
 
-    var instrucaoSql = `select hour(hora) as hora,
-    sum(atividade) as pico
+    var instrucaoSql = `select equipamento.tipo,
+	hour(hora) as hora,
+    count(equipamento.tipo) as qtd
     from leitura
-    where fkSensor = ${fkSensor}
+    inner join sensor on fkSensor = idSensor
+    inner join equipamento on fkEquipamento = idEquipamento
+    where equipamento.tipo = '${equip}'
     and dataLeitura = '${dataPico}'
-    group by hour(hora)
+    group by hora
     order by hora;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -65,13 +68,11 @@ function listarData(fkAcademia) {
 
 function listarEquip(fkAcademia) {
 
-    var instrucaoSql = `select equip.idEquipamento,
-	equip.tipo
+    var instrucaoSql = `select distinct equip.tipo
     from equipamento as equip 
     inner join sensor as sens on sens.fkEquipamento = equip.idEquipamento
     inner join leitura as lei on lei.fkSensor = sens.idSensor
-    where fkAcademia = ${fkAcademia}
-    group by equip.idEquipamento;`;
+    where fkAcademia = ${fkAcademia};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

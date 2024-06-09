@@ -1,6 +1,6 @@
 -- inserção de dados de leitura para teste equipamento 1
 insert into leitura(dataLeitura, hora,atividade,fkSensor)
-values('2024-06-08','00:08:00',1,1),
+values('2024-06-08','00:08:00',1,6),
 ('2024-06-08','02:33:00',1,1), 
 ('2024-06-08','03:03:00',1,1), 
 ('2024-06-08','03:04:00',1,1), 

@@ -19,6 +19,10 @@ router.post("/listarequip", function (req, res) {
     medidaController.listarEquip(req, res);
 });
 
+router.post("/maisusados", function (req, res) {
+    medidaController.buscarMaisUsados(req, res);
+});
+
 // router.get("/tempo-real/:idAquario", function (req, res) {
 //     medidaController.buscarMedidasEmTempoReal(req, res);
 // })

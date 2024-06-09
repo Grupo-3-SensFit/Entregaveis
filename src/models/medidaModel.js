@@ -31,6 +31,21 @@ function buscarPico(fkSensor,dataPico) {
     return database.executar(instrucaoSql);
 }
 
+function buscarMaisUsados(fkAcademia) {
+
+    var instrucaoSql = `select equip.tipo,
+	sum(lei.atividade)as soma
+    from leitura as lei
+    inner join sensor as sens on lei.fkSensor = sens.idSensor
+    inner join equipamento as equip on sens.fkEquipamento = equip.idEquipamento
+    where fkAcademia = ${fkAcademia}  and  dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
+    group by equip.tipo
+    order by soma desc;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function listarData(fkAcademia) {
 
     var instrucaoSql = `select distinct 
@@ -65,6 +80,7 @@ function listarEquip(fkAcademia) {
 module.exports = {
     buscarManutencao,
     buscarPico,
+    buscarMaisUsados,
     listarData,
     listarEquip,
 }

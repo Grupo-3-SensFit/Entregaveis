@@ -9,7 +9,6 @@ function buscarManutencao(fkAcademia) {
     inner join equipamento as equip on sens.fkEquipamento = equip.idEquipamento
     where equip.dataManutencao <= lei.dataLeitura and fkAcademia = ${fkAcademia}
     group by fkSensor
-    having soma >= 6
     order by soma desc
     limit 3;`;
 

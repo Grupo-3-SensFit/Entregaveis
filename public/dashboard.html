@@ -418,86 +418,50 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            let tempoLivre = 10 - registro.soma;
+            let tempoLivre = 160 - registro.soma;
             let soma = registro.soma;
 
             if (i == 0) {
                 dados1.datasets[0].data.push(tempoLivre);
                 dados1.datasets[0].data.push(soma);
                 equipmanu1.innerHTML = registro.tipo;
+                horasmanu1.innerHTML = soma
 
-                if (soma >= 6 && soma <= 7) {
-                    dados1.datasets[0].borderColor[1] = '#E7B14A'
-                    dados1.datasets[0].backgroundColor[1] = '#E7B14A'
-
-                    if (soma == 6) {
-                        horasmanu1.innerHTML = '600'
-                    } else {
-                        horasmanu1.innerHTML = '700'
-                    }
-                } else {
+                if (soma >= 100) {
                     dados1.datasets[0].borderColor[1] = '#FF7049'
                     dados1.datasets[0].backgroundColor[1] = '#FF7049'
-
-                    if (soma == 8) {
-                        horasmanu1.innerHTML = '800'
-                    } else if (soma == 9) {
-                        horasmanu1.innerHTML = '900'
-                    } else {
-                        horasmanu1.innerHTML = '1000'
-                    }
+                } else {
+                    dados1.datasets[0].borderColor[1] = '#E7B14A'
+                    dados1.datasets[0].backgroundColor[1] = '#E7B14A'
                 }
 
             } else if (i == 1) {
                 dados2.datasets[0].data.push(tempoLivre);
                 dados2.datasets[0].data.push(soma);
                 equipmanu2.innerHTML = registro.tipo;
+                horasmanu2.innerHTML = soma
 
-                if (soma >= 6 && soma <= 7) {
-                    dados2.datasets[0].borderColor[1] = '#E7B14A'
-                    dados2.datasets[0].backgroundColor[1] = '#E7B14A'
-                    if (soma == 6) {
-                        horasmanu2.innerHTML = '600'
-                    } else {
-                        horasmanu2.innerHTML = '700'
-                    }
-                } else {
+                if (soma >= 100) {
                     dados2.datasets[0].borderColor[1] = '#FF7049'
                     dados2.datasets[0].backgroundColor[1] = '#FF7049'
 
-                    if (soma == 8) {
-                        horasmanu2.innerHTML = '800'
-                    } else if (soma == 9) {
-                        horasmanu2.innerHTML = '900'
-                    } else {
-                        horasmanu2.innerHTML = '1000'
-                    }
+                } else {
+                    dados2.datasets[0].borderColor[1] = '#E7B14A'
+                    dados2.datasets[0].backgroundColor[1] = '#E7B14A'
                 }
             } else {
                 dados3.datasets[0].data.push(tempoLivre);
                 dados3.datasets[0].data.push(soma);
                 equipmanu3.innerHTML = registro.tipo;
+                horasmanu3.innerHTML = soma;
 
-                if (soma >= 6 && soma <= 7) {
-                    dados3.datasets[0].borderColor[1] = '#E7B14A'
-                    dados3.datasets[0].backgroundColor[1] = '#E7B14A'
-
-                    if (soma == 6) {
-                        horasmanu3.innerHTML = '600'
-                    } else {
-                        horasmanu3.innerHTML = '700'
-                    }
-                } else {
+                if (soma >= 100) {
                     dados3.datasets[0].borderColor[1] = '#FF7049'
                     dados3.datasets[0].backgroundColor[1] = '#FF7049'
 
-                    if (soma == 8) {
-                        horasmanu3.innerHTML = '800'
-                    } else if (soma == 9) {
-                        horasmanu3.innerHTML = '900'
-                    } else {
-                        horasmanu3.innerHTML = '1000'
-                    }
+                } else {
+                    dados3.datasets[0].borderColor[1] = '#E7B14A'
+                    dados3.datasets[0].backgroundColor[1] = '#E7B14A'
                 }
             }
         }
@@ -651,16 +615,56 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             let hora = registro.hora
+            let pico = registro.pico
 
-            if (hora >= 6 && hora <= 11) {
-                dadosManha.datasets[0].data.push(registro.pico);
-            }
-            else if (hora >= 12 && hora <= 17) {
-                dadosTarde.datasets[0].data.push(registro.pico);
-            } else if (hora >= 18 && hora <= 23) {
-                dadosNoite.datasets[0].data.push(registro.pico);
-            } else {
-                dadosMadruga.datasets[0].data.push(registro.pico);
+            if (hora == 6) {
+                dadosManha.datasets[0].data[0] = pico;
+            } else if (hora == 7) {
+                dadosManha.datasets[0].data[1] = pico;
+            } else if (hora == 8) {
+                dadosManha.datasets[0].data[2] = pico;
+            } else if (hora == 9) {
+                dadosManha.datasets[0].data[3] = pico;
+            } else if (hora == 10) {
+                dadosManha.datasets[0].data[4] = pico;
+            } else if (hora == 11) {
+                dadosManha.datasets[0].data[5] = pico;
+            } else if (hora == 12) {
+                dadosTarde.datasets[0].data[0] = pico;
+            } else if (hora == 13) {
+                dadosTarde.datasets[0].data[1] = pico;
+            } else if (hora == 14) {
+                dadosTarde.datasets[0].data[2] = pico;
+            } else if (hora == 15) {
+                dadosTarde.datasets[0].data[3] = pico;
+            } else if (hora == 16) {
+                dadosTarde.datasets[0].data[4] = pico;
+            } else if (hora == 17) {
+                dadosTarde.datasets[0].data[5] = pico;
+            } else if (hora == 18) {
+                dadosNoite.datasets[0].data[0] = pico;
+            } else if (hora == 19) {
+                dadosNoite.datasets[0].data[1] = pico;
+            } else if (hora == 20) {
+                dadosNoite.datasets[0].data[2] = pico;
+            } else if (hora == 21) {
+                dadosNoite.datasets[0].data[3] = pico;
+            } else if (hora == 22) {
+                dadosNoite.datasets[0].data[4] = pico;
+            } else if (hora == 23) {
+                dadosNoite.datasets[0].data[5] = pico;
+            } else if (hora == 0) {
+                dadosMadruga.datasets[0].data[0] = pico;
+            } else if (hora == 1) {
+                dadosMadruga.datasets[0].data[1] = pico;
+            } else if (hora == 2) {
+                dadosMadruga.datasets[0].data[2] = pico;
+            } else if (hora == 3) {
+                dadosMadruga.datasets[0].data[3] = pico;
+            } else if (hora == 4) {
+                dadosMadruga.datasets[0].data[4] = pico;
+            } else if (hora == 5) {
+                dadosMadruga.datasets[0].data[5] = pico;
             }
         }
         console.log('----------------------------------------------')
@@ -673,21 +677,65 @@
         const configManha = {
             type: 'bar',
             data: dadosManha,
+            options: {
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 5,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
         };
 
         const configTarde = {
             type: 'bar',
             data: dadosTarde,
+            options: {
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 5,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
         };
 
         const configNoite = {
             type: 'bar',
             data: dadosNoite,
+            options: {
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 5,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
         };
 
         const configMadruga = {
             type: 'bar',
             data: dadosMadruga,
+            options: {
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 5,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
         };
 
         // Adicionando gráfico criado em div na tela
@@ -715,7 +763,6 @@
         grafPicoTarde.style.display = 'none';
         grafPicoNoite.style.display = 'none';
         grafPicoMadruga.style.display = 'none';
-        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
 
 

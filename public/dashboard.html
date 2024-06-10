@@ -169,7 +169,7 @@
                     </div>
                     <div class="horas">
                         <span id="horasmanu1"></span>
-                        <span>Horas</span>
+                        <span id="infomanu1">Horas</span>
                     </div>
                 </div>
 
@@ -180,7 +180,7 @@
                     </div>
                     <div class="horas">
                         <span id="horasmanu2"></span>
-                        <span>Horas</span>
+                        <span id="infomanu2">Horas</span>
                     </div>
                 </div>
 
@@ -191,7 +191,7 @@
                     </div>
                     <div class="horas">
                         <span id="horasmanu3"></span>
-                        <span>Horas</span>
+                        <span id="infomanu3">Horas</span>
                     </div>
                 </div>
             </div>
@@ -424,8 +424,9 @@
             if (i == 0) {
                 dados1.datasets[0].data.push(tempoLivre);
                 dados1.datasets[0].data.push(soma);
-                equipmanu1.innerHTML = registro.tipo;
-                horasmanu1.innerHTML = soma
+                equipmanu1.innerHTML = registro.tipo; 
+                horasmanu1.innerHTML = soma;
+                infomanu1.innerHTML += `<br><br>id=${registro.idEquipamento}`
 
                 if (soma >= 100) {
                     dados1.datasets[0].borderColor[1] = '#FF7049'
@@ -439,7 +440,8 @@
                 dados2.datasets[0].data.push(tempoLivre);
                 dados2.datasets[0].data.push(soma);
                 equipmanu2.innerHTML = registro.tipo;
-                horasmanu2.innerHTML = soma
+                horasmanu2.innerHTML = soma;
+                infomanu2.innerHTML += `<br><br>id=${registro.idEquipamento}`
 
                 if (soma >= 100) {
                     dados2.datasets[0].borderColor[1] = '#FF7049'
@@ -454,6 +456,7 @@
                 dados3.datasets[0].data.push(soma);
                 equipmanu3.innerHTML = registro.tipo;
                 horasmanu3.innerHTML = soma;
+                infomanu3.innerHTML += `<br><br>id=${registro.idEquipamento}`
 
                 if (soma >= 100) {
                     dados3.datasets[0].borderColor[1] = '#FF7049'
@@ -517,6 +520,7 @@
     function obterDadosGraficoPico(tipoEquip) {
         let equip;
         let dataAtual;
+        let fkacademia = 1;
 
         if (firstplot == 0) {
             // dataAtual = diaDeHoje();
@@ -537,6 +541,7 @@
             body: JSON.stringify({
                 dataAtualServer: dataAtual,
                 equipServer: equip,
+                fkAcademiaServer: fkacademia,
             })
         }).then(function (response) {
             if (response.ok) {
@@ -614,6 +619,7 @@
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
+        
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             let hora = registro.hora
@@ -669,10 +675,14 @@
                 dadosMadruga.datasets[0].data[5] = pico;
             }
         }
+        let qtdTotal = registro.qtdTotal
         console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
+        console.log('O gráfico de picoserá plotado com os respectivos valores:')
         console.log('Dados:')
+        console.log(dadosManha.datasets)
+        console.log(dadosTarde.datasets)
+        console.log(dadosNoite.datasets)
+        console.log(dadosMadruga.datasets)
         console.log('----------------------------------------------')
 
         // Criando estrutura para plotar gráfico - config
@@ -683,7 +693,7 @@
                 scales: {
                     y: {
                         min: 0,
-                        max: 5,
+                        max: qtdTotal,
                         ticks: {
                             stepSize: 1
                         }
@@ -699,7 +709,7 @@
                 scales: {
                     y: {
                         min: 0,
-                        max: 5,
+                        max: qtdTotal,
                         ticks: {
                             stepSize: 1
                         }
@@ -715,7 +725,7 @@
                 scales: {
                     y: {
                         min: 0,
-                        max: 5,
+                        max: qtdTotal,
                         ticks: {
                             stepSize: 1
                         }
@@ -731,7 +741,7 @@
                 scales: {
                     y: {
                         min: 0,
-                        max: 5,
+                        max: qtdTotal,
                         ticks: {
                             stepSize: 1
                         }

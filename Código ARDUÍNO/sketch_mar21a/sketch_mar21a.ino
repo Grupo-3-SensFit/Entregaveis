@@ -9,7 +9,7 @@ void loop() {
   if (digitalRead(pinoSensor) == LOW) {
     Serial.println("1");
   } else {
-    Serial.println("0");   
+    Serial.println("0");
   }
   delay(1000);
 }

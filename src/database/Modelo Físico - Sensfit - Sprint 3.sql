@@ -1,5 +1,5 @@
 create database sensfit;
-use Sensfit;
+use sensfit;
 
 -- drop database sensfit;
 
@@ -71,7 +71,7 @@ values('2024-03-10','Esteira',1),
 
 
 -- INSERÇÃO DE DADOS NO SENSOR
-insert into Sensor(fkEquipamento)
+insert into sensor(fkEquipamento)
 values(1),
 (2),
 (3),
@@ -168,7 +168,8 @@ ORDER BY
 
 
 -- seleciona a atividade dos 3 primeiros sensores mais proximos da manutenção (conta a atividade a partir da data da ultima manutenção)
-select equip.tipo,
+select equip.idEquipamento,
+		equip.tipo,
 		sum(lei.atividade) as soma
 from leitura as lei
 inner join sensor as sens on lei.fkSensor = sens.idSensor
@@ -190,18 +191,21 @@ where dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
 and fkAcademia = 1
 order by dataLeitura desc;
 
--- seleciona  a quantidade de equipamentos do mesmo tipo utilizados no mesmo horário em um determinado dia
+-- seleciona  a quantidade total de equipamentos do mesmo tipo e a quantidade que foi utilizada no mesmo horário em um determinado dia
 select equipamento.tipo,
 	hour(hora) as hora,
-    count(equipamento.tipo) as qtd
-from leitura
-inner join sensor on fkSensor = idSensor
-inner join equipamento on fkEquipamento = idEquipamento
-where equipamento.tipo = 'Esteira'
+    count(equipamento.tipo) as qtd,
+    (select count(idSensor)
+	from sensor 
+	inner join equipamento on fkEquipamento = idEquipamento
+	where equipamento.tipo = 'Esteira') as qtdTotal
+from sensor
+left join leitura on fkSensor = idSensor
+left join equipamento on fkEquipamento = idEquipamento
+where equipamento.tipo = 'Esteira' and fkAcademia = 1
 and dataLeitura = '2024-06-08'
 group by hora
 order by hora;
-
 
 -- seleciona o tipo de equipamento que possuem leituras de uma determinada academia
 select distinct equip.tipo

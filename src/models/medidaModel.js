@@ -2,7 +2,8 @@ var database = require("../database/config");
 
 function buscarManutencao(fkAcademia) {
 
-    var instrucaoSql = `select equip.tipo,
+    var instrucaoSql = `select equip.idEquipamento,
+    equip.tipo,
     sum(lei.atividade) as soma
     from leitura as lei
     inner join sensor as sens on lei.fkSensor = sens.idSensor
@@ -17,15 +18,19 @@ function buscarManutencao(fkAcademia) {
 }
 
 
-function buscarPico(equip,dataPico) {
+function buscarPico(equip,dataPico,fkAcademia) {
 
     var instrucaoSql = `select equipamento.tipo,
 	hour(hora) as hora,
-    count(equipamento.tipo) as qtd
-    from leitura
-    inner join sensor on fkSensor = idSensor
-    inner join equipamento on fkEquipamento = idEquipamento
-    where equipamento.tipo = '${equip}'
+    count(equipamento.tipo) as qtd,
+    (select count(idSensor)
+	from sensor 
+	inner join equipamento on fkEquipamento = idEquipamento
+	where equipamento.tipo = '${equip}') as qtdTotal
+    from sensor
+    left join leitura on fkSensor = idSensor
+    left join equipamento on fkEquipamento = idEquipamento
+    where equipamento.tipo = '${equip}' and fkAcademia = ${fkAcademia}
     and dataLeitura = '${dataPico}'
     group by hora
     order by hora;`;

@@ -192,7 +192,8 @@ and fkAcademia = 1
 order by dataLeitura desc;
 
 -- seleciona  a quantidade total de equipamentos do mesmo tipo e a quantidade que foi utilizada no mesmo horário em um determinado dia
-select equipamento.tipo,
+select distinct equipamento.idEquipamento,
+equipamento.tipo,
 	hour(hora) as hora,
     count(equipamento.tipo) as qtd,
     (select count(idSensor)
@@ -204,7 +205,7 @@ left join leitura on fkSensor = idSensor
 left join equipamento on fkEquipamento = idEquipamento
 where equipamento.tipo = 'Esteira' and fkAcademia = 1
 and dataLeitura = '2024-06-08'
-group by hora
+group by hora, idEquipamento
 order by hora;
 
 -- seleciona o tipo de equipamento que possuem leituras de uma determinada academia

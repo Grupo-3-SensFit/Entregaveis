@@ -20,7 +20,7 @@ function buscarManutencao(fkAcademia) {
 
 function buscarPico(equip,dataPico,fkAcademia) {
 
-    var instrucaoSql = `select equipamento.tipo,
+    var instrucaoSql = `select distinct equipamento.tipo,
 	hour(hora) as hora,
     count(equipamento.tipo) as qtd,
     (select count(idSensor)

@@ -17,8 +17,7 @@ function autenticar(req, res) {
                 if (resultadoAutenticar.length == 1) {
                     console.log(resultadoAutenticar);
                     res.json({
-                        id: resultadoAutenticar[0].id,
-                        email: resultadoAutenticar[0].email,
+                        idAcademia: resultadoAutenticar[0].idAcademia,
                         nome: resultadoAutenticar[0].nome,
                     });
                 } else if (resultadoAutenticar.length == 0) {

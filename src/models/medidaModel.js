@@ -93,7 +93,7 @@ async function quantidadeAparelhosSub() {
                 join sensor s on e.idEquipamento = s.fkEquipamento
                 join leitura l on s.idSensor = l.fkSensor
                 group by e.idEquipamento
-                having sum(l.atividade) < 500
+                having sum(l.atividade) < 5
             ) as subquery
         `);
         return result;
@@ -112,7 +112,7 @@ async function quantidadeAparelhosMais() {
                 join sensor s on e.idEquipamento = s.fkEquipamento
                 join leitura l on s.idSensor = l.fkSensor
                 group by e.idEquipamento
-                having sum(l.atividade) > 500
+                having sum(l.atividade) > 10
             ) as subquery
         `);
         return result;
@@ -122,6 +122,20 @@ async function quantidadeAparelhosMais() {
 }
 
 
+function kpisMaisUsados(fkAcademia) {
+    var instrucaoSql = `select e.idEquipamento, e.tipo, sum(l.atividade)as soma
+    from equipamento e
+    join sensor s on e.idEquipamento = s.fkEquipamento
+    join leitura l on s.idSensor = l.fkSensor
+    where fkAcademia = ${fkAcademia} and  dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
+    group by e.idEquipamento
+    having sum(l.atividade) > 10
+    order by soma desc`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarManutencao,
     buscarPico,
@@ -130,4 +144,5 @@ module.exports = {
     listarEquip,
     quantidadeAparelhosSub,
     quantidadeAparelhosMais,
+    kpisMaisUsados,
 }

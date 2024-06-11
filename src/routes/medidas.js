@@ -42,8 +42,8 @@ router.get("/aparelhosSubUso", async (req, res) => {
     }
 });
 
-// router.get("/tempo-real/:idAquario", function (req, res) {
-//     medidaController.buscarMedidasEmTempoReal(req, res);
-// })
+router.post("/kpimais", function (req, res) {
+    medidaController.kpisMaisUsados(req, res);
+});
 
 module.exports = router;

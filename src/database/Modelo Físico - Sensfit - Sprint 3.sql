@@ -226,3 +226,30 @@ inner join equipamento as equip on sens.fkEquipamento = equip.idEquipamento
 where fkAcademia = 1  and  dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
 group by equip.tipo
 order by soma desc;
+
+
+select count(*) as quantidade
+            from (
+                select e.idEquipamento
+                from equipamento e
+                join sensor s on e.idEquipamento = s.fkEquipamento
+                join leitura l on s.idSensor = l.fkSensor
+                where fkAcademia = 1
+                group by e.idEquipamento
+                having sum(l.atividade) > 10
+            ) as subquery;
+
+ select distinct e.idEquipamento,  e.tipo,(select count(*) as quantidade
+            from (
+                select e.idEquipamento
+                from equipamento e
+                join sensor s on e.idEquipamento = s.fkEquipamento
+                join leitura l on s.idSensor = l.fkSensor
+                where fkAcademia = 1
+                group by e.idEquipamento
+                having sum(l.atividade) >= 10
+            ) as subquery)as quantidade
+                from equipamento e
+                join sensor s on e.idEquipamento = s.fkEquipamento
+                join leitura l on s.idSensor = l.fkSensor
+                where fkAcademia = 1;

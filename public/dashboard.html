@@ -64,12 +64,12 @@
     </div>
 
     <div class="modal" id="modalDesuso">
-        <div class="modal-content" id="content-mopdalDesuso">
+        <div class="modal-content" id="contentMopdalDesuso">
             <span class="close" onclick="closeModalDesuso()" style="align-self: flex-end;">&times;</span>
             <center>
                 <h2>Equipamentos em Desuso <i class="fa-solid fa-triangle-exclamation"></i></h2>
             </center>
-            <div class="kpi-lateral">
+            <!-- <div class="kpi-lateral">
                 <span class="kpi-info">Esteira S2</span>
                 <div class="info">
                     <div class="horas">
@@ -77,34 +77,16 @@
                         <span>Horas</span>
                     </div>
                 </div>
-            </div>
-            <div class="kpi-lateral">
-                <span class="kpi-info">Esteira S2</span>
-                <div class="info">
-                    <div class="horas">
-                        <span>60</span>
-                        <span>Horas</span>
-                    </div>
-                </div>
-            </div>
-            <div class="kpi-lateral">
-                <span class="kpi-info">Esteira S2</span>
-                <div class="info">
-                    <div class="horas">
-                        <span>60</span>
-                        <span>Horas</span>
-                    </div>
-                </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
 
     <div class="modal" id="modalMaisUsados">
-        <div class="modal-content" id="content-mopdalMaisUsados">
+        <div class="modal-content" id="contentMopdalMaisUsados">
             <span class="close" onclick="closeModalMaisUsados()" style="align-self: flex-end;">&times;</span>
             <h2>Equipamentos mais usados</h2>
-            <div class="kpi-lateral">
+            <!-- <div class="kpi-lateral">
                 <span class="kpi-info">Esteira S2</span>
                 <div class="info">
                     <div class="horas">
@@ -112,25 +94,7 @@
                         <span>Horas</span>
                     </div>
                 </div>
-            </div>
-            <div class="kpi-lateral">
-                <span class="kpi-info">Esteira S2</span>
-                <div class="info">
-                    <div class="horas">
-                        <span>60</span>
-                        <span>Horas</span>
-                    </div>
-                </div>
-            </div>
-            <div class="kpi-lateral">
-                <span class="kpi-info">Esteira S2</span>
-                <div class="info">
-                    <div class="horas">
-                        <span>60</span>
-                        <span>Horas</span>
-                    </div>
-                </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -150,7 +114,7 @@
 
                     <div class="kpi" onclick="openModalDesuso()">
                         <span class="titulo-kpi">Equipamentos em desuso</span>
-                        
+
                         <span id="kpi-qtdMenos"></span>
                     </div>
                 </div>
@@ -1017,5 +981,48 @@
             config)
     }
 
+
+
+    // Kpi mais usados onclick----------------------------------------------------------------------------
+
+    kpisMaisUsados()
+    function kpisMaisUsados() {
+        let fkacademia = sessionStorage.ID_ACADEMIA;
+
+        fetch(`/medidas/kpimais`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cache: 'no-store',
+            body: JSON.stringify({
+                fkAcademiaServer: fkacademia,
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    resposta.forEach((idEquipamento) => {
+                        contentMopdalMaisUsados.innerHTML += `<div class="kpi-lateral">
+                            <span class="kpi-info">${idEquipamento.tipo +' '+ idEquipamento.idEquipamento}</span>
+                            <div class="info">
+                                <div class="horas">
+                                    <span>${idEquipamento.soma}</span>
+                                    <span>Horas</span>
+                                </div>
+                            </div>
+                        </div>`
+                    });
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 
 </script>

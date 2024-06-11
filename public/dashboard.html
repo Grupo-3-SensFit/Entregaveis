@@ -345,7 +345,7 @@
     obterDadosGraficoManutencao()
 
     function obterDadosGraficoManutencao(fkAcademia) {
-        let fkacademia = 1
+        let fkacademia = sessionStorage.ID_ACADEMIA;
 
         // if (proximaAtualizacao != undefined) {
         //     clearTimeout(proximaAtualizacao);
@@ -539,7 +539,7 @@
     function obterDadosGraficoPico(tipoEquip) {
         let equip;
         let dataAtual;
-        let fkacademia = 1;
+        let fkacademia = sessionStorage.ID_ACADEMIA;
 
         if (firstplot == 0) {
             // dataAtual = diaDeHoje();
@@ -833,7 +833,7 @@
 
     listarData()
     function listarData() {
-        const fkacademia = 1
+        const fkacademia = sessionStorage.ID_ACADEMIA;
 
         fetch("/medidas/listardata", {
             method: "POST",
@@ -870,7 +870,7 @@
 
     listarEquip()
     function listarEquip() {
-        const fkacademia = 1
+        const fkacademia = sessionStorage.ID_ACADEMIA;
 
         fetch("/medidas/listarequip", {
             method: "POST",
@@ -911,7 +911,7 @@
     obterDadosGraficoMaisUsados()
 
     function obterDadosGraficoMaisUsados(fkAcademia) {
-        let fkacademia = 1
+        let fkacademia = sessionStorage.ID_ACADEMIA;
 
         // if (proximaAtualizacao != undefined) {
         //     clearTimeout(proximaAtualizacao);

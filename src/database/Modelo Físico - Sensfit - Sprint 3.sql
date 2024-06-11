@@ -10,6 +10,8 @@ nome varchar(45) not null,
 CPF char(11) not null,
 email varchar(45) not null,
 senha varchar(10) not null,
+
+constraint ukUsuarioEmail unique key (email),
 primary key pkUsuario (idUsuario));
 
 

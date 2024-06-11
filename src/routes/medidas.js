@@ -23,6 +23,25 @@ router.post("/maisusados", function (req, res) {
     medidaController.buscarMaisUsados(req, res);
 });
 
+router.get("/qtdAparelhosMaisUsado", async (req, res) => {
+    try {
+        const quantidade = await medidaController.quantidadeAparelhosMais();
+        res.status(200).json({ quantidade });
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao obter quantidade de aparelhos." });
+    }
+});
+
+
+router.get("/aparelhosSubUso", async (req, res) => {
+    try {
+        const quantidade = await medidaController.quantidadeAparelhosSub();
+        res.status(200).json({ quantidade });
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao obter quantidade de aparelhos." });
+    }
+});
+
 // router.get("/tempo-real/:idAquario", function (req, res) {
 //     medidaController.buscarMedidasEmTempoReal(req, res);
 // })

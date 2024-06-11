@@ -78,8 +78,26 @@ function listarEquip(req, res) {
             res.status(200).json(resultado);
         });
     }
-
 }
+
+async function quantidadeAparelhosSub() {
+    try {
+        const { quantidade } = await medidaModel.quantidadeAparelhosSub();
+        return quantidade;
+    } catch (error) {
+        throw new Error("Erro ao obter quantidade de aparelhos.");
+    }
+}
+
+async function quantidadeAparelhosMais() {
+    try {
+        const { quantidade } = await medidaModel.quantidadeAparelhosMais();
+        return quantidade;
+    } catch (error) {
+        throw new Error("Erro ao obter quantidade de aparelhos.");
+    }
+}
+
 
 module.exports = {
     buscarManutencao,
@@ -87,4 +105,6 @@ module.exports = {
     buscarMaisUsados,
     listarData,
     listarEquip,
+    quantidadeAparelhosSub,
+    quantidadeAparelhosMais,
 }

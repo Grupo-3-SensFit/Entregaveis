@@ -66,7 +66,9 @@
     <div class="modal" id="modalDesuso">
         <div class="modal-content" id="content-mopdalDesuso">
             <span class="close" onclick="closeModalDesuso()" style="align-self: flex-end;">&times;</span>
-            <center><h2>Equipamentos em Desuso <i class="fa-solid fa-triangle-exclamation"></i></h2></center>
+            <center>
+                <h2>Equipamentos em Desuso <i class="fa-solid fa-triangle-exclamation"></i></h2>
+            </center>
             <div class="kpi-lateral">
                 <span class="kpi-info">Esteira S2</span>
                 <div class="info">
@@ -142,15 +144,14 @@
 
                     <div class="kpi" onclick="openModalMaisUsados()">
                         <span class="titulo-kpi">Equipamentos mais utilizados</span>
-
-                        <span class="kpi-infoN">5</span>
+                        <span id="kpi-qtdMais">5</span>
                     </div>
 
 
                     <div class="kpi" onclick="openModalDesuso()">
-                        <span class="titulo-kpi">Equipamentos em desuso
-                            <i class="fa-solid fa-triangle-exclamation"></i></span>
-                        <span class="kpi-infoN">3</span>
+                        <span class="titulo-kpi">Equipamentos em desuso</span>
+                        
+                        <span id="kpi-qtdMenos"></span>
                     </div>
                 </div>
                 <div class="grafico">
@@ -320,6 +321,24 @@
     }
 </script>
 
+
+<script>
+    fetch('/medidas/qtdAparelhosMaisUsado')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('kpi-qtdMais').innerHTML = data.quantidade;
+        })
+        .catch(error => console.error('Erro:', error));
+</script>
+<script>
+    fetch('/medidas/aparelhosSubUso')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('kpi-qtdMenos').innerHTML = data.quantidade;
+        })
+        .catch(error => console.error('Erro:', error));
+</script>
+
 <script>
     // Gráficos das KPI de Manutenção -------------------------------------------------------------------------------------------
 
@@ -424,7 +443,7 @@
             if (i == 0) {
                 dados1.datasets[0].data.push(tempoLivre);
                 dados1.datasets[0].data.push(soma);
-                equipmanu1.innerHTML = registro.tipo; 
+                equipmanu1.innerHTML = registro.tipo;
                 horasmanu1.innerHTML = soma;
                 infomanu1.innerHTML += `<br><br>id=${registro.idEquipamento}`
 
@@ -619,7 +638,7 @@
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
-        
+
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             let hora = registro.hora

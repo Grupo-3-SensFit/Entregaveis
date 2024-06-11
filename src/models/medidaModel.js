@@ -18,7 +18,7 @@ function buscarManutencao(fkAcademia) {
 }
 
 
-function buscarPico(equip,dataPico,fkAcademia) {
+function buscarPico(equip, dataPico, fkAcademia) {
 
     var instrucaoSql = `select distinct equipamento.tipo,
 	hour(hora) as hora,
@@ -83,10 +83,51 @@ function listarEquip(fkAcademia) {
     return database.executar(instrucaoSql);
 }
 
+async function quantidadeAparelhosSub() {
+    try {
+        const [result] = await database.executar(`
+            select count(*) as quantidade
+            from (
+                select e.idEquipamento
+                from equipamento e
+                join sensor s on e.idEquipamento = s.fkEquipamento
+                join leitura l on s.idSensor = l.fkSensor
+                group by e.idEquipamento
+                having sum(l.atividade) < 500
+            ) as subquery
+        `);
+        return result;
+    } catch (error) {
+        throw new Error("Erro ao obter quantidade de aparelhos.");
+    }
+}
+
+async function quantidadeAparelhosMais() {
+    try {
+        const [result] = await database.executar(`
+            select count(*) as quantidade
+            from (
+                select e.idEquipamento
+                from equipamento e
+                join sensor s on e.idEquipamento = s.fkEquipamento
+                join leitura l on s.idSensor = l.fkSensor
+                group by e.idEquipamento
+                having sum(l.atividade) > 500
+            ) as subquery
+        `);
+        return result;
+    } catch (error) {
+        throw new Error("Erro ao obter quantidade de aparelhos.");
+    }
+}
+
+
 module.exports = {
     buscarManutencao,
     buscarPico,
     buscarMaisUsados,
     listarData,
     listarEquip,
+    quantidadeAparelhosSub,
+    quantidadeAparelhosMais,
 }

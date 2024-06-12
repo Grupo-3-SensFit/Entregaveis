@@ -67,7 +67,7 @@
         <div class="modal-content" id="contentMopdalDesuso">
             <span class="close" onclick="closeModalDesuso()" style="align-self: flex-end;">&times;</span>
             <center>
-                <h2>Equipamentos em Desuso <i class="fa-solid fa-triangle-exclamation"></i></h2>
+                <h3>Equipamentos em Desuso</h3>
             </center>
             <!-- <div class="kpi-lateral">
                 <span class="kpi-info">Esteira S2</span>
@@ -85,7 +85,7 @@
     <div class="modal" id="modalMaisUsados">
         <div class="modal-content" id="contentMopdalMaisUsados">
             <span class="close" onclick="closeModalMaisUsados()" style="align-self: flex-end;">&times;</span>
-            <h2>Equipamentos mais usados</h2>
+            <h3>Equipamentos mais usados</h3>
             <!-- <div class="kpi-lateral">
                 <span class="kpi-info">Esteira S2</span>
                 <div class="info">
@@ -1029,7 +1029,7 @@
 
                     resposta.forEach((idEquipamento) => {
                         contentMopdalMaisUsados.innerHTML += `<div class="kpi-lateral">
-                            <span class="kpi-info">${idEquipamento.tipo + ' ' + idEquipamento.idEquipamento}</span>
+                            <span class="kpi-info">${idEquipamento.tipo + '<br> ID = ' + idEquipamento.idEquipamento}</span>
                             <div class="info">
                                 <div class="horas">
                                     <span>${idEquipamento.soma}</span>

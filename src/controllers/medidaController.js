@@ -80,14 +80,24 @@ function listarEquip(req, res) {
     }
 }
 
-async function quantidadeAparelhosSub(fkAcademia) {
+async function quantidadeAparelhosSub(req, res) {
     var fkAcademia = req.body.fkAcademiaServer;
-    try {
-        const { quantidade } = await medidaModel.quantidadeAparelhosSub(fkAcademia);
-        return quantidade;
-    } catch (error) {
-        throw new Error("Erro ao obter quantidade de aparelhos.");
+    if (fkAcademia == undefined) {
+        console.log('Usuario undefined')
+    } else {
+        medidaModel.quantidadeAparelhosSub(fkAcademia).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
     }
+    
 }
 
 function quantidadeAparelhosMais(req,res) {
@@ -128,6 +138,23 @@ function kpisMaisUsados(req, res){
     });
 }
 
+function kpisMenosUsados(req, res){
+    var fkAcademia = req.body.fkAcademiaServer;
+
+    medidaModel.kpisMenosUsados(fkAcademia).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
     buscarManutencao,
     buscarPico,
@@ -137,4 +164,5 @@ module.exports = {
     quantidadeAparelhosSub,
     quantidadeAparelhosMais,
     kpisMaisUsados,
+    kpisMenosUsados,
 }

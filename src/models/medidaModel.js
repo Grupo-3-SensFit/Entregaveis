@@ -84,23 +84,21 @@ function listarEquip(fkAcademia) {
 }
 
 async function quantidadeAparelhosSub(fkAcademia) {
-    try {
-        const [result] = await database.executar(`
+    var instrucaoSql = `
             select count(*) as quantidade
             from (
-	        select distinct e.idEquipamento, ifnull(sum(l.atividade),0) as soma
-	        from equipamento e
-	        join sensor s on e.idEquipamento = s.fkEquipamento
-	        left join leitura l on s.idSensor = l.fkSensor
-            where fkAcademia = 1
-	        group by e.idEquipamento 
-            ) as subquery where soma <= 5;
-        `);
-        return result;
-    } catch (error) {
-        throw new Error("Erro ao obter quantidade de aparelhos.");
-    }
-}
+                select e.idEquipamento
+                from equipamento e
+                join sensor s on e.idEquipamento = s.fkEquipamento
+                join leitura l on s.idSensor = l.fkSensor
+                where fkAcademia = ${fkAcademia}
+                group by e.idEquipamento
+                having sum(l.atividade) < 10
+            ) as subquery;`;
+            console.log("Executando a instrução SQL: \n" + instrucaoSql);
+            return database.executar(instrucaoSql);
+        }
+        
 
 function quantidadeAparelhosMais(fkAcademia) {
     var instrucaoSql = `select count(*) as quantidade
@@ -133,6 +131,20 @@ function kpisMaisUsados(fkAcademia) {
     return database.executar(instrucaoSql);
 }
 
+function kpisMenosUsados(fkAcademia) {
+    var instrucaoSql = `select e.idEquipamento, e.tipo, sum(l.atividade)as soma
+    from equipamento e
+    join sensor s on e.idEquipamento = s.fkEquipamento
+    join leitura l on s.idSensor = l.fkSensor
+    where fkAcademia = ${fkAcademia} and  dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
+    group by e.idEquipamento
+    having sum(l.atividade) < 5
+    order by soma desc`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarManutencao,
     buscarPico,
@@ -142,4 +154,5 @@ module.exports = {
     quantidadeAparelhosSub,
     quantidadeAparelhosMais,
     kpisMaisUsados,
+    kpisMenosUsados,
 }

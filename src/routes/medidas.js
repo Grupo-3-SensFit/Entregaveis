@@ -28,17 +28,17 @@ router.post("/qtdAparelhosMaisUsado", function (req, res){
 });
 
 
-router.post("/aparelhosSubUso", async (req, res) => {
-    try {
-        const quantidade = await medidaController.quantidadeAparelhosSub(req, res);
-        res.status(200).json({ quantidade });
-    } catch (error) {
-        res.status(500).json({ message: "Erro ao obter quantidade de aparelhos." });
-    }
+router.post("/qtdAparelhosSubUso", async (req, res) => {
+    medidaController.quantidadeAparelhosSub(req, res);
+
 });
 
 router.post("/kpimais", function (req, res) {
     medidaController.kpisMaisUsados(req, res);
+});
+
+router.post("/kpimenos", function (req, res) {
+    medidaController.kpisMenosUsados(req, res);
 });
 
 module.exports = router;

@@ -14,7 +14,6 @@ senha varchar(10) not null,
 constraint ukUsuarioEmail unique key (email),
 primary key pkUsuario (idUsuario));
 
-
 -- cadastro de academias 
 create table academia(
 idAcademia int auto_increment,
@@ -227,7 +226,7 @@ where fkAcademia = 1  and  dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
 group by equip.tipo
 order by soma desc;
 
-
+-- seleciona a quantidade de equipamentos em mais usados
 select count(*) as quantidade
             from (
                 select e.idEquipamento
@@ -238,18 +237,38 @@ select count(*) as quantidade
                 group by e.idEquipamento
                 having sum(l.atividade) > 10
             ) as subquery;
+    
+    
+-- seleciona os quepiamentos mias usados
+select e.idEquipamento, e.tipo, sum(l.atividade)as soma
+from equipamento e
+join sensor s on e.idEquipamento = s.fkEquipamento
+join leitura l on s.idSensor = l.fkSensor
+where fkAcademia = 1 and  dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
+group by e.idEquipamento
+having sum(l.atividade) > 10
+order by soma desc;
 
- select distinct e.idEquipamento,  e.tipo,(select count(*) as quantidade
+
+
+
+select count(*) as quantidade
             from (
-                select e.idEquipamento
+                select distinct e.idEquipamento
                 from equipamento e
                 join sensor s on e.idEquipamento = s.fkEquipamento
-                join leitura l on s.idSensor = l.fkSensor
-                where fkAcademia = 1
+                left join leitura l on s.idSensor = l.fkSensor
                 group by e.idEquipamento
-                having sum(l.atividade) >= 10
-            ) as subquery)as quantidade
+                having sum(l.atividade) <= 5 or sum(l.atividade) = null
+            ) as subquery;
+                
+                
+                
+                select count(*) as quantidade
+            from (
+                select distinct e.idEquipamento, ifnull(sum(l.atividade),0) as soma
                 from equipamento e
                 join sensor s on e.idEquipamento = s.fkEquipamento
-                join leitura l on s.idSensor = l.fkSensor
-                where fkAcademia = 1;
+                left join leitura l on s.idSensor = l.fkSensor
+                group by e.idEquipamento      
+            ) as subquery where soma <= 5;

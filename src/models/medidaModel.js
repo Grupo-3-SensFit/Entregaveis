@@ -20,7 +20,7 @@ function buscarManutencao(fkAcademia) {
 
 function buscarPico(equip, dataPico, fkAcademia) {
 
-    var instrucaoSql = `select distinct equipamento.tipo,
+    var instrucaoSql = `select  equipamento.tipo,
 	hour(hora) as hora,
     count(equipamento.tipo) as qtd,
     (select count(idSensor)
@@ -83,18 +83,18 @@ function listarEquip(fkAcademia) {
     return database.executar(instrucaoSql);
 }
 
-async function quantidadeAparelhosSub() {
+async function quantidadeAparelhosSub(fkAcademia) {
     try {
         const [result] = await database.executar(`
             select count(*) as quantidade
             from (
-                select e.idEquipamento
-                from equipamento e
-                join sensor s on e.idEquipamento = s.fkEquipamento
-                join leitura l on s.idSensor = l.fkSensor
-                group by e.idEquipamento
-                having sum(l.atividade) < 5
-            ) as subquery
+	        select distinct e.idEquipamento, ifnull(sum(l.atividade),0) as soma
+	        from equipamento e
+	        join sensor s on e.idEquipamento = s.fkEquipamento
+	        left join leitura l on s.idSensor = l.fkSensor
+            where fkAcademia = 1
+	        group by e.idEquipamento 
+            ) as subquery where soma <= 5;
         `);
         return result;
     } catch (error) {
@@ -102,23 +102,20 @@ async function quantidadeAparelhosSub() {
     }
 }
 
-async function quantidadeAparelhosMais() {
-    try {
-        const [result] = await database.executar(`
-            select count(*) as quantidade
+function quantidadeAparelhosMais(fkAcademia) {
+    var instrucaoSql = `select count(*) as quantidade
             from (
                 select e.idEquipamento
                 from equipamento e
                 join sensor s on e.idEquipamento = s.fkEquipamento
                 join leitura l on s.idSensor = l.fkSensor
+                where fkAcademia = ${fkAcademia}
                 group by e.idEquipamento
                 having sum(l.atividade) > 10
-            ) as subquery
-        `);
-        return result;
-    } catch (error) {
-        throw new Error("Erro ao obter quantidade de aparelhos.");
-    }
+            ) as subquery;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 

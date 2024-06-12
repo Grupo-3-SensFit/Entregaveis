@@ -108,7 +108,7 @@
 
                     <div class="kpi" onclick="openModalMaisUsados()">
                         <span class="titulo-kpi">Equipamentos mais utilizados</span>
-                        <span id="kpi-qtdMais">5</span>
+                        <span id="kpi-qtdMais"></span>
                     </div>
 
 
@@ -287,21 +287,45 @@
 
 
 <script>
-    fetch('/medidas/qtdAparelhosMaisUsado')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('kpi-qtdMais').innerHTML = data.quantidade;
+    qtdMaisUso()
+    function qtdMaisUso() {
+        let fkacademia = sessionStorage.ID_ACADEMIA;
+        fetch(`/medidas/qtdAparelhosMaisUsado`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cache: 'no-store',
+            body: JSON.stringify({
+                fkAcademiaServer: fkacademia,
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    document.getElementById('kpi-qtdMais').innerHTML = resposta[0].quantidade;
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
         })
-        .catch(error => console.error('Erro:', error));
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function qtdSubuso() {
+        let fkacademia = sessionStorage.ID_ACADEMIA;
+        fetch('/medidas/aparelhosSubUso')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('kpi-qtdMenos').innerHTML = data.quantidade;
+            })
+            .catch(error => console.error('Erro:', error));
+    }
 </script>
-<script>
-    fetch('/medidas/aparelhosSubUso')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('kpi-qtdMenos').innerHTML = data.quantidade;
-        })
-        .catch(error => console.error('Erro:', error));
-</script>
+
+
 
 <script>
     // Gráficos das KPI de Manutenção -------------------------------------------------------------------------------------------
@@ -508,7 +532,7 @@
         if (firstplot == 0) {
             // dataAtual = diaDeHoje();
             dataAtual = '2024-06-08'
-            equip = 'Esteira'
+            equip = 'Bicicleta'
             firstplot = 1;
         } else {
             dataAtual = atualizarGraficoPico();
@@ -531,7 +555,7 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    plotarGraficoPico(resposta, tipoEquip);
+                    plotarGraficoPico(resposta);
 
                 });
             } else {
@@ -543,7 +567,7 @@
             });
     }
 
-    function plotarGraficoPico(resposta, tipoEquip) {
+    function plotarGraficoPico(resposta) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -943,7 +967,7 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
 
-            if (i <= 3) {
+            if (i < 3) {
                 labels.push(registro.tipo);
                 dados.datasets[0].data.push(registro.soma);
             } else {
@@ -1005,7 +1029,7 @@
 
                     resposta.forEach((idEquipamento) => {
                         contentMopdalMaisUsados.innerHTML += `<div class="kpi-lateral">
-                            <span class="kpi-info">${idEquipamento.tipo +' '+ idEquipamento.idEquipamento}</span>
+                            <span class="kpi-info">${idEquipamento.tipo + ' ' + idEquipamento.idEquipamento}</span>
                             <div class="info">
                                 <div class="horas">
                                     <span>${idEquipamento.soma}</span>

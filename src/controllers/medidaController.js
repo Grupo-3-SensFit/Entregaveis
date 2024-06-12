@@ -80,22 +80,35 @@ function listarEquip(req, res) {
     }
 }
 
-async function quantidadeAparelhosSub() {
+async function quantidadeAparelhosSub(fkAcademia) {
+    var fkAcademia = req.body.fkAcademiaServer;
     try {
-        const { quantidade } = await medidaModel.quantidadeAparelhosSub();
+        const { quantidade } = await medidaModel.quantidadeAparelhosSub(fkAcademia);
         return quantidade;
     } catch (error) {
         throw new Error("Erro ao obter quantidade de aparelhos.");
     }
 }
 
-async function quantidadeAparelhosMais() {
-    try {
-        const { quantidade } = await medidaModel.quantidadeAparelhosMais();
-        return quantidade;
-    } catch (error) {
-        throw new Error("Erro ao obter quantidade de aparelhos.");
+function quantidadeAparelhosMais(req,res) {
+    var fkAcademia = req.body.fkAcademiaServer;
+    
+    if (fkAcademia == undefined) {
+        console.log('Usuario undefined')
+    } else {
+        medidaModel.quantidadeAparelhosMais(fkAcademia).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
     }
+    
 }
 
 

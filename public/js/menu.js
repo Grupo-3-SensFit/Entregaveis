@@ -10,10 +10,10 @@ function menuScroll (){
     const scroll = window.scrollY;
     if (scroll > 0) {
         document.querySelector('nav').classList.add("active") 
-        document.querySelector('#logo').src="img/LogoLaranja2.png"
+        document.querySelector('#logo').src="img/logoLaranja2.png"
     } else {
         document.querySelector('nav').classList.remove("active") 
-        document.querySelector('#logo').src="img/LogoBranca2.png"
+        document.querySelector('#logo').src="img/logoBranca2.png"
     }
 }
 

@@ -318,6 +318,7 @@
 
         //  chamada da função com o idAcademia
         NomeAcademia(sessionStorage.ID_ACADEMIA);
+
 </script>
 
 <script>
@@ -486,7 +487,7 @@
                 horasmanu1.innerHTML = soma;
                 infomanu1.innerHTML += `<br><br>id=${registro.idEquipamento}`
 
-                if (soma >= 100) {
+                if (soma >= 1000) {
                     dados1.datasets[0].borderColor[1] = '#FF7049'
                     dados1.datasets[0].backgroundColor[1] = '#FF7049'
                 } else {
@@ -501,7 +502,7 @@
                 horasmanu2.innerHTML = soma;
                 infomanu2.innerHTML += `<br><br>id=${registro.idEquipamento}`
 
-                if (soma >= 100) {
+                if (soma >= 1000) {
                     dados2.datasets[0].borderColor[1] = '#FF7049'
                     dados2.datasets[0].backgroundColor[1] = '#FF7049'
 
@@ -516,7 +517,7 @@
                 horasmanu3.innerHTML = soma;
                 infomanu3.innerHTML += `<br><br>id=${registro.idEquipamento}`
 
-                if (soma >= 100) {
+                if (soma >= 1000) {
                     dados3.datasets[0].borderColor[1] = '#FF7049'
                     dados3.datasets[0].backgroundColor[1] = '#FF7049'
 
@@ -582,7 +583,6 @@
 
         if (firstplot == 0) {
             dataAtual = diaDeHoje();
-           // dataAtual = '2024-06-08'
             equip = 'Esteira'
             firstplot = 1;
         } else {

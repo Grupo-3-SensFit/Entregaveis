@@ -66,9 +66,14 @@ values('SmartFit','18273645263718','01928374', 1);
 insert into equipamento(dataManutencao,tipo,fkAcademia)
 values('2024-03-10','Esteira',1),
 ('2023-09-23','Bicicleta',1),
+('2024-03-10','Esteira',1),
+('2023-09-23','Bicicleta',1),
+('2024-03-10','Esteira',1),
+('2023-09-23','Bicicleta',1),
+('2024-01-27','Cadeira flexora',1),
 ('2024-01-27','Cadeira flexora',1),
 ('2024-10-12','Leg press',1),
-('2023-12-22','Remo',1);
+('2024-10-12','Leg press',1);
 
 
 -- INSERÇÃO DE DADOS NO SENSOR
@@ -77,12 +82,14 @@ values(1),
 (2),
 (3),
 (4),
-(5);
+(5),
+(6),(7),(8),(9),(10);
 
 
 select*from usuario;
 select*from academia;
 select*from equipamento;
+select*from sensor;
 select*from leitura;
 truncate leitura;
 
@@ -272,3 +279,13 @@ select count(*) as quantidade
                 left join leitura l on s.idSensor = l.fkSensor
                 group by e.idEquipamento      
             ) as subquery where soma <= 5;
+            
+-- FRIZZA !!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+insert into equipamento(dataManutencao,tipo,fkAcademia)
+values('2024-03-10','Esteira',2);
+
+
+-- INSERÇÃO DE DADOS NO SENSOR
+insert into sensor(fkEquipamento)
+values(11);

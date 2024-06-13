@@ -32,7 +32,7 @@ function buscarPico(equip, dataPico, fkAcademia) {
     left join equipamento on fkEquipamento = idEquipamento
     where equipamento.tipo = '${equip}' and fkAcademia = ${fkAcademia}
     and dataLeitura = '${dataPico}'
-    group by hora
+    group by hour(hora)
     order by hora;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

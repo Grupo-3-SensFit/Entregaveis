@@ -93,7 +93,7 @@ async function quantidadeAparelhosSub(fkAcademia) {
                 join leitura l on s.idSensor = l.fkSensor
                 where fkAcademia = ${fkAcademia}
                 group by e.idEquipamento
-                having sum(l.atividade) < 10
+                having sum(l.atividade) < 5
             ) as subquery;`;
             console.log("Executando a instrução SQL: \n" + instrucaoSql);
             return database.executar(instrucaoSql);
@@ -109,7 +109,7 @@ function quantidadeAparelhosMais(fkAcademia) {
                 join leitura l on s.idSensor = l.fkSensor
                 where fkAcademia = ${fkAcademia}
                 group by e.idEquipamento
-                having sum(l.atividade) > 10
+                having sum(l.atividade) > 40
             ) as subquery;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -124,7 +124,7 @@ function kpisMaisUsados(fkAcademia) {
     join leitura l on s.idSensor = l.fkSensor
     where fkAcademia = ${fkAcademia} and  dataLeitura >= DATE_ADD(CURDATE(),INTERVAL -7 DAY)
     group by e.idEquipamento
-    having sum(l.atividade) > 10
+    having sum(l.atividade) > 40
     order by soma desc`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -145,6 +145,15 @@ function kpisMenosUsados(fkAcademia) {
     return database.executar(instrucaoSql);
 }
 
+function nomeAcademia(fkAcademia) {
+    var instrucaoSql = `select nome
+        from academia
+        where idAcademia = ${fkAcademia};
+        `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     buscarManutencao,
     buscarPico,
@@ -155,4 +164,5 @@ module.exports = {
     quantidadeAparelhosMais,
     kpisMaisUsados,
     kpisMenosUsados,
+    nomeAcademia,
 }

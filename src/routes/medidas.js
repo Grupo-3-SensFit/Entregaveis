@@ -41,4 +41,8 @@ router.post("/kpimenos", function (req, res) {
     medidaController.kpisMenosUsados(req, res);
 });
 
+router.post("/nomeAcademia", function (req, res) {
+    medidaController.nomeAcademia(req, res);
+});
+
 module.exports = router;

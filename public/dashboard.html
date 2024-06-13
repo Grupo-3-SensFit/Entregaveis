@@ -99,7 +99,7 @@
     </div>
 
     <div class="conteudo-dashboard">
-        <h2>Sensfit's Dashboard</h2>
+        <h2><span id="kpi-nomeAcademia"></span> Dashboard</h2>
 
         <div id="divSup">
 
@@ -285,6 +285,38 @@
     }
 </script>
 
+<script>
+   function NomeAcademia(idAcademia) {
+
+            fetch('medidas/nomeAcademia', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ idAcademia: idAcademia })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na resposta da rede');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.length > 0) {
+                    document.getElementById('kpi-nomeAcademia').textContent = data[0].nome;
+                } else {
+                    document.getElementById('kpi-nomeAcademia').textContent = 'Academia não encontrada';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar nome da academia:', error);
+                document.getElementById('kpi-nomeAcademia').textContent = 'Erro ao buscar nome da academia';
+            });
+        }
+
+        //  chamada da função com o idAcademia
+        NomeAcademia(1);
+</script>
 
 <script>
     qtdMaisUso()
@@ -395,7 +427,7 @@
                     '#E7B14A',
                     '#FF7049',
                 ],
-                backgroundColor: ['#F7F8FB',
+                backgroundColor: ['#e0e0e0',
                     '#E7B14A',
                     '#FF7049',
                 ],
@@ -411,7 +443,7 @@
                     '#E7B14A',
                     '#FF7049',
                 ],
-                backgroundColor: ['#F7F8FB',
+                backgroundColor: ['#e0e0e0',
                     '#E7B14A',
                     '#FF7049',
                 ],
@@ -427,7 +459,7 @@
                     '#E7B14A',
                     '#FF7049',
                 ],
-                backgroundColor: ['#F7F8FB',
+                backgroundColor: ['#e0e0e0',
                     '#E7B14A',
                     '#FF7049',
                 ],
@@ -442,7 +474,7 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            let tempoLivre = 160 - registro.soma;
+            let tempoLivre = 1500 - registro.soma;
             let soma = registro.soma;
 
             if (i == 0) {
@@ -547,8 +579,8 @@
         let fkacademia = sessionStorage.ID_ACADEMIA;
 
         if (firstplot == 0) {
-            // dataAtual = diaDeHoje();
-            dataAtual = '2024-06-08'
+            dataAtual = diaDeHoje();
+           // dataAtual = '2024-06-08'
             equip = 'Bicicleta'
             firstplot = 1;
         } else {

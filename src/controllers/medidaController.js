@@ -154,6 +154,21 @@ function kpisMenosUsados(req, res){
     });
 }
 
+function nomeAcademia(req, res) {
+    const idAcademia = req.body.idAcademia;
+    
+    if (idAcademia == undefined) {
+        console.log('idAcademia undefined');
+        res.status(400).send("idAcademia is undefined");
+    } else {
+        medidaModel.nomeAcademia(idAcademia).then((resultado) => {
+            res.status(200).json(resultado);
+        }).catch((erro) => {
+            console.log(erro);
+            res.status(500).json({ erro: erro });
+        });
+    }
+}
 
 module.exports = {
     buscarManutencao,
@@ -165,4 +180,5 @@ module.exports = {
     quantidadeAparelhosMais,
     kpisMaisUsados,
     kpisMenosUsados,
+    nomeAcademia
 }
